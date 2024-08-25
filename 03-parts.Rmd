@@ -1,12 +1,14 @@
-# Parts
+# Gestion des données 
 
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file. 
+Plusieurs fonctions permettent de décrire la base de données. Le code suivant vous propose plusieurs fonction avec en commentaire leur utilités. 
 
-Add a numbered part: `# (PART) Act one {-}` (followed by `# A chapter`)
+```{r}
 
-Add an unnumbered part: `# (PART\*) Act one {-}` (followed by `# A chapter`)
-
-Add an appendix as a special kind of un-numbered part: `# (APPENDIX) Other stuff {-}` (followed by `# A chapter`). Chapters in an appendix are prepended with letters instead of numbers.
-
-
+str(iris) #montre la structure de la base de données 
+dim(iris) #donnes les dimensions de la base de données 
+nrow(iris) #donne le nombre de lignes de la base de données 
+ncol(iris) #donne le nombre de colonnes de la base de données 
+head(iris) #affiche les premières lignes de la base de données, par défaut 5 lignes 
+tail(iris, n = 10) #affiche les dix dernières lignes de la base de données 
+```
 
