@@ -1,6 +1,6 @@
 --- 
-title: "A Minimal Book Example"
-author: "John Doe"
+title: "Guide R"
+author: "Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
