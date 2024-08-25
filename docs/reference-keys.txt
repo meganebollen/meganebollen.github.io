@@ -1,5 +1,5 @@
 introduction
-installation-du-r-et-rstudio
+installation-de-r-et-rstudio
 packages-et-données
 installation-et-gestion-des-packages
 téléchargement-des-données

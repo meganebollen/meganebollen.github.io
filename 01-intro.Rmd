@@ -1,2 +1,2 @@
-# Installation du R et RStudio
+# Installation de R et RStudio
 
