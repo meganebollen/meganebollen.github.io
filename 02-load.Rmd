@@ -4,7 +4,7 @@ Ce premier chapitre introduit deux concepts importants dans R. Le premier est le
 
 ## Installation et gestion des packages
 
-Les packages sont des regroupements de fonctions et de jeux de données développés dans  doivent se télécharger une seule fois, mais ils devront être importés à chaque utilisation. Le code ci-dessous permet d'installer les packages:
+Les packages sont des regroupements de fonctions et de jeux de données développés dans  doivent se télécharger une seule fois, mais ils devront être importés à chaque utilisation. Le code ci-dessous permet d'installer le package ggplot2:
 
 ```{r eval=FALSE}
 
@@ -26,15 +26,15 @@ Dans R, les bases de données se déclinent de plusieurs façons:
 
 1. Les bases de données peuvent être directement incluses dans R ou dans les packages. 
 1. Les bases de données peuvent être créées dans l'environnement sauvées dans l'environnement R. Ces fichiers ont une extension .RData
-1. Les bases de données peuvent être issues de fichiers externes. Ces fichiers ont une extension .csv
+1. Les bases de données peuvent être issues de fichiers externes. Ces fichiers peuvent avoir différentes extensions, les plus courantes étant .csv et .txt.
 
 ### Bases de données issues de la base de R ou des packages
 
-Lorsque les données sont issues de la base de R ou des packages, elles peuvent être importées en utilisant le code suivant: 
+Le code suivant permet d'importer le jeu de données "iris" disponible dans R. 
 
 ```{r echo=TRUE}
 
 data("iris")
 
 ```
-Le code précédent vous présente également une fonction qui permet de nommer les variables contenues dans cette base de données. Si les données sont dans un package, le package doit être importé au préalable. 
+ Si les données sont dans un package, le package doit être importé au préalable. 

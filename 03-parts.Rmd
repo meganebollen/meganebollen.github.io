@@ -1,6 +1,6 @@
 # Gestion des données 
 
-Plusieurs fonctions permettent de décrire la base de données. Le code suivant vous propose plusieurs fonction avec en commentaire leur utilités. 
+Plusieurs fonctions permettent d'obtenir des informations concernant la base de données. Le code suivant vous propose plusieurs fonction avec en commentaire leur utilités. 
 
 ```{r}
 
@@ -9,6 +9,7 @@ dim(iris) #donnes les dimensions de la base de données
 nrow(iris) #donne le nombre de lignes de la base de données 
 ncol(iris) #donne le nombre de colonnes de la base de données 
 head(iris) #affiche les premières lignes de la base de données, par défaut 5 lignes 
-tail(iris, n = 10) #affiche les dix dernières lignes de la base de données 
+tail(iris, n = 10) #affiche les dix dernières lignes de la base de données
+summary(iris) #donne les résumés numériques des variables en fonction de leur type
 ```
 
