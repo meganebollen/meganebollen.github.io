@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2024-08-25" />
+<meta name="date" content="2024-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -143,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example><imc src="logo_unil.pdf"></a></li>
+<li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -182,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Ce premier chapitre introduit deux concepts importants dans R. Le premier est les packages et le second concerne les données.</p>
 <div id="installation-et-gestion-des-packages" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Installation et gestion des packages<a href="packages-et-données.html#installation-et-gestion-des-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Les packages sont des regroupements de fonctions et de jeux de données développés dans doivent se télécharger une seule fois, mais ils devront être importés à chaque utilisation. Le code ci-dessous permet d’installer les packages:</p>
+<p>Les packages sont des regroupements de fonctions et de jeux de données développés dans doivent se télécharger une seule fois, mais ils devront être importés à chaque utilisation. Le code ci-dessous permet d’installer le package ggplot2:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="packages-et-données.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(ggplot2, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Avant chaque utilisation des packages, il est nécessaire d’importer le package grâce au code suivant:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="packages-et-données.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
@@ -193,13 +193,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Les bases de données peuvent être directement incluses dans R ou dans les packages.</li>
 <li>Les bases de données peuvent être créées dans l’environnement sauvées dans l’environnement R. Ces fichiers ont une extension .RData</li>
-<li>Les bases de données peuvent être issues de fichiers externes. Ces fichiers ont une extension .csv</li>
+<li>Les bases de données peuvent être issues de fichiers externes. Ces fichiers peuvent avoir différentes extensions, les plus courantes étant .csv et .txt.</li>
 </ol>
 <div id="bases-de-données-issues-de-la-base-de-r-ou-des-packages" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Bases de données issues de la base de R ou des packages<a href="packages-et-données.html#bases-de-données-issues-de-la-base-de-r-ou-des-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Lorsque les données sont issues de la base de R ou des packages, elles peuvent être importées en utilisant le code suivant:</p>
+<p>Le code suivant permet d’importer le jeu de données “iris” disponible dans R.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="packages-et-données.html#cb3-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;iris&quot;</span>)</span></code></pre></div>
-<p>Le code précédent vous présente également une fonction qui permet de nommer les variables contenues dans cette base de données. Si les données sont dans un package, le package doit être importé au préalable.</p>
+<p>Si les données sont dans un package, le package doit être importé au préalable.</p>
 
 </div>
 </div>
