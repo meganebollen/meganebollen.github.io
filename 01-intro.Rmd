@@ -1,2 +1,3 @@
-# Installation de R et RStudio
+# Introduction
 
+Ceci est le guide R que nous proposons pour vous accompagner durant le cours de Statistiques I. 
