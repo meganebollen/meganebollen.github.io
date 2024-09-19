@@ -1,9 +1,0 @@
-introduction
-installation-et-environnement-r-et-rstudio
-installation
-environnement-de-travail
-gestion-des-données
-packages-et-données
-installation-et-gestion-des-packages
-téléchargement-des-données
-bases-de-données-issues-de-la-base-de-r-ou-des-packages
