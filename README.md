@@ -1,13 +1,3 @@
-Welcome! 
+Ce bookdown a pour but d'être un guide R pour les étudiants de statistique I.
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
-
-This template provides a skeleton file structure that you can edit to create your book. 
-
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
-
-Additional resources:
-
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
-
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
+Il se base sur la structure du book mis par défault sur R Markdown et le package bookdown (https://github.com/rstudio/bookdown). 

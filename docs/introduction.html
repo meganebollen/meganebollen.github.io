@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2024-09-18" />
+<meta name="date" content="2024-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,13 +152,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#installation"><i class="fa fa-check"></i><b>2.1</b> Installation</a></li>
 <li class="chapter" data-level="2.2" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#environnement-de-travail"><i class="fa fa-check"></i><b>2.2</b> Environnement de travail</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="gestion-des-données.html"><a href="gestion-des-données.html"><i class="fa fa-check"></i><b>3</b> Gestion des données</a></li>
-<li class="chapter" data-level="4" data-path="packages-et-données.html"><a href="packages-et-données.html"><i class="fa fa-check"></i><b>4</b> Packages et données</a>
+<li class="chapter" data-level="3" data-path="objects-et-opérateurs.html"><a href="objects-et-opérateurs.html"><i class="fa fa-check"></i><b>3</b> Objects et opérateurs</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="packages-et-données.html"><a href="packages-et-données.html#installation-et-gestion-des-packages"><i class="fa fa-check"></i><b>4.1</b> Installation et gestion des packages</a></li>
-<li class="chapter" data-level="4.2" data-path="packages-et-données.html"><a href="packages-et-données.html#téléchargement-des-données"><i class="fa fa-check"></i><b>4.2</b> Téléchargement des données</a>
+<li class="chapter" data-level="3.1" data-path="objects-et-opérateurs.html"><a href="objects-et-opérateurs.html#objects-dans-r"><i class="fa fa-check"></i><b>3.1</b> Objects dans R</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="packages-et-données.html"><a href="packages-et-données.html#bases-de-données-issues-de-la-base-de-r-ou-des-packages"><i class="fa fa-check"></i><b>4.2.1</b> Bases de données issues de la base de R ou des packages</a></li>
+<li class="chapter" data-level="3.1.1" data-path="objects-et-opérateurs.html"><a href="objects-et-opérateurs.html#scalaire"><i class="fa fa-check"></i><b>3.1.1</b> Scalaire</a></li>
+<li class="chapter" data-level="3.1.2" data-path="objects-et-opérateurs.html"><a href="objects-et-opérateurs.html#vecteur"><i class="fa fa-check"></i><b>3.1.2</b> Vecteur</a></li>
+<li class="chapter" data-level="3.1.3" data-path="objects-et-opérateurs.html"><a href="objects-et-opérateurs.html#facteur"><i class="fa fa-check"></i><b>3.1.3</b> Facteur</a></li>
+<li class="chapter" data-level="3.1.4" data-path="objects-et-opérateurs.html"><a href="objects-et-opérateurs.html#matrice"><i class="fa fa-check"></i><b>3.1.4</b> Matrice</a></li>
+<li class="chapter" data-level="3.1.5" data-path="objects-et-opérateurs.html"><a href="objects-et-opérateurs.html#dataframe"><i class="fa fa-check"></i><b>3.1.5</b> Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="objects-et-opérateurs.html"><a href="objects-et-opérateurs.html#opérateurs-logiques"><i class="fa fa-check"></i><b>3.2</b> Opérateurs logiques</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="gestion-des-données.html"><a href="gestion-des-données.html"><i class="fa fa-check"></i><b>4</b> Gestion des données</a></li>
+<li class="chapter" data-level="5" data-path="packages-et-données.html"><a href="packages-et-données.html"><i class="fa fa-check"></i><b>5</b> Packages et données</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="packages-et-données.html"><a href="packages-et-données.html#installation-et-gestion-des-packages"><i class="fa fa-check"></i><b>5.1</b> Installation et gestion des packages</a></li>
+<li class="chapter" data-level="5.2" data-path="packages-et-données.html"><a href="packages-et-données.html#téléchargement-des-données"><i class="fa fa-check"></i><b>5.2</b> Téléchargement des données</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="packages-et-données.html"><a href="packages-et-données.html#bases-de-données-issues-de-la-base-de-r-ou-des-packages"><i class="fa fa-check"></i><b>5.2.1</b> Bases de données issues de la base de R ou des packages</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -184,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Guide R</h1>
 <p class="author"><em>Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher</em></p>
-<p class="date"><em>2024-09-18</em></p>
+<p class="date"><em>2024-09-19</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -213,24 +225,21 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
 "whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+"all": {}
 },
 "fontsettings": {
 "theme": "white",
 "family": "sans",
 "size": 2
 },
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
-"text": "Edit"
-},
+"edit": null,
 "history": {
 "link": null,
 "text": null
@@ -239,7 +248,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": ["_main.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
