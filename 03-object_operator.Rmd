@@ -1,3 +1,247 @@
+# Objects et opérateurs
+## Objects dans R
+
+Une variable permet de stocker une valeur ou un objet dans R. De cette façon, il sera possible d'accéder à la valeur ou à l'objet qui est stocké dans la variable.
+```{r}
+# Assignation de la valeur 3 à la variable "ma_variable"
+ma_variable <- 3
+```
+La ligne de code ci-dessus déclare une variable nommée "ma_variable" et lui assigne la valeur de 3. L'exécution de ce code n'affiche pas de résultat dans la console, mais l'objet nommé "ma_variable" est bien créée et stockée dans l'environnement.
+
+Pour afficher le contenu de la variable, il suffit de taper le nom de celle-ci pour l'afficher dans la console.
+```{r}
+# Affichage du contenu de la variable "ma_variable"
+ma_variable
+```
+De plus, il est également possible d'utiliser la fonction `print()` qui permet d'afficher la valeur ou l'objet de la variable sélectionnée.
+```{r}
+# Affichage du contenur de la variable "ma_variable"
+print(ma_variable)
+```
+En langage R, il existe différents types d'objets qui peuvent être assignés à des variables comme les scalaires, les vecteurs, les facteurs, les matrices et les bases de données. Ces objets sont présentés dans les points suivants.
+
+### Scalaire
+
+Un scalaire permet de stocker un objet sous forme de valeur numérique, de chaîne de caractères ou de valeur logique. 
+
+```{r}
+# Scalaire numerique
+a <- 3
+a
+```
+
+Une chaîne de caractères est une suite de caractères qui doit être écrit entre guillemets (" ").
+```{r}
+# Scalaire sous forme d'une chaine de caractères
+b <- "Statistique"
+b
+```
+
+Une valeur logique est une quantitée binaire (vrai ou faux). Ces variables s'écrivent `TRUE` et `FALSE`. Il est également possible d'utiliser `T` et `F` comme abréviations.
+```{r}
+# Scalaire logique
+c <- TRUE
+c
+d <- F
+d  
+```
+
+### Vecteur
+Un vecteur est un objet qui permet de stocker une liste ordonnée d'éléments. Les éléments d'un vecteur doivent être du même type.
+Pour pouvoir stocker une information dans un seul objet, il faut utiliser la fonction `c()` qui permet de combiner les arguments de la fonction.
+
+```{r}
+# Vecteur numérique
+a <- c(1, 2, 3, 4, 5, 6)
+a
+```
+
+```{r}
+# Vecteur sous forme d'une chaine de caractères
+b <- c("Un", "Deux", "Trois", "Quatre", "Cinq", "Six")
+b
+```
+
+```{r}
+# Vecteur logique
+c <- c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE)
+c
+```
+
+Étant donné que le vecteur est un objet ordonné, il est possible d'accéder, remplacer ou modifier un ou plusieurs éléments par rapport à leur position dans l'objet. Il est nécessaire d'utiliser les crochets `[ ]` pour indiquer le ou les éléments à manipuler.
+
+Pour accéder un seul élément du vecteur, il suffit d'écrire le nom de la variable suivi de crochets contenant la position de l'élément sélectionné.
+```{r}
+# Extraction d'un élément:
+b[2]
+```
+Il est possible d'accéder à plusieurs éléments en mettant un vecteur de position entre crochets.
+```{r}
+# Extraction de plusieurs éléments:
+b[c(2,3,5)]
+```
+Il est aussi possible d'accéder à une série d'éléments à la suite en mettant le signe `:` entre les 2 positions désirées. 
+```{r}
+# Extraction d'une série d'éléments:
+b[2:5]
+```
+Il est également possible d'accéder à certaines lignes en fonction de la valeur logique d'un vecteur ayant la même taille du vecteur sélectionné. Si la position est mise à `TRUE`, la valeur sera sélectionnée et dans le cas dans lequel la valeur est mise à `FALSE` la valeur ne sera pas retenue.
+
+```{r}
+# Extraction de plusieurs éléments en fontion de la valeur logique:
+b[c(FALSE, TRUE, TRUE, FALSE, TRUE, TRUE)]
+```
+### Facteur
+
+Un facteur est un vecteur dont les éléments peuvent prendre que des valeurs prédéfinies. Un facteur dispose de l'argument `levels` qui permet de définir des catégories de valeurs. Le facteur est généralement utilisé pour stocker des variables catégorielles.
+
+Pour commencer, il faut définir un vecteur qui peut être numérique, logique ou chaine de caractères. Le facteur est une variable nominale.
+```{r}
+genre <- c("Homme", "Femme", "Femme", "Femme", "Homme")
+genre
+```
+
+La fonction `factor()` permet de créer un facteur à partir d'un vecteur. 
+```{r}
+genre <- factor(genre)
+genre
+```
+On note que la sortie est légèrement différente lorsque le vecteur est mis sous forme de facteur à 2 niveaux (Femme, Homme). Ceci s'affiche à la ligne `Levels`. Par défaut, les niveaux d'un facteur sont affichés par ordre alphabétique et numérique croissant. Il est possible de fixer l'ordre en ajoutant l'argument `levels` en appliquant la fonction `factor()`.
+```{r}
+sexe <- c("H", "F", "F", "F", "H")
+sexe <- factor(sexe, levels = c("H", "F"))
+sexe
+```
+
+Dans le cas dans lequel on aimerait modifier un élément, il n'est pas possible d'affecter une valeur qui n'est pas défini comme un niveau. On voit donc apparaître une erreur dans la console.
+```{r}
+genre[2] <- "Fille"
+```
+
+Il est possible de renommer les niveaux en utilisant la fonction `levels()`. **Il faut faire attention à l'ordre lorsqu'on utilise la fonction `levels()`.** L'argument `order` permet d'ordonner les labels proposés. Le facteur est dès lors une variable ordinale. 
+
+```{r}
+levels(genre) <- c("Fille", "Garcon")
+genre
+```
+Il est possible d'avoir un facteur numérique en y affectant une catégorie avec l'argument `labels` lors de l'utilisation de la fonction `factor()`.
+```{r}
+satisfaction <- factor(c(3, 3, 4, 1, 2, 1, 1), labels = c("Pas du tout d'accord", "Pas d'accord", "D'accord", "Tout à fait d'accord"), order = TRUE)
+satisfaction
+```
+
+### Matrice
+Une matrice est un vecteur dont les éléments sont disposés sous forme d'un tableau qui comporte des lignes et des colonnes. De façon équivalente au vecteur, les éléments de la matrices doivent être de même classe (numérique, logique ou chaîne de caractères). La fonction `matrix()` permet de déclarer une matrice. Il faut ajouter l'argument `ncol` et/ou `nrow` pour déterminer la forme de la matrice.
+```{r}
+A <- matrix(1:24, nrow=6, ncol=4, byrow=FALSE)
+A
+```
+Par défaut, le remplissage se fait par colonne. Il faut donc mettre l'argument `byrow` à `TRUE` pour remplir la matrice par ligne.
+```{r}
+B <- matrix(1:24, nrow=6, ncol=4, byrow=TRUE)
+B
+```
+L'objet matrice dispose de la fonction `dim()` qui permet d'obtenir sa dimension. Le premier terme correspond aux nombres de lignes et le deuxième correspond aux nombres de colonnes.
+```{r}
+dim(B)
+```
+Les fonctions `rownames()` et `colnames()` permettent de récupérer ou de définir les noms des lignes et des colonnes. Attention de bien mettre le bon nombre de noms aux lignes et aux colonnes.
+```{r}
+rownames(B) <- c("L1", "L2", "L3", "L4", "L5", "L6")
+colnames(B) <- c("C1", "C2", "C3", "C4")
+B
+```
+Comme pour le vecteur, il est possible d'accéder à un ou plusieurs éléments de la matrice.
+Pour extraire une ligne de la matrice, il faut utiliser les crochets avec une virgule pour délimiter les deux dimensions de la matrice`[ , ]`. Le premier terme (celui avant la virgule) permet d'accéder aux colonnes et le deuxième terme (celui après la virgule) permet d'accéder aux lignes.
+Pour accéder à un seul élément, il faut indiquer la position de la ligne et de la colonne désirée.
+```{r}
+# Extraction d'un seul élément
+A[2,3]
+```
+
+Pour accéder à une ligne complète, il suffit de mettre la position de la ligne désirée avant la virgule.
+```{r}
+# Extraction d'une ligne
+A[2, ]
+```
+Pour accéder à une colonne complète, il suffit de mettre la position de la colonne désirée après la virgule.
+```{r}
+# Extraction d'une colonne
+A[, 3]
+```
+Pour accéder à un groupe d'élément, il faut déterminer l'intervalle des lignes et des colonnes désirées.
+```{r}
+# Extraction de quelques éléments regroupées
+A[3:5, 2:3]
+```
+### Dataframe
+Un jeu de données se structure sous forme d'un tableau dans lequel chaque ligne correspond à une observation (individu) et chaque colonne à une caractéristique (variable). Les data frame sont les objets les plus utilisées lors de l'analyse d'une base de données. Contrairement aux vecteurs et aux matrices, une dataframe peut avoir différents type de variables (numérique, logique et chaînes de caractères). La fonction `data.frame()` permet la création de la base de données. 
+```{r}
+dataframe <- data.frame(
+  ID = 1:5,
+  Genre = c("Homme", "Femme", "Femme", "Femme", "Homme"),
+  Age = c(45, 42, 45, 43, 44)
+)
+dataframe
+```
+Les colonnes d'une dataframe sont toujours nommées et correspondent à la variable mesurée. Les lignes sont automatiquement numérotées par ordre.
+
+La fonction `str()` permet d'afficher la structure de la dataframe en affichat le nom de la variable, le type de celle-ci ainsi que les valeurs des observations. 
+```{r}
+# Structure
+str(dataframe)
+```
+La fonction `View()` permet de visionner la data frame dans une autre fenêtre.
+```{r eval=FALSE}
+# Structure
+View(dataframe)
+```
+
+Afin d'analyser les données, il est important de pouvoir d'en extraire uniquement une partie. Il existe deux façons d'extraire une colonne. La première consiste à reproduire le cas de la matrice en séléctionnant la position de la colonne.
+```{r}
+# Extraction de colonnes
+dataframe[, 2]
+```
+La deuxième option est d'utiliser le symbole `$`. Il doit être placé entre le nom de la data frame et le nom de la colonne. 
+**Il est conseillé d'utiliser cette option pour extraire une colonne d'une data frame.**
+```{r}
+# Extraction de colonnes
+dataframe$Genre
+```
+
+Pour extraire une ligne de la base de donnée, il faut procéder comme pour la matrice.
+```{r}
+# Extraction de ligne
+dataframe[2, ]
+```
+
+Pour extraire les observations (lignes) qui possèdent certaines caractéristiques, il est possible d'écrire la ligne suivante comme suit:
+```{r}
+# Extraction de ligne
+dataframe[dataframe$Genre == "Homme", ]
+```
+Il est également possible de mettre plusieurs conditions.
+```{r}
+# Extraction de ligne
+dataframe[dataframe$Genre == "Femme" & dataframe$Age < 44, ]
+```
+
+## Opérateurs logiques
+
+| Opérateur | Description |
+|:---:|:-------|
+| < | strictement inférieur |
+| <= | inférieur ou égal |
+| > | strictement supérieur |
+| >= | supérieur ou égal |
+| == | égal |
+| != | différent |
+| !x | non x |
+| x \| y | x ou y |
+| x & y | x et y |
+
+
+
 # Gestion des données 
 
 Plusieurs fonctions permettent d'obtenir des informations concernant la base de données. Le code suivant vous propose plusieurs fonction avec en commentaire leur utilités. 
