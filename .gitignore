@@ -4,6 +4,7 @@ _main_files
 .Rproj.user
 .Rhistory
 
+_bookdown_files
+
 docs/_main.tex
 docs/_main.pdf
-docs/_main.epub
