@@ -120,7 +120,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2024-09-19}
+\date{2024-09-21}
 
 \begin{document}
 \maketitle
@@ -137,9 +137,74 @@ Ceci est le guide R que nous proposons pour vous accompagner durant le cours de 
 
 \chapter{Installation et environnement R et Rstudio}\label{installation-et-environnement-r-et-rstudio}
 
+\section{Présentation des logiciels}\label{pruxe9sentation-des-logiciels}
+
+R est un langage de programmation adapté au traitement de données et l'analyse statistique.
+
+Pour programmer en langage R, il est nécessaire d'installer deux outils essentiels:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Le \textbf{logiciel R} permet de traduire du texte sous forme de code R en binaire qui est le langage interne du processeur de l'ordinateur.
+\item
+  Le \textbf{logiciel RStudio} permet de faciliter l'utilisation du logiciel R en donnant l'accès à une interface utilisateur.
+\end{enumerate}
+
+Il est possible de faire une analogie avec une voiture. Le logiciel R est le moteur et RStudio est le tableau de bord. Sans le tableau de bord, il n'est pas possible de controler le moteur.
+
 \section{Installation}\label{installation}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Installer R sur le site de R.
+
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
+  \tightlist
+  \item
+    Choisir et télécharger la version de R selon votre système d'exploitation.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Pour windows : \url{https://cran.r-project.org/bin/windows/base/}
+    \item
+      Pour MAC : \url{https://cran.r-project.org/bin/macosx/}
+    \item
+      Pour Linux : \url{https://cran.r-project.org/index.html}
+    \end{itemize}
+  \item
+    Installer le logiciel R sur votre ordinateur en executant le fichier téléchargé.
+  \end{enumerate}
+\item
+  Installer RStudio sur le site suivant: \url{https://posit.co/download/rstudio-desktop/}
+\end{enumerate}
+
+Après avoir installer ces deux logiciels, vous aurez accès à deux nouvelles applications. Cependant, nous n'utiliserons uniquement RStudio pour programmer. Lorsque vous exécuterez votre code écrit sur RStudio, ce dernier fera automatiquement appel à R pour exécuter les codes.
+
 \section{Environnement de travail}\label{environnement-de-travail}
+
+Une fois que RStudio est lancé, une interface découpée en plusieurs zones se présente. Ces parties parties peuvent être redimensionnées, masquées ou maximisées selon vos préférences.
+
+\includegraphics{images/environnement.png}
+Chacune des quatre zones a son utilisé et est présenté ci-dessous:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Cette zone est dédiée aux fichiers sources. Ce volet permet d'écrire et de sauvegarder les lignes de code. Ce sera la partie la plus utilisé lors de la programmation.
+\item
+  Le quadrant en haut à droite fournit des informations sur les objets, les variables et les données en mémoire sous l'onglet \texttt{Environment}.
+\item
+  La console est affichée en bas à gauche. Cette partie permet d'entrer et d'exécuter des instruction en R et voir les résultats s'afficher.
+\item
+  Cette zone permet de naviguer dans le répertoire de travail dans l'onglet \texttt{Files}, d'afficher les graphes réalisés dans l'onglet \texttt{Plots}, d'afficher les extensions/packages disponibles sous l'onglet \texttt{Packages} et également d'afficher l'aide (qui est très complète) sous l'onglet \texttt{Help}.
+\end{enumerate}
 
 \chapter{Objects et opérateurs}\label{objects-et-opuxe9rateurs}
 
