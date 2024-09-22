@@ -1,30 +1,30 @@
 # Installation et environnement R et Rstudio
 ## Présentation des logiciels
-R est un langage de programmation adapté au traitement de données et l'analyse statistique.
+R est un langage de programmation adapté au traitement de données et à l'analyse statistique.
 
 Pour programmer en langage R, il est nécessaire d'installer deux outils essentiels:
 
 1. Le **logiciel R** permet de traduire du texte sous forme de code R en binaire qui est le langage interne du processeur de l'ordinateur. 
-1. Le **logiciel RStudio** permet de faciliter l'utilisation du logiciel **R** en donnant l'accès à une interface utilisateur.
+1. Le **logiciel RStudio** permet de faciliter l'utilisation du logiciel R en donnant l'accès à une interface utilisateur.
 
-Il est possible de faire une analogie avec une voiture. Le logiciel **R** est le moteur et **RStudio** est le tableau de bord. Sans le tableau de bord, il n'est pas possible de controler le moteur.
+Il est possible de faire une analogie avec une voiture. Le logiciel R est le moteur et RStudio est le tableau de bord. Sans le tableau de bord, il n'est pas possible de controler le moteur.
 
 ## Installation
 
-1. Installer **R** sur le site de **R**.
-    i. Choisir et télécharger la version de **R** selon votre système d'exploitation.
+1. Installer R sur le site de R.
+    i. Choisir et télécharger la version de R selon votre système d'exploitation.
         * Pour windows : https://cran.r-project.org/bin/windows/base/
         * Pour MAC : https://cran.r-project.org/bin/macosx/
         * Pour Linux : https://cran.r-project.org/index.html
       
     ii. Installer le logiciel R sur votre ordinateur en exécutant le fichier téléchargé.
-1. Installer **RStudio** sur le site suivant: https://posit.co/download/rstudio-desktop/
+1. Installer RStudio sur le site suivant: https://posit.co/download/rstudio-desktop/
 
-Après avoir installé ces deux logiciels, vous aurez accès à deux nouvelles applications. Cependant, nous utiliserons uniquement **RStudio** pour programmer. Lorsque vous exécuterez votre code écrit sur **RStudio**, ce dernier fera automatiquement appel à **R** pour exécuter les codes.
+Après avoir installé ces deux logiciels, vous aurez accès à deux nouvelles applications. Cependant, nous utiliserons uniquement RStudio pour programmer. Lorsque vous exécuterez votre code écrit sur RStudio, ce dernier fera automatiquement appel à R pour exécuter les codes.
 
 ## Environnement de travail
 
-Une fois que **RStudio** est lancé, une interface découpée en plusieurs zones se présente. Ces parties parties peuvent être redimensionnées, masquées ou maximisées selon vos préférences.
+Une fois que RStudio est lancé, une interface découpée en plusieurs zones se présente. Ces parties parties peuvent être redimensionnées, masquées ou maximisées selon vos préférences.
 
 ```{r echo=FALSE}
 knitr::include_graphics("images/environnement.png")
