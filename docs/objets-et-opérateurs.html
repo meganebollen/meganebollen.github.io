@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Objets et opérateurs | Guide R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Objets et opérateurs | Guide R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="https://github.com/meganebollen/meganebollen.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Objets et opérateurs | Guide R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
+
+
+<meta name="date" content="2024-09-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="installation-et-environnement-r-et-rstudio.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="images/logo_unil.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html"><i class="fa fa-check"></i><b>2</b> Installation et environnement R et Rstudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#présentation-des-logiciels"><i class="fa fa-check"></i><b>2.1</b> Présentation des logiciels</a></li>
+<li class="chapter" data-level="2.2" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#installation"><i class="fa fa-check"></i><b>2.2</b> Installation</a></li>
+<li class="chapter" data-level="2.3" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#environnement-de-travail"><i class="fa fa-check"></i><b>2.3</b> Environnement de travail</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html"><i class="fa fa-check"></i><b>3</b> Objets et opérateurs</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#objets-dans-r"><i class="fa fa-check"></i><b>3.1</b> Objets dans R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#scalaire"><i class="fa fa-check"></i><b>3.1.1</b> Scalaire</a></li>
+<li class="chapter" data-level="3.1.2" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#vecteur"><i class="fa fa-check"></i><b>3.1.2</b> Vecteur</a></li>
+<li class="chapter" data-level="3.1.3" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#facteur"><i class="fa fa-check"></i><b>3.1.3</b> Facteur</a></li>
+<li class="chapter" data-level="3.1.4" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#matrice"><i class="fa fa-check"></i><b>3.1.4</b> Matrice</a></li>
+<li class="chapter" data-level="3.1.5" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#dataframe"><i class="fa fa-check"></i><b>3.1.5</b> Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#opérateurs-logiques"><i class="fa fa-check"></i><b>3.2</b> Opérateurs logiques</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guide R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="objets-et-opérateurs" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Objets et opérateurs<a href="objets-et-opérateurs.html#objets-et-opérateurs" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objets-dans-r" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Objets dans R<a href="objets-et-opérateurs.html#objets-dans-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Une variable permet de stocker une valeur ou un objet dans R. De cette façon, il sera possible d’accéder à la valeur ou à l’objet qui est stocké dans la variable.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="objets-et-opérateurs.html#cb1-1" tabindex="-1"></a><span class="co"># Assignation de la valeur 3 à la variable &quot;ma_variable&quot;</span></span>
+<span id="cb1-2"><a href="objets-et-opérateurs.html#cb1-2" tabindex="-1"></a>ma_variable <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div>
+<p>La ligne de code ci-dessus déclare une variable nommée “ma_variable” et lui assigne la valeur de 3. L’exécution de ce code n’affiche pas de résultat dans la console, mais l’objet nommé “ma_variable” est bien créée et stockée dans l’environnement.</p>
+<p>Pour afficher le contenu de la variable, il suffit de taper le nom de celle-ci pour l’afficher dans la console.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="objets-et-opérateurs.html#cb2-1" tabindex="-1"></a><span class="co"># Affichage du contenu de la variable &quot;ma_variable&quot;</span></span>
+<span id="cb2-2"><a href="objets-et-opérateurs.html#cb2-2" tabindex="-1"></a>ma_variable</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>De plus, il est également possible d’utiliser la fonction <code>print()</code> qui permet d’afficher la valeur ou l’objet de la variable sélectionnée.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="objets-et-opérateurs.html#cb4-1" tabindex="-1"></a><span class="co"># Affichage du contenur de la variable &quot;ma_variable&quot;</span></span>
+<span id="cb4-2"><a href="objets-et-opérateurs.html#cb4-2" tabindex="-1"></a><span class="fu">print</span>(ma_variable)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>En langage R, il existe différents types d’objets qui peuvent être assignés à des variables comme les scalaires, les vecteurs, les facteurs, les matrices et les bases de données. Ces objets sont présentés dans les points suivants.</p>
+<div id="scalaire" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Scalaire<a href="objets-et-opérateurs.html#scalaire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un scalaire permet de stocker un objet sous forme de valeur numérique, de chaîne de caractères ou de valeur logique.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="objets-et-opérateurs.html#cb6-1" tabindex="-1"></a><span class="co"># Scalaire numerique</span></span>
+<span id="cb6-2"><a href="objets-et-opérateurs.html#cb6-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb6-3"><a href="objets-et-opérateurs.html#cb6-3" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Une chaîne de caractères est une suite de caractères qui doit être écrit entre guillemets (” “).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="objets-et-opérateurs.html#cb8-1" tabindex="-1"></a><span class="co"># Scalaire sous forme d&#39;une chaine de caractères</span></span>
+<span id="cb8-2"><a href="objets-et-opérateurs.html#cb8-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">&quot;Statistique&quot;</span></span>
+<span id="cb8-3"><a href="objets-et-opérateurs.html#cb8-3" tabindex="-1"></a>b</span></code></pre></div>
+<pre><code>## [1] &quot;Statistique&quot;</code></pre>
+<p>Une valeur logique est une quantitée binaire (vrai ou faux). Ces variables s’écrivent <code>TRUE</code> et <code>FALSE</code>. Il est également possible d’utiliser <code>T</code> et <code>F</code> comme abréviations.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="objets-et-opérateurs.html#cb10-1" tabindex="-1"></a><span class="co"># Scalaire logique</span></span>
+<span id="cb10-2"><a href="objets-et-opérateurs.html#cb10-2" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb10-3"><a href="objets-et-opérateurs.html#cb10-3" tabindex="-1"></a>c</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="objets-et-opérateurs.html#cb12-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> F</span>
+<span id="cb12-2"><a href="objets-et-opérateurs.html#cb12-2" tabindex="-1"></a>d  </span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="vecteur" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Vecteur<a href="objets-et-opérateurs.html#vecteur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un vecteur est un objet qui permet de stocker une liste ordonnée d’éléments. Les éléments d’un vecteur doivent être du même type.
+Pour pouvoir stocker une information dans un seul objet, il faut utiliser la fonction <code>c()</code> qui permet de combiner les arguments de la fonction.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="objets-et-opérateurs.html#cb14-1" tabindex="-1"></a><span class="co"># Vecteur numérique</span></span>
+<span id="cb14-2"><a href="objets-et-opérateurs.html#cb14-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb14-3"><a href="objets-et-opérateurs.html#cb14-3" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="objets-et-opérateurs.html#cb16-1" tabindex="-1"></a><span class="co"># Vecteur sous forme d&#39;une chaine de caractères</span></span>
+<span id="cb16-2"><a href="objets-et-opérateurs.html#cb16-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Un&quot;</span>, <span class="st">&quot;Deux&quot;</span>, <span class="st">&quot;Trois&quot;</span>, <span class="st">&quot;Quatre&quot;</span>, <span class="st">&quot;Cinq&quot;</span>, <span class="st">&quot;Six&quot;</span>)</span>
+<span id="cb16-3"><a href="objets-et-opérateurs.html#cb16-3" tabindex="-1"></a>b</span></code></pre></div>
+<pre><code>## [1] &quot;Un&quot;     &quot;Deux&quot;   &quot;Trois&quot;  &quot;Quatre&quot; &quot;Cinq&quot;   &quot;Six&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="objets-et-opérateurs.html#cb18-1" tabindex="-1"></a><span class="co"># Vecteur logique</span></span>
+<span id="cb18-2"><a href="objets-et-opérateurs.html#cb18-2" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb18-3"><a href="objets-et-opérateurs.html#cb18-3" tabindex="-1"></a>c</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE FALSE  TRUE</code></pre>
+<p>Étant donné que le vecteur est un objet ordonné, il est possible d’accéder, remplacer ou modifier un ou plusieurs éléments par rapport à leur position dans l’objet. Il est nécessaire d’utiliser les crochets <code>[ ]</code> pour indiquer le ou les éléments à manipuler.</p>
+<p>Pour accéder un seul élément du vecteur, il suffit d’écrire le nom de la variable suivi de crochets contenant la position de l’élément sélectionné.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="objets-et-opérateurs.html#cb20-1" tabindex="-1"></a><span class="co"># Extraction d&#39;un élément:</span></span>
+<span id="cb20-2"><a href="objets-et-opérateurs.html#cb20-2" tabindex="-1"></a>b[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Deux&quot;</code></pre>
+<p>Il est possible d’accéder à plusieurs éléments en mettant un vecteur de position entre crochets.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="objets-et-opérateurs.html#cb22-1" tabindex="-1"></a><span class="co"># Extraction de plusieurs éléments:</span></span>
+<span id="cb22-2"><a href="objets-et-opérateurs.html#cb22-2" tabindex="-1"></a>b[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;Deux&quot;  &quot;Trois&quot; &quot;Cinq&quot;</code></pre>
+<p>Il est aussi possible d’accéder à une série d’éléments à la suite en mettant le signe <code>:</code> entre les 2 positions désirées.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="objets-et-opérateurs.html#cb24-1" tabindex="-1"></a><span class="co"># Extraction d&#39;une série d&#39;éléments:</span></span>
+<span id="cb24-2"><a href="objets-et-opérateurs.html#cb24-2" tabindex="-1"></a>b[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Deux&quot;   &quot;Trois&quot;  &quot;Quatre&quot; &quot;Cinq&quot;</code></pre>
+<p>Il est également possible d’accéder à certaines lignes en fonction de la valeur logique d’un vecteur ayant la même taille du vecteur sélectionné. Si la position est mise à <code>TRUE</code>, la valeur sera sélectionnée et dans le cas dans lequel la valeur est mise à <code>FALSE</code> la valeur ne sera pas retenue.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="objets-et-opérateurs.html#cb26-1" tabindex="-1"></a><span class="co"># Extraction de plusieurs éléments en fontion de la valeur logique:</span></span>
+<span id="cb26-2"><a href="objets-et-opérateurs.html#cb26-2" tabindex="-1"></a>b[<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;Deux&quot;  &quot;Trois&quot; &quot;Cinq&quot;  &quot;Six&quot;</code></pre>
+</div>
+<div id="facteur" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Facteur<a href="objets-et-opérateurs.html#facteur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un facteur est un vecteur dont les éléments peuvent prendre que des valeurs prédéfinies. Un facteur dispose de l’argument <code>levels</code> qui permet de définir des catégories de valeurs. Le facteur est généralement utilisé pour stocker des variables catégorielles.</p>
+<p>Pour commencer, il faut définir un vecteur qui peut être numérique, logique ou chaine de caractères. Le facteur est une variable nominale.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="objets-et-opérateurs.html#cb28-1" tabindex="-1"></a>genre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Homme&quot;</span>, <span class="st">&quot;Femme&quot;</span>, <span class="st">&quot;Femme&quot;</span>, <span class="st">&quot;Femme&quot;</span>, <span class="st">&quot;Homme&quot;</span>)</span>
+<span id="cb28-2"><a href="objets-et-opérateurs.html#cb28-2" tabindex="-1"></a>genre</span></code></pre></div>
+<pre><code>## [1] &quot;Homme&quot; &quot;Femme&quot; &quot;Femme&quot; &quot;Femme&quot; &quot;Homme&quot;</code></pre>
+<p>La fonction <code>factor()</code> permet de créer un facteur à partir d’un vecteur.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="objets-et-opérateurs.html#cb30-1" tabindex="-1"></a>genre <span class="ot">&lt;-</span> <span class="fu">factor</span>(genre)</span>
+<span id="cb30-2"><a href="objets-et-opérateurs.html#cb30-2" tabindex="-1"></a>genre</span></code></pre></div>
+<pre><code>## [1] Homme Femme Femme Femme Homme
+## Levels: Femme Homme</code></pre>
+<p>On note que la sortie est légèrement différente lorsque le vecteur est mis sous forme de facteur à 2 niveaux (Femme, Homme). Ceci s’affiche à la ligne <code>Levels</code>. Par défaut, les niveaux d’un facteur sont affichés par ordre alphabétique et numérique croissant. Il est possible de fixer l’ordre en ajoutant l’argument <code>levels</code> en appliquant la fonction <code>factor()</code>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="objets-et-opérateurs.html#cb32-1" tabindex="-1"></a>sexe <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;H&quot;</span>)</span>
+<span id="cb32-2"><a href="objets-et-opérateurs.html#cb32-2" tabindex="-1"></a>sexe <span class="ot">&lt;-</span> <span class="fu">factor</span>(sexe, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;F&quot;</span>))</span>
+<span id="cb32-3"><a href="objets-et-opérateurs.html#cb32-3" tabindex="-1"></a>sexe</span></code></pre></div>
+<pre><code>## [1] H F F F H
+## Levels: H F</code></pre>
+<p>Dans le cas dans lequel on aimerait modifier un élément, il n’est pas possible d’affecter une valeur qui n’est pas défini comme un niveau. On voit donc apparaître une erreur dans la console.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="objets-et-opérateurs.html#cb34-1" tabindex="-1"></a>genre[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Fille&quot;</span></span></code></pre></div>
+<pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, 2, value = &quot;Fille&quot;): niveau de facteur
+## incorrect, NAs générés</code></pre>
+<p>Il est possible de renommer les niveaux en utilisant la fonction <code>levels()</code>. <strong>Il faut faire attention à l’ordre lorsqu’on utilise la fonction <code>levels()</code>.</strong> L’argument <code>order</code> permet d’ordonner les labels proposés. Le facteur est dès lors une variable ordinale.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="objets-et-opérateurs.html#cb36-1" tabindex="-1"></a><span class="fu">levels</span>(genre) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Fille&quot;</span>, <span class="st">&quot;Garcon&quot;</span>)</span>
+<span id="cb36-2"><a href="objets-et-opérateurs.html#cb36-2" tabindex="-1"></a>genre</span></code></pre></div>
+<pre><code>## [1] Garcon &lt;NA&gt;   Fille  Fille  Garcon
+## Levels: Fille Garcon</code></pre>
+<p>Il est possible d’avoir un facteur numérique en y affectant une catégorie avec l’argument <code>labels</code> lors de l’utilisation de la fonction <code>factor()</code>.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="objets-et-opérateurs.html#cb38-1" tabindex="-1"></a>satisfaction <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Pas du tout d&#39;accord&quot;</span>, <span class="st">&quot;Pas d&#39;accord&quot;</span>, <span class="st">&quot;D&#39;accord&quot;</span>, <span class="st">&quot;Tout à fait d&#39;accord&quot;</span>), <span class="at">order =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-2"><a href="objets-et-opérateurs.html#cb38-2" tabindex="-1"></a>satisfaction</span></code></pre></div>
+<pre><code>## [1] D&#39;accord             D&#39;accord             Tout à fait d&#39;accord
+## [4] Pas du tout d&#39;accord Pas d&#39;accord         Pas du tout d&#39;accord
+## [7] Pas du tout d&#39;accord
+## 4 Levels: Pas du tout d&#39;accord &lt; Pas d&#39;accord &lt; ... &lt; Tout à fait d&#39;accord</code></pre>
+</div>
+<div id="matrice" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Matrice<a href="objets-et-opérateurs.html#matrice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Une matrice est un vecteur dont les éléments sont disposés sous forme d’un tableau qui comporte des lignes et des colonnes. De façon équivalente au vecteur, les éléments de la matrices doivent être de même classe (numérique, logique ou chaîne de caractères). La fonction <code>matrix()</code> permet de déclarer une matrice. Il faut ajouter l’argument <code>ncol</code> et/ou <code>nrow</code> pour déterminer la forme de la matrice.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="objets-et-opérateurs.html#cb40-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="at">nrow=</span><span class="dv">6</span>, <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">FALSE</span>)</span>
+<span id="cb40-2"><a href="objets-et-opérateurs.html#cb40-2" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    7   13   19
+## [2,]    2    8   14   20
+## [3,]    3    9   15   21
+## [4,]    4   10   16   22
+## [5,]    5   11   17   23
+## [6,]    6   12   18   24</code></pre>
+<p>Par défaut, le remplissage se fait par colonne. Il faut donc mettre l’argument <code>byrow</code> à <code>TRUE</code> pour remplir la matrice par ligne.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="objets-et-opérateurs.html#cb42-1" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="at">nrow=</span><span class="dv">6</span>, <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb42-2"><a href="objets-et-opérateurs.html#cb42-2" tabindex="-1"></a>B</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12
+## [4,]   13   14   15   16
+## [5,]   17   18   19   20
+## [6,]   21   22   23   24</code></pre>
+<p>L’objet matrice dispose de la fonction <code>dim()</code> qui permet d’obtenir sa dimension. Le premier terme correspond aux nombres de lignes et le deuxième correspond aux nombres de colonnes.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="objets-et-opérateurs.html#cb44-1" tabindex="-1"></a><span class="fu">dim</span>(B)</span></code></pre></div>
+<pre><code>## [1] 6 4</code></pre>
+<p>Les fonctions <code>rownames()</code> et <code>colnames()</code> permettent de récupérer ou de définir les noms des lignes et des colonnes. Attention de bien mettre le bon nombre de noms aux lignes et aux colonnes.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="objets-et-opérateurs.html#cb46-1" tabindex="-1"></a><span class="fu">rownames</span>(B) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;L1&quot;</span>, <span class="st">&quot;L2&quot;</span>, <span class="st">&quot;L3&quot;</span>, <span class="st">&quot;L4&quot;</span>, <span class="st">&quot;L5&quot;</span>, <span class="st">&quot;L6&quot;</span>)</span>
+<span id="cb46-2"><a href="objets-et-opérateurs.html#cb46-2" tabindex="-1"></a><span class="fu">colnames</span>(B) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;C1&quot;</span>, <span class="st">&quot;C2&quot;</span>, <span class="st">&quot;C3&quot;</span>, <span class="st">&quot;C4&quot;</span>)</span>
+<span id="cb46-3"><a href="objets-et-opérateurs.html#cb46-3" tabindex="-1"></a>B</span></code></pre></div>
+<pre><code>##    C1 C2 C3 C4
+## L1  1  2  3  4
+## L2  5  6  7  8
+## L3  9 10 11 12
+## L4 13 14 15 16
+## L5 17 18 19 20
+## L6 21 22 23 24</code></pre>
+<p>Comme pour le vecteur, il est possible d’accéder à un ou plusieurs éléments de la matrice.
+Pour extraire une ligne de la matrice, il faut utiliser les crochets avec une virgule pour délimiter les deux dimensions de la matrice<code>[ , ]</code>. Le premier terme (celui avant la virgule) permet d’accéder aux colonnes et le deuxième terme (celui après la virgule) permet d’accéder aux lignes.
+Pour accéder à un seul élément, il faut indiquer la position de la ligne et de la colonne désirée.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="objets-et-opérateurs.html#cb48-1" tabindex="-1"></a><span class="co"># Extraction d&#39;un seul élément</span></span>
+<span id="cb48-2"><a href="objets-et-opérateurs.html#cb48-2" tabindex="-1"></a>A[<span class="dv">2</span>,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 14</code></pre>
+<p>Pour accéder à une ligne complète, il suffit de mettre la position de la ligne désirée avant la virgule.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="objets-et-opérateurs.html#cb50-1" tabindex="-1"></a><span class="co"># Extraction d&#39;une ligne</span></span>
+<span id="cb50-2"><a href="objets-et-opérateurs.html#cb50-2" tabindex="-1"></a>A[<span class="dv">2</span>, ]</span></code></pre></div>
+<pre><code>## [1]  2  8 14 20</code></pre>
+<p>Pour accéder à une colonne complète, il suffit de mettre la position de la colonne désirée après la virgule.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="objets-et-opérateurs.html#cb52-1" tabindex="-1"></a><span class="co"># Extraction d&#39;une colonne</span></span>
+<span id="cb52-2"><a href="objets-et-opérateurs.html#cb52-2" tabindex="-1"></a>A[, <span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 13 14 15 16 17 18</code></pre>
+<p>Pour accéder à un groupe d’élément, il faut déterminer l’intervalle des lignes et des colonnes désirées.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="objets-et-opérateurs.html#cb54-1" tabindex="-1"></a><span class="co"># Extraction de quelques éléments regroupées</span></span>
+<span id="cb54-2"><a href="objets-et-opérateurs.html#cb54-2" tabindex="-1"></a>A[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    9   15
+## [2,]   10   16
+## [3,]   11   17</code></pre>
+</div>
+<div id="dataframe" class="section level3 hasAnchor" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Dataframe<a href="objets-et-opérateurs.html#dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un jeu de données se structure sous forme d’un tableau dans lequel chaque ligne correspond à une observation (individu) et chaque colonne à une caractéristique (variable). Les data frame sont les objets les plus utilisées lors de l’analyse d’une base de données. Contrairement aux vecteurs et aux matrices, une dataframe peut avoir différents type de variables (numérique, logique et chaînes de caractères). La fonction <code>data.frame()</code> permet la création de la base de données.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="objets-et-opérateurs.html#cb56-1" tabindex="-1"></a>dataframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb56-2"><a href="objets-et-opérateurs.html#cb56-2" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb56-3"><a href="objets-et-opérateurs.html#cb56-3" tabindex="-1"></a>  <span class="at">Genre =</span> <span class="fu">c</span>(<span class="st">&quot;Homme&quot;</span>, <span class="st">&quot;Femme&quot;</span>, <span class="st">&quot;Femme&quot;</span>, <span class="st">&quot;Femme&quot;</span>, <span class="st">&quot;Homme&quot;</span>),</span>
+<span id="cb56-4"><a href="objets-et-opérateurs.html#cb56-4" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">42</span>, <span class="dv">45</span>, <span class="dv">43</span>, <span class="dv">44</span>)</span>
+<span id="cb56-5"><a href="objets-et-opérateurs.html#cb56-5" tabindex="-1"></a>)</span>
+<span id="cb56-6"><a href="objets-et-opérateurs.html#cb56-6" tabindex="-1"></a>dataframe</span></code></pre></div>
+<pre><code>##   ID Genre Age
+## 1  1 Homme  45
+## 2  2 Femme  42
+## 3  3 Femme  45
+## 4  4 Femme  43
+## 5  5 Homme  44</code></pre>
+<p>Les colonnes d’une dataframe sont toujours nommées et correspondent à la variable mesurée. Les lignes sont automatiquement numérotées par ordre.</p>
+<p>La fonction <code>str()</code> permet d’afficher la structure de la dataframe en affichat le nom de la variable, le type de celle-ci ainsi que les valeurs des observations.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="objets-et-opérateurs.html#cb58-1" tabindex="-1"></a><span class="co"># Structure</span></span>
+<span id="cb58-2"><a href="objets-et-opérateurs.html#cb58-2" tabindex="-1"></a><span class="fu">str</span>(dataframe)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    5 obs. of  3 variables:
+##  $ ID   : int  1 2 3 4 5
+##  $ Genre: chr  &quot;Homme&quot; &quot;Femme&quot; &quot;Femme&quot; &quot;Femme&quot; ...
+##  $ Age  : num  45 42 45 43 44</code></pre>
+<p>La fonction <code>View()</code> permet de visionner la data frame dans une autre fenêtre.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="objets-et-opérateurs.html#cb60-1" tabindex="-1"></a><span class="co"># Structure</span></span>
+<span id="cb60-2"><a href="objets-et-opérateurs.html#cb60-2" tabindex="-1"></a><span class="fu">View</span>(dataframe)</span></code></pre></div>
+<p>Afin d’analyser les données, il est important de pouvoir d’en extraire uniquement une partie. Il existe deux façons d’extraire une colonne. La première consiste à reproduire le cas de la matrice en séléctionnant la position de la colonne.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="objets-et-opérateurs.html#cb61-1" tabindex="-1"></a><span class="co"># Extraction de colonnes</span></span>
+<span id="cb61-2"><a href="objets-et-opérateurs.html#cb61-2" tabindex="-1"></a>dataframe[, <span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Homme&quot; &quot;Femme&quot; &quot;Femme&quot; &quot;Femme&quot; &quot;Homme&quot;</code></pre>
+<p>La deuxième option est d’utiliser le symbole <code>$</code>. Il doit être placé entre le nom de la data frame et le nom de la colonne.
+<strong>Il est conseillé d’utiliser cette option pour extraire une colonne d’une data frame.</strong></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="objets-et-opérateurs.html#cb63-1" tabindex="-1"></a><span class="co"># Extraction de colonnes</span></span>
+<span id="cb63-2"><a href="objets-et-opérateurs.html#cb63-2" tabindex="-1"></a>dataframe<span class="sc">$</span>Genre</span></code></pre></div>
+<pre><code>## [1] &quot;Homme&quot; &quot;Femme&quot; &quot;Femme&quot; &quot;Femme&quot; &quot;Homme&quot;</code></pre>
+<p>Pour extraire une ligne de la base de donnée, il faut procéder comme pour la matrice.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="objets-et-opérateurs.html#cb65-1" tabindex="-1"></a><span class="co"># Extraction de ligne</span></span>
+<span id="cb65-2"><a href="objets-et-opérateurs.html#cb65-2" tabindex="-1"></a>dataframe[<span class="dv">2</span>, ]</span></code></pre></div>
+<pre><code>##   ID Genre Age
+## 2  2 Femme  42</code></pre>
+<p>Pour extraire les observations (lignes) qui possèdent certaines caractéristiques, il est possible d’écrire la ligne suivante comme suit:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="objets-et-opérateurs.html#cb67-1" tabindex="-1"></a><span class="co"># Extraction de ligne</span></span>
+<span id="cb67-2"><a href="objets-et-opérateurs.html#cb67-2" tabindex="-1"></a>dataframe[dataframe<span class="sc">$</span>Genre <span class="sc">==</span> <span class="st">&quot;Homme&quot;</span>, ]</span></code></pre></div>
+<pre><code>##   ID Genre Age
+## 1  1 Homme  45
+## 5  5 Homme  44</code></pre>
+<p>Il est également possible de mettre plusieurs conditions.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="objets-et-opérateurs.html#cb69-1" tabindex="-1"></a><span class="co"># Extraction de ligne</span></span>
+<span id="cb69-2"><a href="objets-et-opérateurs.html#cb69-2" tabindex="-1"></a>dataframe[dataframe<span class="sc">$</span>Genre <span class="sc">==</span> <span class="st">&quot;Femme&quot;</span> <span class="sc">&amp;</span> dataframe<span class="sc">$</span>Age <span class="sc">&lt;</span> <span class="dv">44</span>, ]</span></code></pre></div>
+<pre><code>##   ID Genre Age
+## 2  2 Femme  42
+## 4  4 Femme  43</code></pre>
+</div>
+</div>
+<div id="opérateurs-logiques" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Opérateurs logiques<a href="objets-et-opérateurs.html#opérateurs-logiques" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Opérateur</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">&lt;</td>
+<td align="left">strictement inférieur</td>
+</tr>
+<tr class="even">
+<td align="center">&lt;=</td>
+<td align="left">inférieur ou égal</td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;</td>
+<td align="left">strictement supérieur</td>
+</tr>
+<tr class="even">
+<td align="center">&gt;=</td>
+<td align="left">supérieur ou égal</td>
+</tr>
+<tr class="odd">
+<td align="center">==</td>
+<td align="left">égal</td>
+</tr>
+<tr class="even">
+<td align="center">!=</td>
+<td align="left">différent</td>
+</tr>
+<tr class="odd">
+<td align="center">!x</td>
+<td align="left">non x</td>
+</tr>
+<tr class="even">
+<td align="center">x | y</td>
+<td align="left">x ou y</td>
+</tr>
+<tr class="odd">
+<td align="center">x &amp; y</td>
+<td align="left">x et y</td>
+</tr>
+</tbody>
+</table>
+<!-- # Gestion des données  -->
+<!-- Plusieurs fonctions permettent d'obtenir des informations concernant la base de données. Le code suivant vous propose plusieurs fonction avec en commentaire leur utilités.  -->
+<!-- ```{r} -->
+<!-- str(iris) #montre la structure de la base de données  -->
+<!-- dim(iris) #donnes les dimensions de la base de données  -->
+<!-- nrow(iris) #donne le nombre de lignes de la base de données  -->
+<!-- ncol(iris) #donne le nombre de colonnes de la base de données  -->
+<!-- head(iris) #affiche les premières lignes de la base de données, par défaut 5 lignes  -->
+<!-- tail(iris, n = 10) #affiche les dix dernières lignes de la base de données -->
+<!-- summary(iris) #donne les résumés numériques des variables en fonction de leur type -->
+<!-- ``` -->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="installation-et-environnement-r-et-rstudio.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
