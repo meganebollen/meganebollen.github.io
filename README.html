@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>0.1 Bookdown | README</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="0.1 Bookdown | README" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="0.1 Bookdown | README" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="images/logo_unil.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="0.1" data-path=""><a href="#bookdown"><i class="fa fa-check"></i><b>0.1</b> Bookdown</a></li>
+<li class="chapter" data-level="0.2" data-path=""><a href="#git"><i class="fa fa-check"></i><b>0.2</b> Git</a>
+<ul>
+<li class="chapter" data-level="0.2.1" data-path=""><a href="#conseil-pour-un-bon-usage-de-git"><i class="fa fa-check"></i><b>0.2.1</b> Conseil pour un bon usage de Git</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<p>Ce bookdown a pour but d’être un guide R pour les étudiants de statistique I.</p>
+<div id="bookdown" class="section level2 hasAnchor" number="0.1">
+<h2><span class="header-section-number">0.1</span> Bookdown<a href="#bookdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Il se base sur la structure du book mis par défault sur R Markdown et le package bookdown (<a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>).</p>
+<p>Il est nécessaire d’installer le package bookdown pour utiliser cette extension dans R.
+<code>{r} # stable version on CRAN install.packages("bookdown")</code></p>
+</div>
+<div id="git" class="section level2 hasAnchor" number="0.2">
+<h2><span class="header-section-number">0.2</span> Git<a href="#git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Lors de la première utilisation de Git, il faut ajouter son nom d’utilisateur ainsi que l’adresse mail à votre ordinateur à l’aide de l’invite de commandes avec les lignes de commande suivante:
+<code>{bash} git config --global user.name "John Doe" git config --global user.email johndoe@example.com</code></p>
+<p>Il faut premièrement configurer Git sur votre ordinateur avant de pouvoir cloner le repo.</p>
+<div id="conseil-pour-un-bon-usage-de-git" class="section level3 hasAnchor" number="0.2.1">
+<h3><span class="header-section-number">0.2.1</span> Conseil pour un bon usage de Git<a href="#conseil-pour-un-bon-usage-de-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Pull le repo en ligne avant de commencer à travailler.</li>
+<li>Une fois les modifications réalisées, appuyez sur le bouton “Build Book” dans R</li>
+<li>Sélectionnez les modifications que vous désirez mettre sur le github avec <code>stage</code></li>
+<li>Ajoutez un message clair puis vous pouvez <code>commit</code> les modifications</li>
+<li>Pour mettre vos modifications sur github, réalisez un <code>push</code> de vos commits.</li>
+</ol>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

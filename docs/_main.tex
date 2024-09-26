@@ -120,7 +120,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2024-09-22}
+\date{2024-09-26}
 
 \begin{document}
 \maketitle
@@ -758,6 +758,125 @@ Opérateur & Description \\
 x \textbar{} y & x ou y \\
 x \& y & x et y \\
 \end{longtable}
+
+\chapter{Packages et données}\label{packages-et-donnuxe9es}
+
+Ce premier chapitre introduit deux concepts importants dans R. Le premier est les packages et le second concerne les données.
+
+\section{Installation et gestion des packages}\label{installation-et-gestion-des-packages}
+
+Les packages sont des regroupements de fonctions et de jeux de données développés dans R et qui doivent se télécharger une seule fois, mais ils devront être importés à chaque utilisation. Le code ci-dessous permet d'installer le package ggplot2:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(ggplot2, }\AttributeTok{dependencies =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Avant chaque utilisation des packages, il est nécessaire d'importer le package grâce au code suivant:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Téléchargement des données}\label{tuxe9luxe9chargement-des-donnuxe9es}
+
+Dans R, les bases de données se déclinent de plusieurs façons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Les bases de données peuvent être directement incluses dans R ou dans les packages.
+\item
+  Les bases de données peuvent être créées dans l'environnement sauvées dans l'environnement R. Ces fichiers ont une extension .RData
+\item
+  Les bases de données peuvent être issues de fichiers externes. Ces fichiers peuvent avoir différentes extensions, les plus courantes étant .csv et .txt.
+\end{enumerate}
+
+\subsection{Bases de données issues de la base de R ou des packages}\label{bases-de-donnuxe9es-issues-de-la-base-de-r-ou-des-packages}
+
+Le code suivant permet d'importer le jeu de données ``iris'' disponible de base dans R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+Un objet \texttt{iris} apparait dans l'environnement du projet comme le montre la figure suivante.
+\includegraphics{images/environment_forDataDownload.png}
+
+Si les données sont dans un package, le package doit être importé au préalable.
+
+\subsection{Bases de données issues dans un fichier .RData}\label{bases-de-donnuxe9es-issues-dans-un-fichier-.rdata}
+
+Les fichiers \texttt{.RData} sont spécifique au language R et peuvent contenir plusieurs objets en un seul fichier. Pour importer des données, il faut utiliser la fonction \texttt{load()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{"04{-}data.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Tous les objets importés sont chargés dans l'environnement de travail.
+\includegraphics{images/environment_forRDataDownload.png}
+
+\subsection{Bases de données issues de fichiers externes}\label{bases-de-donnuxe9es-issues-de-fichiers-externes}
+
+Les données à analyser sont souvent disponibles dans un fichier externe sous différents formats tels que .csv ou .txt. Pour importer ces données, il existe une fonction par type de fichier (\texttt{read.csv()} et \texttt{read.table()}). Lorsqu'une de ces fonctions est utilisée, le contenu est stocké dans une dataframe.
+Ces fonctions acceptent des arguments qui permettent de s'adapter à la nature de fichier à importer. Parmi ces arguments, il y en a trois principaux:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{header} qui est une valeur logique (\texttt{TRUE} ou \texttt{FALSE}) pour la présence d'un en-tête avec les noms de variables. Cet argument est mis par défaut à \texttt{TRUE} pour la fonction \texttt{read.csv()} et à \texttt{FALSE} pour la fonction \texttt{read.table()}.
+\item
+  \texttt{sep} qui est le caractère dont les champs sont séparés. Cet argument est mis par défaut à \texttt{,}.
+\item
+  \texttt{dec} qui est le séparateur décimal. Cet argument est mis par défaut à \texttt{.}.
+\end{enumerate}
+
+Le seul argument obligatoire est le chemin d'accès au fichier à lire. Il n'est pas nécessaire de spécifier le chemin complet si le fichier à lire se trouve dans le dossier du projet. Pour charger une base de donnée nommé \texttt{04-data.csv} dont les valeurs sont séparées par des virgules, il suffit d'écrire la ligne suivante:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{csv\_data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"04{-}data.csv"}\NormalTok{)}
+\NormalTok{csv\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Nom Age Note.1 Note.2
+## 1   Marc  18    5.0   5.50
+## 2   Anne  20    6.0   4.00
+## 3 Marie   21    4.5   4.75
+## 4   Jean  17    3.5   5.00
+## 5 Sophie  18    5.0   4.75
+\end{verbatim}
+
+Pour charger une base de donnée nommé \texttt{04-data.txt} dont les valeurs sont séparées par des points-virgules, il suffit d'écrire comme dans la ligne suivante en n'oubliant pas de sécifier le caractère de séparation avec l'argument \texttt{sep=";"}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{txt\_data }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"04{-}data.txt"}\NormalTok{, }\AttributeTok{sep =} \StringTok{";"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{txt\_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Nom Age Note.1 Note.2
+## 1   Marc  18    5.0   5.50
+## 2   Anne  20    6.0   4.00
+## 3  Marie  21    4.5   4.75
+## 4   Jean  17    3.5   5.00
+## 5 Sophie  18    5.0   4.75
+\end{verbatim}
+
+Il est également possible de charger une base de données issues d'un fichier externe en l'important depuis le menu \texttt{File\ \textgreater{}\ Import\ Dataset\ \textgreater{}\ From\ Text} puis de sélectionner le fichier dans vos dossiers.
 
   \bibliography{book.bib,packages.bib}
 
