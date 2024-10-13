@@ -8,7 +8,7 @@ Les packages sont des regroupements de fonctions et de jeux de données dévelop
 
 ```{r eval=FALSE}
 
-install.packages(ggplot2, dependencies = TRUE)
+install.packages("ggplot2", dependencies = TRUE)
 
 ```
 
@@ -54,14 +54,16 @@ knitr::include_graphics("images/environment_forRDataDownload.png")
 
 ### Bases de données issues de fichiers externes
 
-Les données à analyser sont souvent disponibles dans un fichier externe sous différents formats tels que .csv ou .txt. Pour importer ces données, il existe une fonction par type de fichier (`read.csv()` et `read.table()`). Lorsqu'une de ces fonctions est utilisée, le contenu est stocké dans une dataframe.
+Les données à analyser sont souvent disponibles dans un fichier externe sous différents formats tels que .csv ou .txt. Pour importer ces données, il existe une fonction par type de fichier (`read.csv()` et `read.table()`). Lorsqu'une de ces fonctions est utilisée, le contenu est stocké dans une dataframe. Il est nécessaire de spécifier le chemin d'accès entre votre logiciel et votre fichier à télécharger. Vous pouvez le faire de deux manières: 
+1. En utilisant la fonction `setwd()` et en spécifiant à l'intérieur la direction complète qui va permettre au logiciel de retrouver votre document dans vos fichiers.
+1. En créant un projet dans lequel vous stockez vos documents. 
 Ces fonctions acceptent des arguments qui permettent de s'adapter à la nature de fichier à importer. Parmi ces arguments, il y en a trois principaux:
 
 1. `header` qui est une valeur logique (`TRUE` ou `FALSE`) pour la présence d'un en-tête avec les noms de variables. Cet argument est mis par défaut à `TRUE` pour la fonction `read.csv()` et à `FALSE` pour la fonction `read.table()`.
 1. `sep` qui est le caractère dont les champs sont séparés. Cet argument est mis par défaut à `,`.
 1. `dec` qui est le séparateur décimal. Cet argument est mis par défaut à `.`.
 
-Le seul argument obligatoire est le chemin d'accès au fichier à lire. Il n'est pas nécessaire de spécifier le chemin complet si le fichier à lire se trouve dans le dossier du projet. Pour charger une base de donnée nommé `04-data.csv` dont les valeurs sont séparées par des virgules, il suffit d'écrire la ligne suivante:
+Le seul argument obligatoire est le chemin d'accès au fichier à lire. Il n'est pas nécessaire de spécifier le chemin complet si le fichier à lire se trouve dans le dossier du projet. Si ce n'est pas le cas, vous devez spécifier le chemin d'accès complet à partir de ce qui a été fait avec la fonction `setwd()`. Pour charger une base de donnée nommé `04-data.csv` dont les valeurs sont séparées par des virgules, il suffit d'écrire la ligne suivante:
 
 ```{r echo=TRUE}
 csv_data <- read.csv("04-data.csv")

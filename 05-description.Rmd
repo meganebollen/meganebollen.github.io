@@ -1,0 +1,89 @@
+# Description des données quantitatives et qualitatives
+
+Ce deuxième chapitre regroupe quelques fonctions pour décrire numériquement et graphiquement les variables quantitatives et qualitatives. Des fonctions spécifiques doivent être utilisées relativement à la nature de la variable. 
+
+```{r echo=TRUE}
+
+df <- read.csv("sport.csv", sep = ";", header = TRUE)
+str(df)
+```
+
+On observe qu'il existe plusieurs types de variables. 
+
+## Description numérique
+
+### Variables qualitatives 
+
+La variable "Sexe" est une variable qualitative nominale. Lorsque l'on regarde dans la base de données, on observe qu'elle est considérée comme une chaine de caractères. Il est dès lors possible de la transformer en facteur. Une situation similaire arrive avec la variable "Satisfaction" qui est une variable qualitative ordinale. Il est également possible de la transformer afin d'obtenir un facteur ordonné. Pour les deux cas, la transformation s'effectue grâce à la fonction `factor()`. Lorsque la variable est ordinale, des arguments doivent être ajouté afin de préciser qu'il s'agit d'un facteur ordonné et de donner l'ordre des niveaux. 
+
+```{r echo=TRUE}
+
+df$Sexe <- factor(df$Sexe)
+df$Sexe
+df$Satisfaction <- factor(df$Satisfaction, ordered = TRUE, levels = c("pas_du_tout_satisfait", "plutot_insatisfait", 
+                                                                      "moyennement_satisfait", "tres_satisfait", 
+                                                                      "extremement_satisfait"))
+df$Satisfaction
+```
+Pour les variables qualitatives, la description numérique classique est le tableau de contingence que l'on obtient avec la fonction `table()`. Il est possible de décrire chaque variable à la fois ou de décrire une variable en fonction d'une autre. 
+
+```{r echo=TRUE}
+
+table(df$Sexe)
+table(df$Satisfaction)
+table(df$Sexe, df$Satisfaction)
+```
+### Variables quantitatives 
+
+Les variables quantitatives sont généralement décrites à l'aide de: 
+1. Mesures de tendance centrale: mode, moyenne, médiane
+1. Mesures de dispersion: étendue, espace interquartile, variance et écart-type
+
+La moyenne et la médiane peuvent se calculer directement avec les fonctions `mean()`et `median()` respectivement. Le mode d'une variable peut s'obtenir en analysant le tableau de contingence. Dans notre cas, on observe qu'il n'y a pas de mode étant donné qu'aucun âge apparaît plusieurs fois. 
+
+```{r echo=TRUE}
+mean(df$Age)
+median(df$Age)
+table(df$Age)
+```
+L'étendue d'une variable peut s'obtenir en soustrayant la valeur maximale et la valeur minimale d'une variable. La variance et l'écart-type s'obtiennent directement avec les fonctions `var()`et `sd()`respectivement. L'espace interquartile, utilisé pour construire le boxplot, s'obtient grâce à la fonction `IQR()`. 
+
+```{r echo=TRUE}
+min(df$Age)
+max(df$Age)
+max(df$Age)-min(df$Age)
+
+var(df$Age)
+sd(df$Age)
+
+IQR(df$Age)
+```
+
+## Description graphique
+
+### Variables qualitatives 
+
+Les variables qualitatives peuvent être représentées grâce à des graphiques en barre ou des graphiques en camembert. Les fonctions `barplot()`et `pie()`permettent de représenter les tableaux de contingence. Pour rappel, il est possible de sauver un objet dans l'environnement et de l'utiliser ensuite directement pour faire les graphes. C'est ce qui est proposé pour le tableau de contigence de la variable "Satisfaction". 
+
+
+```{r echo=TRUE}
+
+barplot(table(df$Sexe))
+
+tableSatisfaction <- table(df$Satisfaction)
+barplot(tableSatisfaction)
+par(mar=c(11,4,4,4))
+barplot(tableSatisfaction, las=2)
+
+pie(tableSatisfaction)
+```
+
+### Variables quantitatives 
+
+Les variables quantitatives peuvent être représentées grâce à des histogrammes ou des boxplots. Les histogrammes permettent de représenter la fréquence de chaque valeur de la variable, tandis que les boxplots représente la distribution de la variable à l'aide des quartiles. Il est possible de spécifier des arguments dans la fonction graphiques afin de donner un titre ou de nomme un axe. 
+
+```{r echo=TRUE}
+
+hist(df$Age, main="Histogramme de l'age", xlab = "Age")
+boxplot(df$Age)
+```

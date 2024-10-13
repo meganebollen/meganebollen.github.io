@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2024-09-26" />
+<meta name="date" content="2024-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,7 +37,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="objets-et-opérateurs.html"/>
-
+<link rel="next" href="description-des-données-quantitatives-et-qualitatives.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -72,7 +72,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -175,6 +175,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.3" data-path="packages-et-données.html"><a href="packages-et-données.html#bases-de-données-issues-de-fichiers-externes"><i class="fa fa-check"></i><b>4.2.3</b> Bases de données issues de fichiers externes</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html"><i class="fa fa-check"></i><b>5</b> Description des données quantitatives et qualitatives</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#description-numérique"><i class="fa fa-check"></i><b>5.1</b> Description numérique</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#variables-qualitatives"><i class="fa fa-check"></i><b>5.1.1</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#variables-quantitatives"><i class="fa fa-check"></i><b>5.1.2</b> Variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#description-graphique"><i class="fa fa-check"></i><b>5.2</b> Description graphique</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#variables-qualitatives-1"><i class="fa fa-check"></i><b>5.2.1</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="5.2.2" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#variables-quantitatives-1"><i class="fa fa-check"></i><b>5.2.2</b> Variables quantitatives</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -201,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="installation-et-gestion-des-packages" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Installation et gestion des packages<a href="packages-et-données.html#installation-et-gestion-des-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Les packages sont des regroupements de fonctions et de jeux de données développés dans R et qui doivent se télécharger une seule fois, mais ils devront être importés à chaque utilisation. Le code ci-dessous permet d’installer le package ggplot2:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="packages-et-données.html#cb71-1" tabindex="-1"></a><span class="fu">install.packages</span>(ggplot2, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="packages-et-données.html#cb71-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Avant chaque utilisation des packages, il est nécessaire d’importer le package grâce au code suivant:</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="packages-et-données.html#cb72-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 </div>
@@ -230,14 +243,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="bases-de-données-issues-de-fichiers-externes" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Bases de données issues de fichiers externes<a href="packages-et-données.html#bases-de-données-issues-de-fichiers-externes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Les données à analyser sont souvent disponibles dans un fichier externe sous différents formats tels que .csv ou .txt. Pour importer ces données, il existe une fonction par type de fichier (<code>read.csv()</code> et <code>read.table()</code>). Lorsqu’une de ces fonctions est utilisée, le contenu est stocké dans une dataframe.
+<p>Les données à analyser sont souvent disponibles dans un fichier externe sous différents formats tels que .csv ou .txt. Pour importer ces données, il existe une fonction par type de fichier (<code>read.csv()</code> et <code>read.table()</code>). Lorsqu’une de ces fonctions est utilisée, le contenu est stocké dans une dataframe. Il est nécessaire de spécifier le chemin d’accès entre votre logiciel et votre fichier à télécharger. Vous pouvez le faire de deux manières:
+1. En utilisant la fonction <code>setwd()</code> et en spécifiant à l’intérieur la direction complète qui va permettre au logiciel de retrouver votre document dans vos fichiers.
+1. En créant un projet dans lequel vous stockez vos documents.
 Ces fonctions acceptent des arguments qui permettent de s’adapter à la nature de fichier à importer. Parmi ces arguments, il y en a trois principaux:</p>
 <ol style="list-style-type: decimal">
 <li><code>header</code> qui est une valeur logique (<code>TRUE</code> ou <code>FALSE</code>) pour la présence d’un en-tête avec les noms de variables. Cet argument est mis par défaut à <code>TRUE</code> pour la fonction <code>read.csv()</code> et à <code>FALSE</code> pour la fonction <code>read.table()</code>.</li>
 <li><code>sep</code> qui est le caractère dont les champs sont séparés. Cet argument est mis par défaut à <code>,</code>.</li>
 <li><code>dec</code> qui est le séparateur décimal. Cet argument est mis par défaut à <code>.</code>.</li>
 </ol>
-<p>Le seul argument obligatoire est le chemin d’accès au fichier à lire. Il n’est pas nécessaire de spécifier le chemin complet si le fichier à lire se trouve dans le dossier du projet. Pour charger une base de donnée nommé <code>04-data.csv</code> dont les valeurs sont séparées par des virgules, il suffit d’écrire la ligne suivante:</p>
+<p>Le seul argument obligatoire est le chemin d’accès au fichier à lire. Il n’est pas nécessaire de spécifier le chemin complet si le fichier à lire se trouve dans le dossier du projet. Si ce n’est pas le cas, vous devez spécifier le chemin d’accès complet à partir de ce qui a été fait avec la fonction <code>setwd()</code>. Pour charger une base de donnée nommé <code>04-data.csv</code> dont les valeurs sont séparées par des virgules, il suffit d’écrire la ligne suivante:</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="packages-et-données.html#cb75-1" tabindex="-1"></a>csv_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;04-data.csv&quot;</span>)</span>
 <span id="cb75-2"><a href="packages-et-données.html#cb75-2" tabindex="-1"></a>csv_data</span></code></pre></div>
 <pre><code>##      Nom Age Note.1 Note.2
@@ -265,8 +280,8 @@ Ces fonctions acceptent des arguments qui permettent de s’adapter à la nature
           </div>
         </div>
       </div>
-<a href="objets-et-opérateurs.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="objets-et-opérateurs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="description-des-données-quantitatives-et-qualitatives.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
