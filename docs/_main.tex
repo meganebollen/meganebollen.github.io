@@ -120,7 +120,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2024-10-13}
+\date{2024-10-15}
 
 \begin{document}
 \maketitle
@@ -197,7 +197,7 @@ Chacune des quatre zones a sa propre utilité:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Cette zone est dédiée aux fichiers sources. Ce volet permet d'écrire et de sauvegarder les lignes de code. Ce sera la partie la plus utilisée lors de la programmation.
+  Cette zone est dédiée aux fichiers sources. Ce volet permet d'écrire et de sauvegarder les lignes de code. Ce sera la partie la plus utilisée lors de la programmation. Un nouveau script peut être ouvert à partir de l'onglet \texttt{File} en haut à gauche de l'écran, puis \texttt{New\ File} et \texttt{R\ Script}. Chaque script peut être enregistré soit via le même onglet en choisissant \texttt{Save\ As}, soit en utilisant les raccourcis classiques de votre clavier.
 \item
   Cette zone fournit des informations sur les objets, les variables et les données en mémoire sous l'onglet \texttt{Environment}.
 \item
@@ -739,6 +739,37 @@ Il est également possible de mettre plusieurs conditions.
 ## 4  4 Femme  43
 \end{verbatim}
 
+Il est possible d'ajouter une colonne à la base de données. Plusieurs options sont possibles:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Créer un vecteur de même taille que la longueur de la base de données et l'ajouter à la base de données en utilisant la fonction \texttt{cbind()}.
+\item
+  Créer une nouvelle variable directement dans la base de données en déterminant son nom grâce au signe \$.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yeux }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"brun"}\NormalTok{, }\StringTok{"brun"}\NormalTok{, }\StringTok{"bleu"}\NormalTok{, }\StringTok{"bleu"}\NormalTok{, }\StringTok{"brun"}\NormalTok{)}
+\NormalTok{dataframe }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(dataframe, yeux)}
+
+\NormalTok{dataframe}\SpecialCharTok{$}\NormalTok{cheveux }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"blond"}\NormalTok{, }\StringTok{"brun"}\NormalTok{, }\StringTok{"blond"}\NormalTok{, }\StringTok{"noir"}\NormalTok{, }\StringTok{"noir"}\NormalTok{)}
+
+\FunctionTok{str}\NormalTok{(dataframe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    5 obs. of  5 variables:
+##  $ ID     : int  1 2 3 4 5
+##  $ Genre  : chr  "Homme" "Femme" "Femme" "Femme" ...
+##  $ Age    : num  45 42 45 43 44
+##  $ yeux   : chr  "brun" "brun" "bleu" "bleu" ...
+##  $ cheveux: chr  "blond" "brun" "blond" "noir" ...
+\end{verbatim}
+
 \section{Opérateurs logiques}\label{opuxe9rateurs-logiques}
 
 \begin{longtable}[]{@{}cl@{}}
@@ -1099,7 +1130,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1108,7 +1139,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-50-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1117,7 +1148,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-50-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1125,7 +1156,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-50-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-4.pdf}
 
 \subsection{Variables quantitatives}\label{variables-quantitatives-1}
 
@@ -1137,7 +1168,7 @@ Les variables quantitatives peuvent être représentées grâce à des histogram
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-51-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1145,7 +1176,7 @@ Les variables quantitatives peuvent être représentées grâce à des histogram
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-51-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-2.pdf}
 
   \bibliography{book.bib,packages.bib}
 

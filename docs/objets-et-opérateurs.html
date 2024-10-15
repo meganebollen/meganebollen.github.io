@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2024-10-13" />
+<meta name="date" content="2024-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -425,6 +425,23 @@ Pour accéder à un seul élément, il faut indiquer la position de la ligne et 
 <pre><code>##   ID Genre Age
 ## 2  2 Femme  42
 ## 4  4 Femme  43</code></pre>
+<p>Il est possible d’ajouter une colonne à la base de données. Plusieurs options sont possibles:</p>
+<ol style="list-style-type: decimal">
+<li>Créer un vecteur de même taille que la longueur de la base de données et l’ajouter à la base de données en utilisant la fonction <code>cbind()</code>.</li>
+<li>Créer une nouvelle variable directement dans la base de données en déterminant son nom grâce au signe $.</li>
+</ol>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="objets-et-opérateurs.html#cb71-1" tabindex="-1"></a>yeux <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;brun&quot;</span>, <span class="st">&quot;brun&quot;</span>, <span class="st">&quot;bleu&quot;</span>, <span class="st">&quot;bleu&quot;</span>, <span class="st">&quot;brun&quot;</span>)</span>
+<span id="cb71-2"><a href="objets-et-opérateurs.html#cb71-2" tabindex="-1"></a>dataframe <span class="ot">&lt;-</span> <span class="fu">cbind</span>(dataframe, yeux)</span>
+<span id="cb71-3"><a href="objets-et-opérateurs.html#cb71-3" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="objets-et-opérateurs.html#cb71-4" tabindex="-1"></a>dataframe<span class="sc">$</span>cheveux <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;blond&quot;</span>, <span class="st">&quot;brun&quot;</span>, <span class="st">&quot;blond&quot;</span>, <span class="st">&quot;noir&quot;</span>, <span class="st">&quot;noir&quot;</span>)</span>
+<span id="cb71-5"><a href="objets-et-opérateurs.html#cb71-5" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="objets-et-opérateurs.html#cb71-6" tabindex="-1"></a><span class="fu">str</span>(dataframe)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    5 obs. of  5 variables:
+##  $ ID     : int  1 2 3 4 5
+##  $ Genre  : chr  &quot;Homme&quot; &quot;Femme&quot; &quot;Femme&quot; &quot;Femme&quot; ...
+##  $ Age    : num  45 42 45 43 44
+##  $ yeux   : chr  &quot;brun&quot; &quot;brun&quot; &quot;bleu&quot; &quot;bleu&quot; ...
+##  $ cheveux: chr  &quot;blond&quot; &quot;brun&quot; &quot;blond&quot; &quot;noir&quot; ...</code></pre>
 </div>
 </div>
 <div id="opérateurs-logiques" class="section level2 hasAnchor" number="3.2">

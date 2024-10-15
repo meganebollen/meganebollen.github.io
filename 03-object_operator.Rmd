@@ -226,6 +226,20 @@ Il est également possible de mettre plusieurs conditions.
 dataframe[dataframe$Genre == "Femme" & dataframe$Age < 44, ]
 ```
 
+Il est possible d'ajouter une colonne à la base de données. Plusieurs options sont possibles: 
+
+1. Créer un vecteur de même taille que la longueur de la base de données et l'ajouter à la base de données en utilisant la fonction `cbind()`. 
+1. Créer une nouvelle variable directement dans la base de données en déterminant son nom grâce au signe $. 
+
+```{r}
+yeux <- c("brun", "brun", "bleu", "bleu", "brun")
+dataframe <- cbind(dataframe, yeux)
+
+dataframe$cheveux <- c("blond", "brun", "blond", "noir", "noir")
+
+str(dataframe)
+```
+
 ## Opérateurs logiques
 
 | Opérateur | Description |
