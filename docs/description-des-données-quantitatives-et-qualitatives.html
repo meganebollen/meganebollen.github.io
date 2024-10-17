@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2024-10-15" />
+<meta name="date" content="2024-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -264,9 +264,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="variables-quantitatives" class="section level3 hasAnchor" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Variables quantitatives<a href="description-des-données-quantitatives-et-qualitatives.html#variables-quantitatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Les variables quantitatives sont généralement décrites à l’aide de:
-1. Mesures de tendance centrale: mode, moyenne, médiane
-1. Mesures de dispersion: étendue, espace interquartile, variance et écart-type</p>
+<p>Les variables quantitatives sont généralement décrites à l’aide de:</p>
+<ol style="list-style-type: decimal">
+<li>Mesures de tendance centrale: mode, moyenne, médiane</li>
+<li>Mesures de dispersion: étendue, espace interquartile, variance et écart-type</li>
+</ol>
 <p>La moyenne et la médiane peuvent se calculer directement avec les fonctions <code>mean()</code>et <code>median()</code> respectivement. Le mode d’une variable peut s’obtenir en analysant le tableau de contingence. Dans notre cas, on observe qu’il n’y a pas de mode étant donné qu’aucun âge apparaît plusieurs fois.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="description-des-données-quantitatives-et-qualitatives.html#cb93-1" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>Age)</span></code></pre></div>
 <pre><code>## [1] 34.66667</code></pre>

@@ -36,6 +36,7 @@ table(df$Sexe, df$Satisfaction)
 ### Variables quantitatives 
 
 Les variables quantitatives sont généralement décrites à l'aide de: 
+
 1. Mesures de tendance centrale: mode, moyenne, médiane
 1. Mesures de dispersion: étendue, espace interquartile, variance et écart-type
 
