@@ -126,7 +126,10 @@ genre
 ```
 Il est possible d'avoir un facteur numérique en y affectant une catégorie avec l'argument `labels` lors de l'utilisation de la fonction `factor()`.
 ```{r}
-satisfaction <- factor(c(3, 3, 4, 1, 2, 1, 1), labels = c("Pas du tout d'accord", "Pas d'accord", "D'accord", "Tout à fait d'accord"), order = TRUE)
+satisfaction <- factor(c(3, 3, 4, 1, 2, 1, 1), 
+                       labels = c("Pas du tout d'accord", "Pas d'accord", 
+                                  "D'accord", "Tout à fait d'accord"), 
+                       order = TRUE)
 satisfaction
 ```
 

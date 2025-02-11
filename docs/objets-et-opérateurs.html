@@ -309,8 +309,11 @@ Pour pouvoir stocker une information dans un seul objet, il faut utiliser la fon
 <pre><code>## [1] Garcon &lt;NA&gt;   Fille  Fille  Garcon
 ## Levels: Fille Garcon</code></pre>
 <p>Il est possible d’avoir un facteur numérique en y affectant une catégorie avec l’argument <code>labels</code> lors de l’utilisation de la fonction <code>factor()</code>.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="objets-et-opérateurs.html#cb38-1" tabindex="-1"></a>satisfaction <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Pas du tout d&#39;accord&quot;</span>, <span class="st">&quot;Pas d&#39;accord&quot;</span>, <span class="st">&quot;D&#39;accord&quot;</span>, <span class="st">&quot;Tout à fait d&#39;accord&quot;</span>), <span class="at">order =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb38-2"><a href="objets-et-opérateurs.html#cb38-2" tabindex="-1"></a>satisfaction</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="objets-et-opérateurs.html#cb38-1" tabindex="-1"></a>satisfaction <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>), </span>
+<span id="cb38-2"><a href="objets-et-opérateurs.html#cb38-2" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Pas du tout d&#39;accord&quot;</span>, <span class="st">&quot;Pas d&#39;accord&quot;</span>, </span>
+<span id="cb38-3"><a href="objets-et-opérateurs.html#cb38-3" tabindex="-1"></a>                                  <span class="st">&quot;D&#39;accord&quot;</span>, <span class="st">&quot;Tout à fait d&#39;accord&quot;</span>), </span>
+<span id="cb38-4"><a href="objets-et-opérateurs.html#cb38-4" tabindex="-1"></a>                       <span class="at">order =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-5"><a href="objets-et-opérateurs.html#cb38-5" tabindex="-1"></a>satisfaction</span></code></pre></div>
 <pre><code>## [1] D&#39;accord             D&#39;accord             Tout à fait d&#39;accord
 ## [4] Pas du tout d&#39;accord Pas d&#39;accord         Pas du tout d&#39;accord
 ## [7] Pas du tout d&#39;accord
