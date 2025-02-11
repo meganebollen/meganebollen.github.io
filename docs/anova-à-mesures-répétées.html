@@ -303,7 +303,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="test-post-hoc" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Test post-hoc<a href="anova-à-mesures-répétées.html#test-post-hoc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Si l’ANOVA est significative, il est important d’effectuer un test post-hoc pour savoir quelles conditions diffèrent. Le test post-hoc est effectué avec la fonction <code>pairwise_t_test()</code> pour comparer les données pair à pair avec une correction de Bonferroni. L’interprétation se fait comme dans le cas d’un test de Student à mesures répétées.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="anova-à-mesures-répétées.html#cb106-1" tabindex="-1"></a><span class="fu">pairwise_t_test</span>(data, score <span class="sc">~</span> condition, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="anova-à-mesures-répétées.html#cb106-1" tabindex="-1"></a><span class="fu">pairwise_t_test</span>(data, score <span class="sc">~</span> condition, <span class="at">paired =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb106-2"><a href="anova-à-mesures-répétées.html#cb106-2" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 10
 ##   .y.   group1 group2    n1    n2 statistic    df     p p.adj p.adj.signif
 ## * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       

@@ -20,9 +20,10 @@ La variable "Sexe" est une variable qualitative nominale. Lorsque l'on regarde d
 
 df$Sexe <- factor(df$Sexe)
 df$Sexe
-df$Satisfaction <- factor(df$Satisfaction, ordered = TRUE, levels = c("pas_du_tout_satisfait", "plutot_insatisfait", 
-                                                                      "moyennement_satisfait", "tres_satisfait", 
-                                                                      "extremement_satisfait"))
+df$Satisfaction <- factor(df$Satisfaction, ordered = TRUE, 
+                          levels = c("pas_du_tout_satisfait", "plutot_insatisfait", 
+                                     "moyennement_satisfait", "tres_satisfait", 
+                                     "extremement_satisfait"))
 df$Satisfaction
 ```
 Pour les variables qualitatives, la description numérique classique est le tableau de contingence que l'on obtient avec la fonction `table()`. Il est possible de décrire chaque variable à la fois ou de décrire une variable en fonction d'une autre. 

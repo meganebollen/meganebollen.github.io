@@ -76,7 +76,8 @@ Si l'ANOVA est significative, il est important d'effectuer un test post-hoc pour
 
 ```{r echo=TRUE}
 
-pairwise_t_test(data, score ~ condition, paired = TRUE, p.adjust.method = "bonferroni")
+pairwise_t_test(data, score ~ condition, paired = TRUE, 
+                p.adjust.method = "bonferroni")
 
 ```
 
