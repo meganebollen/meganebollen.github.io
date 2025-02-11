@@ -1,6 +1,6 @@
 --- 
 title: "Guide R"
-author: "Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher"
+author: "Mégane Bollenrücher"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
