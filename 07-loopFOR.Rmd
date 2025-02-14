@@ -75,7 +75,7 @@ for(i in jours) {
 paste("Aujourd'hui, nous sommes", "lundi") #comprendre le fonctionnement de paste
 
 for(i in jours) {
-  paste("Aujourd'hui, nous sommes", jours)
+  print(paste("Aujourd'hui, nous sommes", jours))
 }
 
 ```
