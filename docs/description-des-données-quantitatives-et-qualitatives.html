@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2024-11-13" />
+<meta name="date" content="2025-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,6 +193,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="distribution-de-probabilités.html"><a href="distribution-de-probabilités.html#distribution-normale"><i class="fa fa-check"></i><b>6.1</b> Distribution normale</a></li>
 <li class="chapter" data-level="6.2" data-path="distribution-de-probabilités.html"><a href="distribution-de-probabilités.html#autres-distributions"><i class="fa fa-check"></i><b>6.2</b> Autres distributions</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="les-boucles-for.html"><a href="les-boucles-for.html"><i class="fa fa-check"></i><b>7</b> Les boucles FOR</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="les-boucles-for.html"><a href="les-boucles-for.html#structure"><i class="fa fa-check"></i><b>7.1</b> Structure</a></li>
+<li class="chapter" data-level="7.2" data-path="les-boucles-for.html"><a href="les-boucles-for.html#utilisation"><i class="fa fa-check"></i><b>7.2</b> Utilisation</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="les-boucles-for.html"><a href="les-boucles-for.html#afficher"><i class="fa fa-check"></i><b>7.2.1</b> Afficher</a></li>
+<li class="chapter" data-level="7.2.2" data-path="les-boucles-for.html"><a href="les-boucles-for.html#itérer"><i class="fa fa-check"></i><b>7.2.2</b> Itérer</a></li>
+<li class="chapter" data-level="7.2.3" data-path="les-boucles-for.html"><a href="les-boucles-for.html#créer-un-vecteur"><i class="fa fa-check"></i><b>7.2.3</b> Créer un vecteur</a></li>
+<li class="chapter" data-level="7.2.4" data-path="les-boucles-for.html"><a href="les-boucles-for.html#parcourir-une-matrice"><i class="fa fa-check"></i><b>7.2.4</b> Parcourir une matrice</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -236,10 +247,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb83-2"><a href="description-des-données-quantitatives-et-qualitatives.html#cb83-2" tabindex="-1"></a>df<span class="sc">$</span>Sexe</span></code></pre></div>
 <pre><code>##  [1] F F F M M M M F M F F F F M F
 ## Levels: F M</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-1" tabindex="-1"></a>df<span class="sc">$</span>Satisfaction <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Satisfaction, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pas_du_tout_satisfait&quot;</span>, <span class="st">&quot;plutot_insatisfait&quot;</span>, </span>
-<span id="cb85-2"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-2" tabindex="-1"></a>                                                                      <span class="st">&quot;moyennement_satisfait&quot;</span>, <span class="st">&quot;tres_satisfait&quot;</span>, </span>
-<span id="cb85-3"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-3" tabindex="-1"></a>                                                                      <span class="st">&quot;extremement_satisfait&quot;</span>))</span>
-<span id="cb85-4"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-4" tabindex="-1"></a>df<span class="sc">$</span>Satisfaction</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-1" tabindex="-1"></a>df<span class="sc">$</span>Satisfaction <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Satisfaction, <span class="at">ordered =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb85-2"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-2" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pas_du_tout_satisfait&quot;</span>, <span class="st">&quot;plutot_insatisfait&quot;</span>, </span>
+<span id="cb85-3"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-3" tabindex="-1"></a>                                     <span class="st">&quot;moyennement_satisfait&quot;</span>, <span class="st">&quot;tres_satisfait&quot;</span>, </span>
+<span id="cb85-4"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-4" tabindex="-1"></a>                                     <span class="st">&quot;extremement_satisfait&quot;</span>))</span>
+<span id="cb85-5"><a href="description-des-données-quantitatives-et-qualitatives.html#cb85-5" tabindex="-1"></a>df<span class="sc">$</span>Satisfaction</span></code></pre></div>
 <pre><code>##  [1] extremement_satisfait moyennement_satisfait plutot_insatisfait   
 ##  [4] pas_du_tout_satisfait tres_satisfait        pas_du_tout_satisfait
 ##  [7] moyennement_satisfait plutot_insatisfait    moyennement_satisfait

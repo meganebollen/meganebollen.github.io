@@ -1,0 +1,146 @@
+# Les boucles FOR
+
+Les boucles sont utilisées en programmation pour exécuter automatiquement un bloc de code plusieurs fois, ce qui permet d’éviter la répétition manuelle. Elles sont très utiles pour effectuer des calculs répétitis ou parcourir des vecteurs, des listes, des matrices ou des bases de données.
+
+Dans ce chapitre, nous traitons des boucles `for`. D'autres types de boucles existent. Les boucles `for`permettent d'itérer sur une séquence de valeurs prédéfinies en exécutant le code présent à l'intérieur de la bouche pour chaque élément.
+
+## Structure
+
+La structure générale d'une boucle `for` comprend:
+
+1.  La fonction `for`
+2.  La variable de répétition
+3.  Le vecteur d'intérêt
+4.  Les instructions à exécuter
+
+```{r echo=TRUE}
+
+# for(variable in vecteur) {
+#   # Instructions à exécuter
+# }
+
+```
+
+Cette structure est systématiquement la même, mais sa complexité peut varier en fonction des tâches que l'on souhaite effectuer.
+
+## Utilisation
+
+Les boucles `for` ont plusieurs utilités en fonction de ce que l'on souhaite effectuer. Nous présentons ici les principales façons d'utiliser les boucles et les fonctions régulièrement utilisées à l'intérieur des boucles.
+
+### Afficher
+
+La fonction la plus simple d'une boucle `for` est l'affichage. L'exemple proposé ci-dessous permet de comprendre comment la boucle fonctionne. Nous souhaitons afficher les nombres de 1 à 10. Par conséquent, le `vecteur` qui nous intéresse doit contenir toutes ces valeurs. La `variable` que nous spécifions pour la boucle est l'indice `i`. Bien sur, cet indice pourrait se nommer différemment, mais il est d'usage de l'utiliser. La fonction dont nous avons besoin pour afficher les nombres est `print()`. Elle apparaît donc comme l'instruction de la fonction. On observe qu'il est possible d'indiquer le vecteur directement dans la boucle comme dans le premier exemple ou d'avoir créé une variable au préalable comme dans le second exemple.
+
+```{r echo=TRUE}
+
+for(i in 1:10) {
+  print(i)
+}
+
+nbre <- c(1:10)
+print(nbre)
+
+for(i in nbre) {
+  print(i)
+}
+
+```
+
+### Itérer
+
+Les boucles `for`permettent également d'itérer la même instruction plusieurs fois sans devoir répéter le code. Dans l'exemple, nous souhaitons afficher à plusieurs reprises la phrase "Aujourd'hui, nous sommes" avec le jour en question à la fin de la phrase. Si nous effectuions le code séparément, nous aurions besoin de copier le code 7 fois. En analysant ces répétitions, nous pouvons identifier une partie du texte qui ne change pas, à savoir "Aujourd'hui, nous sommes" tandis que l'autre partie, à savoir les jours de la semaine, change à chaque répétitions. Nous souhaitons donc concaténer la partie qui change à la phrase qui reste similaire au fur et à mesure des répétitions. Par conséquent, nous fixons comme `variable` l'index `i`et comme `vecteur` les jours. La fonction `print` permet d'afficher le résultat. Cependant, une nouvelle fonction est nécessaire, à savoir `paste` pour concaténer les deux parties.
+
+```{r echo=TRUE}
+
+print("Aujourd'hui, nous sommes lundi")
+print("Aujourd'hui, nous sommes mardi")
+print("Aujourd'hui, nous sommes mercredi")
+print("Aujourd'hui, nous sommes jeudi")
+print("Aujourd'hui, nous sommes vendredi")
+print("Aujourd'hui, nous sommes samedi")
+print("Aujourd'hui, nous sommes dimanche")
+
+```
+
+Nous allons donc créer un vecteur contenant tous les jours de la semaine. Ensuite, nous devons créer la boucle.
+
+```{r echo=TRUE}
+
+jours <- c("lundi", "mardi", "mercredi", "jeudi", "vendredi")
+
+for(i in jours) {
+  #concaténer et afficher
+}
+
+paste("Aujourd'hui, nous sommes", "lundi") #comprendre le fonctionnement de paste
+
+for(i in jours) {
+  paste("Aujourd'hui, nous sommes", jours)
+}
+
+```
+
+### Créer un vecteur
+
+Les boucles `for` permettent également de créer de manière automatisée des vecteurs, des matrices, des listes ou des bases de données. Dans notre exemple, nous voulons créer un vecteur contenant le carré des nombres. Il existe plusieurs façons de remplir le vecteur, soit avec la fonction `c()` comme dans le premier exemple, soit avec la fonction `append()`comme dans le deuxième exemple. De plus, l'opération souhaitée peut se faire directement au moment de remplir le vecteur comme dans le premier exemple ou dans une ligne de code séparée comme dans le deuxième exemple. Nous vous conseillons de procéder de manière séquentielle lorsque les instructions se complexifient.
+
+```{r echo=TRUE}
+
+nbre <- c(1:10)
+carre <- vector() #vecteur vide 
+
+for(i in nbre) {
+  carre <- c(carre, i^2)  
+}
+
+print(carre)
+
+carre <- vector()
+
+for(i in nbre) {
+  squared <- (i^2)
+  carre <- append(carre, squared)  
+}
+
+
+```
+
+Il est également utile de savoir comment indexer les variables afin de pouvoir modifier des vecteurs. Dans le premier exemple, nous créer un nouveau vecteur qui correspond à un précédent vecteur plus 1. Le développement proposé avant la création de la boucle permet de comprendre comment procéder pour la mise en place des instructions dans la boucle. La manière proposée pour ajouter les valeur dans le vecteur utilise uniquement les index. Nous pouvons obtenir le même résultat en utilisant la fonction précédemment présentée `append()`
+
+```{r echo=TRUE}
+
+nbre <- c(1:10)
+nbre[1]
+nbre[1] + 1 
+
+nbrePLUS <- vector()
+for (i in nbre) {
+  nbrePLUS[i] <- nbre[i] + 1  # augmente chaque nombre de 1
+}
+print(nbrePLUS)
+
+nbrePLUS <- vector()
+for (i in nbre) {
+  addONE <- nbre[i] + 1  # augmente chaque nombre de 1
+  nbrePLUS <- append(nbrePLUS, addONE)
+}
+print(nbrePLUS)
+```
+
+Jusqu'à présent, nous avons itéré sur un vecteur directement en parcourant les éléments du vecteur. Il est également possible d'itérer sur un vecteur en accédant aux éléments de ce dernier à travers les indices en utilisant `1:length(vecteur)`. Cette méthode nécessite de bien faire attention au fait que le vecteur ne soit pas vide. Dans le deuxième exemple, nous proposons d'itérer selon cette deuxième approche en ajouter 0.5 aux notes proposées.
+
+```{r echo=TRUE}
+
+notes <- c(5.5, 4.5, 5, 3.5, 2.5)
+
+for (i in 1:length(notes)) {
+  notes[i] <- notes[i] + 0.5  # augmente chaque note de 0.5 point
+}
+
+print(notes)
+
+```
+
+### Parcourir une matrice
+
+A venir...
