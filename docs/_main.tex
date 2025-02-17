@@ -120,7 +120,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2025-02-14}
+\date{2025-02-17}
 
 \begin{document}
 \maketitle
@@ -345,7 +345,28 @@ Pour pouvoir stocker une information dans un seul objet, il faut utiliser la fon
 ## [1]  TRUE FALSE  TRUE FALSE FALSE  TRUE
 \end{verbatim}
 
-Étant donné que le vecteur est un objet ordonné, il est possible d'accéder, remplacer ou modifier un ou plusieurs éléments par rapport à leur position dans l'objet. Il est nécessaire d'utiliser les crochets \texttt{{[}\ {]}} pour indiquer le ou les éléments à manipuler.
+Étant donné que le vecteur est un objet ordonné, il est possible d'accéder, remplacer ou modifier un ou plusieurs éléments par rapport à leur position dans l'objet. Il est nécessaire d'utiliser les crochets \texttt{{[}\ {]}} pour indiquer le ou les éléments à manipuler. Afin de connaître la longueur d'un vecteur, il faut utiliser la fonction \texttt{length()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Vecteur logique}
+\FunctionTok{length}\NormalTok{(b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(c)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
 
 Pour accéder un seul élément du vecteur, il suffit d'écrire le nom de la variable suivi de crochets contenant la position de l'élément sélectionné.
 
@@ -398,6 +419,14 @@ Il est également possible d'accéder à certaines lignes en fonction de la vale
 \begin{verbatim}
 ## [1] "Deux"  "Trois" "Cinq"  "Six"
 \end{verbatim}
+
+Il est également possible de créer un vecteur vide dans lequel il sera par la suite possible d'ajouter des valeurs. Le code qui suit permet de créer ce vecteur:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vide }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
 
 \subsection{Facteur}\label{facteur}
 
@@ -1143,7 +1172,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-51-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1152,7 +1181,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-51-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1161,7 +1190,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-51-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1169,7 +1198,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-51-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-4.pdf}
 
 \subsection{Variables quantitatives}\label{variables-quantitatives-1}
 
@@ -1181,7 +1210,7 @@ Les variables quantitatives peuvent être représentées grâce à des histogram
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-52-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-54-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1189,7 +1218,7 @@ Les variables quantitatives peuvent être représentées grâce à des histogram
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-52-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-54-2.pdf}
 
 \chapter{Distribution de probabilités}\label{distribution-de-probabilituxe9s}
 
@@ -1585,10 +1614,28 @@ Nous allons donc créer un vecteur contenant tous les jours de la semaine. Ensui
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ jours) \{}
-  \FunctionTok{paste}\NormalTok{(}\StringTok{"Aujourd\textquotesingle{}hui, nous sommes"}\NormalTok{, jours)}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Aujourd\textquotesingle{}hui, nous sommes"}\NormalTok{, jours))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [1] "Aujourd'hui, nous sommes lundi"    "Aujourd'hui, nous sommes mardi"   
+## [3] "Aujourd'hui, nous sommes mercredi" "Aujourd'hui, nous sommes jeudi"   
+## [5] "Aujourd'hui, nous sommes vendredi"
+## [1] "Aujourd'hui, nous sommes lundi"    "Aujourd'hui, nous sommes mardi"   
+## [3] "Aujourd'hui, nous sommes mercredi" "Aujourd'hui, nous sommes jeudi"   
+## [5] "Aujourd'hui, nous sommes vendredi"
+## [1] "Aujourd'hui, nous sommes lundi"    "Aujourd'hui, nous sommes mardi"   
+## [3] "Aujourd'hui, nous sommes mercredi" "Aujourd'hui, nous sommes jeudi"   
+## [5] "Aujourd'hui, nous sommes vendredi"
+## [1] "Aujourd'hui, nous sommes lundi"    "Aujourd'hui, nous sommes mardi"   
+## [3] "Aujourd'hui, nous sommes mercredi" "Aujourd'hui, nous sommes jeudi"   
+## [5] "Aujourd'hui, nous sommes vendredi"
+## [1] "Aujourd'hui, nous sommes lundi"    "Aujourd'hui, nous sommes mardi"   
+## [3] "Aujourd'hui, nous sommes mercredi" "Aujourd'hui, nous sommes jeudi"   
+## [5] "Aujourd'hui, nous sommes vendredi"
+\end{verbatim}
 
 \subsection{Créer un vecteur}\label{cruxe9er-un-vecteur}
 

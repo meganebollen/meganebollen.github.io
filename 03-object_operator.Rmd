@@ -68,7 +68,13 @@ c <- c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE)
 c
 ```
 
-Étant donné que le vecteur est un objet ordonné, il est possible d'accéder, remplacer ou modifier un ou plusieurs éléments par rapport à leur position dans l'objet. Il est nécessaire d'utiliser les crochets `[ ]` pour indiquer le ou les éléments à manipuler.
+Étant donné que le vecteur est un objet ordonné, il est possible d'accéder, remplacer ou modifier un ou plusieurs éléments par rapport à leur position dans l'objet. Il est nécessaire d'utiliser les crochets `[ ]` pour indiquer le ou les éléments à manipuler. Afin de connaître la longueur d'un vecteur, il faut utiliser la fonction `length()`. 
+
+```{r}
+# Vecteur logique
+length(b)
+length(c)
+```
 
 Pour accéder un seul élément du vecteur, il suffit d'écrire le nom de la variable suivi de crochets contenant la position de l'élément sélectionné.
 ```{r}
@@ -91,6 +97,13 @@ Il est également possible d'accéder à certaines lignes en fonction de la vale
 # Extraction de plusieurs éléments en fontion de la valeur logique:
 b[c(FALSE, TRUE, TRUE, FALSE, TRUE, TRUE)]
 ```
+
+Il est également possible de créer un vecteur vide dans lequel il sera par la suite possible d'ajouter des valeurs. Le code qui suit permet de créer ce vecteur:
+
+```{r}
+vide <- vector()
+```
+
 ### Facteur
 
 Un facteur est un vecteur dont les éléments peuvent prendre que des valeurs prédéfinies. Un facteur dispose de l'argument `levels` qui permet de définir des catégories de valeurs. Le facteur est généralement utilisé pour stocker des variables catégorielles.
