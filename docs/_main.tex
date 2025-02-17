@@ -1389,7 +1389,7 @@ La fonction \texttt{qnorm} permet d'obtenir le quantile pour n'importe quelle pr
 
 La fonction \texttt{qnorm} permet de retrouver la valeur correspondant à une probabilité, alors que la fonction \texttt{pnorm} permet de calculer la probabilité à partir d'une valeur.
 
-La fonction \texttt{rnorm} permet de générer \(n\) observations à partir d'une distribution normale. Il s'agit d'une fonction particulièrement utilisée pour la simulation.
+La fonction \texttt{rnorm} permet de générer \(n\) observations à partir d'une distribution normale. Il s'agit d'une fonction particulièrement utilisée pour la simulation. Comme les autres fonctions concernant la distribution normale, les paramètres de base simuler des données avec une moyenne de 0 et un écart-type de 1. Il est possible de modifier ces paramètres comme suit:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1419,6 +1419,35 @@ La fonction \texttt{rnorm} permet de générer \(n\) observations à partir d'un
 ##  [86]  0.697608712  0.549997351 -0.402731975 -0.191593770 -1.194527880
 ##  [91] -0.053158819  0.255196001  1.705964007  1.001513252 -0.495583443
 ##  [96]  0.355550297 -1.134608044  0.878203627  0.972916753  2.121117105
+\end{verbatim}
+
+Comme les autres fonctions concernant la distribution normale, les paramètres de base simuler des données avec une moyenne de 0 et un écart-type de 1. Il est possible de modifier ces paramètres comme suit par exemple:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)  }
+\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean =} \DecValTok{3}\NormalTok{, }\AttributeTok{sd =} \FloatTok{1.5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  1.1894014  3.4161439  4.6266618 -0.5185466  3.6436870  3.7590838
+##   [7]  2.1378901  2.1800522  2.1533220  1.6649433  2.2842110  1.5024203
+##  [13]  1.8356192  3.0966882  4.4392411  2.8345718  2.2334857  1.6332069
+##  [19]  1.7442425  6.6237528  3.2011323  2.2639712  2.3391782  3.6893842
+##  [25]  1.9594196  0.8276926  3.8621336  1.4645164  2.9772925  1.5960771
+##  [31]  4.6534463  2.2866104  1.9358399  2.2481129  0.5563598  1.2485711
+##  [37] -0.2700595  0.9885102  2.5585592  2.3011537  5.1742444  1.3970359
+##  [43]  1.7169530  2.5790655  1.5084899  1.5472285  1.3390227  1.1220212
+##  [49]  2.2142578  2.2547251  0.2909531  2.1268861  1.3366656  1.4775570
+##  [55]  2.7565357  3.8445837  5.4717262  1.8399699  5.4088644  1.2632872
+##  [61]  3.9848827  6.8234866  2.9478594  1.9955496  2.9885929  5.6656267
+##  [67]  1.2920884  5.0517408  4.9943472  3.5047092  3.0103393  2.3167969
+##  [73]  2.4502141  3.9724299  6.1054063  2.7699024  0.9139486  1.9146273
+##  [79]  3.3873926  2.5244113  2.7333151  2.7450089  0.9415472  2.7393192
+##  [85]  4.2753484  4.0464131  3.8249960  2.3959020  2.7126093  1.2082082
+##  [91]  2.9202618  3.3827940  5.5589460  4.5022699  2.2566248  3.5333254
+##  [97]  1.2980879  4.3173054  4.4593751  6.1816757
 \end{verbatim}
 
 \section{Autres distributions}\label{autres-distributions}

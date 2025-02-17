@@ -61,11 +61,18 @@ qnorm(0.5, mean = 0, sd = 1)
 
 La fonction `qnorm` permet de retrouver la valeur correspondant à une probabilité, alors que la fonction `pnorm` permet de calculer la probabilité à partir d'une valeur.
 
-La fonction `rnorm` permet de générer $n$ observations à partir d'une distribution normale. Il s'agit d'une fonction particulièrement utilisée pour la simulation.
+La fonction `rnorm` permet de générer $n$ observations à partir d'une distribution normale. Il s'agit d'une fonction particulièrement utilisée pour la simulation. Comme les autres fonctions concernant la distribution normale, les paramètres de base simuler des données avec une moyenne de 0 et un écart-type de 1. Il est possible de modifier ces paramètres comme suit:
 
 ```{r echo=TRUE}
 set.seed(1234) #permet de garantir la reproductibilité des analyses 
 rnorm(100) 
+```
+
+Comme les autres fonctions concernant la distribution normale, les paramètres de base simuler des données avec une moyenne de 0 et un écart-type de 1. Il est possible de modifier ces paramètres comme suit par exemple:
+
+```{r echo=TRUE}
+set.seed(1234)  
+rnorm(100, mean = 3, sd = 1.5) 
 ```
 
 ## Autres distributions

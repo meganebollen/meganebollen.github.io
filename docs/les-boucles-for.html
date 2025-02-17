@@ -237,9 +237,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Le vecteur d’intérêt</li>
 <li>Les instructions à exécuter</li>
 </ol>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="les-boucles-for.html#cb152-1" tabindex="-1"></a><span class="co"># for(variable in vecteur) {</span></span>
-<span id="cb152-2"><a href="les-boucles-for.html#cb152-2" tabindex="-1"></a><span class="co">#   # Instructions à exécuter</span></span>
-<span id="cb152-3"><a href="les-boucles-for.html#cb152-3" tabindex="-1"></a><span class="co"># }</span></span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="les-boucles-for.html#cb154-1" tabindex="-1"></a><span class="co"># for(variable in vecteur) {</span></span>
+<span id="cb154-2"><a href="les-boucles-for.html#cb154-2" tabindex="-1"></a><span class="co">#   # Instructions à exécuter</span></span>
+<span id="cb154-3"><a href="les-boucles-for.html#cb154-3" tabindex="-1"></a><span class="co"># }</span></span></code></pre></div>
 <p>Cette structure est systématiquement la même, mais sa complexité peut varier en fonction des tâches que l’on souhaite effectuer.</p>
 </div>
 <div id="utilisation" class="section level2 hasAnchor" number="7.2">
@@ -248,9 +248,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="afficher" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Afficher<a href="les-boucles-for.html#afficher" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La fonction la plus simple d’une boucle <code>for</code> est l’affichage. L’exemple proposé ci-dessous permet de comprendre comment la boucle fonctionne. Nous souhaitons afficher les nombres de 1 à 10. Par conséquent, le <code>vecteur</code> qui nous intéresse doit contenir toutes ces valeurs. La <code>variable</code> que nous spécifions pour la boucle est l’indice <code>i</code>. Bien sur, cet indice pourrait se nommer différemment, mais il est d’usage de l’utiliser. La fonction dont nous avons besoin pour afficher les nombres est <code>print()</code>. Elle apparaît donc comme l’instruction de la fonction. On observe qu’il est possible d’indiquer le vecteur directement dans la boucle comme dans le premier exemple ou d’avoir créé une variable au préalable comme dans le second exemple.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="les-boucles-for.html#cb153-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
-<span id="cb153-2"><a href="les-boucles-for.html#cb153-2" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb153-3"><a href="les-boucles-for.html#cb153-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="les-boucles-for.html#cb155-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb155-2"><a href="les-boucles-for.html#cb155-2" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb155-3"><a href="les-boucles-for.html#cb155-3" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -261,12 +261,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 8
 ## [1] 9
 ## [1] 10</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="les-boucles-for.html#cb155-1" tabindex="-1"></a>nbre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb155-2"><a href="les-boucles-for.html#cb155-2" tabindex="-1"></a><span class="fu">print</span>(nbre)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="les-boucles-for.html#cb157-1" tabindex="-1"></a>nbre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb157-2"><a href="les-boucles-for.html#cb157-2" tabindex="-1"></a><span class="fu">print</span>(nbre)</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="les-boucles-for.html#cb157-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> nbre) {</span>
-<span id="cb157-2"><a href="les-boucles-for.html#cb157-2" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb157-3"><a href="les-boucles-for.html#cb157-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="les-boucles-for.html#cb159-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> nbre) {</span>
+<span id="cb159-2"><a href="les-boucles-for.html#cb159-2" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb159-3"><a href="les-boucles-for.html#cb159-3" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -281,32 +281,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="itérer" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Itérer<a href="les-boucles-for.html#itérer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Les boucles <code>for</code>permettent également d’itérer la même instruction plusieurs fois sans devoir répéter le code. Dans l’exemple, nous souhaitons afficher à plusieurs reprises la phrase “Aujourd’hui, nous sommes” avec le jour en question à la fin de la phrase. Si nous effectuions le code séparément, nous aurions besoin de copier le code 7 fois. En analysant ces répétitions, nous pouvons identifier une partie du texte qui ne change pas, à savoir “Aujourd’hui, nous sommes” tandis que l’autre partie, à savoir les jours de la semaine, change à chaque répétitions. Nous souhaitons donc concaténer la partie qui change à la phrase qui reste similaire au fur et à mesure des répétitions. Par conséquent, nous fixons comme <code>variable</code> l’index <code>i</code>et comme <code>vecteur</code> les jours. La fonction <code>print</code> permet d’afficher le résultat. Cependant, une nouvelle fonction est nécessaire, à savoir <code>paste</code> pour concaténer les deux parties.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="les-boucles-for.html#cb159-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes lundi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="les-boucles-for.html#cb161-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes lundi&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes lundi&quot;</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="les-boucles-for.html#cb161-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes mardi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="les-boucles-for.html#cb163-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes mardi&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes mardi&quot;</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="les-boucles-for.html#cb163-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes mercredi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="les-boucles-for.html#cb165-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes mercredi&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes mercredi&quot;</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="les-boucles-for.html#cb165-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes jeudi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="les-boucles-for.html#cb167-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes jeudi&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes jeudi&quot;</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="les-boucles-for.html#cb167-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes vendredi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="les-boucles-for.html#cb169-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes vendredi&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes vendredi&quot;</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="les-boucles-for.html#cb169-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes samedi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="les-boucles-for.html#cb171-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes samedi&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes samedi&quot;</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="les-boucles-for.html#cb171-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes dimanche&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="les-boucles-for.html#cb173-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes dimanche&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes dimanche&quot;</code></pre>
 <p>Nous allons donc créer un vecteur contenant tous les jours de la semaine. Ensuite, nous devons créer la boucle.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="les-boucles-for.html#cb173-1" tabindex="-1"></a>jours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;lundi&quot;</span>, <span class="st">&quot;mardi&quot;</span>, <span class="st">&quot;mercredi&quot;</span>, <span class="st">&quot;jeudi&quot;</span>, <span class="st">&quot;vendredi&quot;</span>)</span>
-<span id="cb173-2"><a href="les-boucles-for.html#cb173-2" tabindex="-1"></a></span>
-<span id="cb173-3"><a href="les-boucles-for.html#cb173-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> jours) {</span>
-<span id="cb173-4"><a href="les-boucles-for.html#cb173-4" tabindex="-1"></a>  <span class="co">#concaténer et afficher</span></span>
-<span id="cb173-5"><a href="les-boucles-for.html#cb173-5" tabindex="-1"></a>}</span>
-<span id="cb173-6"><a href="les-boucles-for.html#cb173-6" tabindex="-1"></a></span>
-<span id="cb173-7"><a href="les-boucles-for.html#cb173-7" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes&quot;</span>, <span class="st">&quot;lundi&quot;</span>) <span class="co">#comprendre le fonctionnement de paste</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="les-boucles-for.html#cb175-1" tabindex="-1"></a>jours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;lundi&quot;</span>, <span class="st">&quot;mardi&quot;</span>, <span class="st">&quot;mercredi&quot;</span>, <span class="st">&quot;jeudi&quot;</span>, <span class="st">&quot;vendredi&quot;</span>)</span>
+<span id="cb175-2"><a href="les-boucles-for.html#cb175-2" tabindex="-1"></a></span>
+<span id="cb175-3"><a href="les-boucles-for.html#cb175-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> jours) {</span>
+<span id="cb175-4"><a href="les-boucles-for.html#cb175-4" tabindex="-1"></a>  <span class="co">#concaténer et afficher</span></span>
+<span id="cb175-5"><a href="les-boucles-for.html#cb175-5" tabindex="-1"></a>}</span>
+<span id="cb175-6"><a href="les-boucles-for.html#cb175-6" tabindex="-1"></a></span>
+<span id="cb175-7"><a href="les-boucles-for.html#cb175-7" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes&quot;</span>, <span class="st">&quot;lundi&quot;</span>) <span class="co">#comprendre le fonctionnement de paste</span></span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes lundi&quot;</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="les-boucles-for.html#cb175-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> jours) {</span>
-<span id="cb175-2"><a href="les-boucles-for.html#cb175-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes&quot;</span>, jours))</span>
-<span id="cb175-3"><a href="les-boucles-for.html#cb175-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="les-boucles-for.html#cb177-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> jours) {</span>
+<span id="cb177-2"><a href="les-boucles-for.html#cb177-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Aujourd&#39;hui, nous sommes&quot;</span>, jours))</span>
+<span id="cb177-3"><a href="les-boucles-for.html#cb177-3" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Aujourd&#39;hui, nous sommes lundi&quot;    &quot;Aujourd&#39;hui, nous sommes mardi&quot;   
 ## [3] &quot;Aujourd&#39;hui, nous sommes mercredi&quot; &quot;Aujourd&#39;hui, nous sommes jeudi&quot;   
 ## [5] &quot;Aujourd&#39;hui, nous sommes vendredi&quot;
@@ -326,48 +326,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="créer-un-vecteur" class="section level3 hasAnchor" number="7.2.3">
 <h3><span class="header-section-number">7.2.3</span> Créer un vecteur<a href="les-boucles-for.html#créer-un-vecteur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Les boucles <code>for</code> permettent également de créer de manière automatisée des vecteurs, des matrices, des listes ou des bases de données. Dans notre exemple, nous voulons créer un vecteur contenant le carré des nombres. Il existe plusieurs façons de remplir le vecteur, soit avec la fonction <code>c()</code> comme dans le premier exemple, soit avec la fonction <code>append()</code>comme dans le deuxième exemple. De plus, l’opération souhaitée peut se faire directement au moment de remplir le vecteur comme dans le premier exemple ou dans une ligne de code séparée comme dans le deuxième exemple. Nous vous conseillons de procéder de manière séquentielle lorsque les instructions se complexifient.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="les-boucles-for.html#cb177-1" tabindex="-1"></a>nbre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb177-2"><a href="les-boucles-for.html#cb177-2" tabindex="-1"></a>carre <span class="ot">&lt;-</span> <span class="fu">vector</span>() <span class="co">#vecteur vide </span></span>
-<span id="cb177-3"><a href="les-boucles-for.html#cb177-3" tabindex="-1"></a></span>
-<span id="cb177-4"><a href="les-boucles-for.html#cb177-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> nbre) {</span>
-<span id="cb177-5"><a href="les-boucles-for.html#cb177-5" tabindex="-1"></a>  carre <span class="ot">&lt;-</span> <span class="fu">c</span>(carre, i<span class="sc">^</span><span class="dv">2</span>)  </span>
-<span id="cb177-6"><a href="les-boucles-for.html#cb177-6" tabindex="-1"></a>}</span>
-<span id="cb177-7"><a href="les-boucles-for.html#cb177-7" tabindex="-1"></a></span>
-<span id="cb177-8"><a href="les-boucles-for.html#cb177-8" tabindex="-1"></a><span class="fu">print</span>(carre)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="les-boucles-for.html#cb179-1" tabindex="-1"></a>nbre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb179-2"><a href="les-boucles-for.html#cb179-2" tabindex="-1"></a>carre <span class="ot">&lt;-</span> <span class="fu">vector</span>() <span class="co">#vecteur vide </span></span>
+<span id="cb179-3"><a href="les-boucles-for.html#cb179-3" tabindex="-1"></a></span>
+<span id="cb179-4"><a href="les-boucles-for.html#cb179-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> nbre) {</span>
+<span id="cb179-5"><a href="les-boucles-for.html#cb179-5" tabindex="-1"></a>  carre <span class="ot">&lt;-</span> <span class="fu">c</span>(carre, i<span class="sc">^</span><span class="dv">2</span>)  </span>
+<span id="cb179-6"><a href="les-boucles-for.html#cb179-6" tabindex="-1"></a>}</span>
+<span id="cb179-7"><a href="les-boucles-for.html#cb179-7" tabindex="-1"></a></span>
+<span id="cb179-8"><a href="les-boucles-for.html#cb179-8" tabindex="-1"></a><span class="fu">print</span>(carre)</span></code></pre></div>
 <pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="les-boucles-for.html#cb179-1" tabindex="-1"></a>carre <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
-<span id="cb179-2"><a href="les-boucles-for.html#cb179-2" tabindex="-1"></a></span>
-<span id="cb179-3"><a href="les-boucles-for.html#cb179-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> nbre) {</span>
-<span id="cb179-4"><a href="les-boucles-for.html#cb179-4" tabindex="-1"></a>  squared <span class="ot">&lt;-</span> (i<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb179-5"><a href="les-boucles-for.html#cb179-5" tabindex="-1"></a>  carre <span class="ot">&lt;-</span> <span class="fu">append</span>(carre, squared)  </span>
-<span id="cb179-6"><a href="les-boucles-for.html#cb179-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="les-boucles-for.html#cb181-1" tabindex="-1"></a>carre <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
+<span id="cb181-2"><a href="les-boucles-for.html#cb181-2" tabindex="-1"></a></span>
+<span id="cb181-3"><a href="les-boucles-for.html#cb181-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> nbre) {</span>
+<span id="cb181-4"><a href="les-boucles-for.html#cb181-4" tabindex="-1"></a>  squared <span class="ot">&lt;-</span> (i<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb181-5"><a href="les-boucles-for.html#cb181-5" tabindex="-1"></a>  carre <span class="ot">&lt;-</span> <span class="fu">append</span>(carre, squared)  </span>
+<span id="cb181-6"><a href="les-boucles-for.html#cb181-6" tabindex="-1"></a>}</span></code></pre></div>
 <p>Il est également utile de savoir comment indexer les variables afin de pouvoir modifier des vecteurs. Dans le premier exemple, nous créer un nouveau vecteur qui correspond à un précédent vecteur plus 1. Le développement proposé avant la création de la boucle permet de comprendre comment procéder pour la mise en place des instructions dans la boucle. La manière proposée pour ajouter les valeur dans le vecteur utilise uniquement les index. Nous pouvons obtenir le même résultat en utilisant la fonction précédemment présentée <code>append()</code></p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="les-boucles-for.html#cb180-1" tabindex="-1"></a>nbre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb180-2"><a href="les-boucles-for.html#cb180-2" tabindex="-1"></a>nbre[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="les-boucles-for.html#cb182-1" tabindex="-1"></a>nbre <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb182-2"><a href="les-boucles-for.html#cb182-2" tabindex="-1"></a>nbre[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="les-boucles-for.html#cb182-1" tabindex="-1"></a>nbre[<span class="dv">1</span>] <span class="sc">+</span> <span class="dv">1</span> </span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="les-boucles-for.html#cb184-1" tabindex="-1"></a>nbre[<span class="dv">1</span>] <span class="sc">+</span> <span class="dv">1</span> </span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="les-boucles-for.html#cb184-1" tabindex="-1"></a>nbrePLUS <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
-<span id="cb184-2"><a href="les-boucles-for.html#cb184-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> nbre) {</span>
-<span id="cb184-3"><a href="les-boucles-for.html#cb184-3" tabindex="-1"></a>  nbrePLUS[i] <span class="ot">&lt;-</span> nbre[i] <span class="sc">+</span> <span class="dv">1</span>  <span class="co"># augmente chaque nombre de 1</span></span>
-<span id="cb184-4"><a href="les-boucles-for.html#cb184-4" tabindex="-1"></a>}</span>
-<span id="cb184-5"><a href="les-boucles-for.html#cb184-5" tabindex="-1"></a><span class="fu">print</span>(nbrePLUS)</span></code></pre></div>
-<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="les-boucles-for.html#cb186-1" tabindex="-1"></a>nbrePLUS <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
 <span id="cb186-2"><a href="les-boucles-for.html#cb186-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> nbre) {</span>
-<span id="cb186-3"><a href="les-boucles-for.html#cb186-3" tabindex="-1"></a>  addONE <span class="ot">&lt;-</span> nbre[i] <span class="sc">+</span> <span class="dv">1</span>  <span class="co"># augmente chaque nombre de 1</span></span>
-<span id="cb186-4"><a href="les-boucles-for.html#cb186-4" tabindex="-1"></a>  nbrePLUS <span class="ot">&lt;-</span> <span class="fu">append</span>(nbrePLUS, addONE)</span>
-<span id="cb186-5"><a href="les-boucles-for.html#cb186-5" tabindex="-1"></a>}</span>
-<span id="cb186-6"><a href="les-boucles-for.html#cb186-6" tabindex="-1"></a><span class="fu">print</span>(nbrePLUS)</span></code></pre></div>
+<span id="cb186-3"><a href="les-boucles-for.html#cb186-3" tabindex="-1"></a>  nbrePLUS[i] <span class="ot">&lt;-</span> nbre[i] <span class="sc">+</span> <span class="dv">1</span>  <span class="co"># augmente chaque nombre de 1</span></span>
+<span id="cb186-4"><a href="les-boucles-for.html#cb186-4" tabindex="-1"></a>}</span>
+<span id="cb186-5"><a href="les-boucles-for.html#cb186-5" tabindex="-1"></a><span class="fu">print</span>(nbrePLUS)</span></code></pre></div>
+<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="les-boucles-for.html#cb188-1" tabindex="-1"></a>nbrePLUS <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
+<span id="cb188-2"><a href="les-boucles-for.html#cb188-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> nbre) {</span>
+<span id="cb188-3"><a href="les-boucles-for.html#cb188-3" tabindex="-1"></a>  addONE <span class="ot">&lt;-</span> nbre[i] <span class="sc">+</span> <span class="dv">1</span>  <span class="co"># augmente chaque nombre de 1</span></span>
+<span id="cb188-4"><a href="les-boucles-for.html#cb188-4" tabindex="-1"></a>  nbrePLUS <span class="ot">&lt;-</span> <span class="fu">append</span>(nbrePLUS, addONE)</span>
+<span id="cb188-5"><a href="les-boucles-for.html#cb188-5" tabindex="-1"></a>}</span>
+<span id="cb188-6"><a href="les-boucles-for.html#cb188-6" tabindex="-1"></a><span class="fu">print</span>(nbrePLUS)</span></code></pre></div>
 <pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
 <p>Jusqu’à présent, nous avons itéré sur un vecteur directement en parcourant les éléments du vecteur. Il est également possible d’itérer sur un vecteur en accédant aux éléments de ce dernier à travers les indices en utilisant <code>1:length(vecteur)</code>. Cette méthode nécessite de bien faire attention au fait que le vecteur ne soit pas vide. Dans le deuxième exemple, nous proposons d’itérer selon cette deuxième approche en ajouter 0.5 aux notes proposées.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="les-boucles-for.html#cb188-1" tabindex="-1"></a>notes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.5</span>, <span class="fl">4.5</span>, <span class="dv">5</span>, <span class="fl">3.5</span>, <span class="fl">2.5</span>)</span>
-<span id="cb188-2"><a href="les-boucles-for.html#cb188-2" tabindex="-1"></a></span>
-<span id="cb188-3"><a href="les-boucles-for.html#cb188-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(notes)) {</span>
-<span id="cb188-4"><a href="les-boucles-for.html#cb188-4" tabindex="-1"></a>  notes[i] <span class="ot">&lt;-</span> notes[i] <span class="sc">+</span> <span class="fl">0.5</span>  <span class="co"># augmente chaque note de 0.5 point</span></span>
-<span id="cb188-5"><a href="les-boucles-for.html#cb188-5" tabindex="-1"></a>}</span>
-<span id="cb188-6"><a href="les-boucles-for.html#cb188-6" tabindex="-1"></a></span>
-<span id="cb188-7"><a href="les-boucles-for.html#cb188-7" tabindex="-1"></a><span class="fu">print</span>(notes)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="les-boucles-for.html#cb190-1" tabindex="-1"></a>notes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.5</span>, <span class="fl">4.5</span>, <span class="dv">5</span>, <span class="fl">3.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb190-2"><a href="les-boucles-for.html#cb190-2" tabindex="-1"></a></span>
+<span id="cb190-3"><a href="les-boucles-for.html#cb190-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(notes)) {</span>
+<span id="cb190-4"><a href="les-boucles-for.html#cb190-4" tabindex="-1"></a>  notes[i] <span class="ot">&lt;-</span> notes[i] <span class="sc">+</span> <span class="fl">0.5</span>  <span class="co"># augmente chaque note de 0.5 point</span></span>
+<span id="cb190-5"><a href="les-boucles-for.html#cb190-5" tabindex="-1"></a>}</span>
+<span id="cb190-6"><a href="les-boucles-for.html#cb190-6" tabindex="-1"></a></span>
+<span id="cb190-7"><a href="les-boucles-for.html#cb190-7" tabindex="-1"></a><span class="fu">print</span>(notes)</span></code></pre></div>
 <pre><code>## [1] 6.0 5.0 5.5 4.0 3.0</code></pre>
 </div>
 <div id="parcourir-une-matrice" class="section level3 hasAnchor" number="7.2.4">
