@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Objets et opérateurs | Guide R" />
   <meta property="og:type" content="book" />
@@ -327,8 +327,8 @@ Pour pouvoir stocker une information dans un seul objet, il faut utiliser la fon
 ## Levels: H F</code></pre>
 <p>Dans le cas dans lequel on aimerait modifier un élément, il n’est pas possible d’affecter une valeur qui n’est pas défini comme un niveau. On voit donc apparaître une erreur dans la console.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="objets-et-opérateurs.html#cb39-1" tabindex="-1"></a>genre[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Fille&quot;</span></span></code></pre></div>
-<pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, 2, value = &quot;Fille&quot;): niveau de facteur
-## incorrect, NAs générés</code></pre>
+<pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, 2, value = &quot;Fille&quot;): invalid factor level, NA
+## generated</code></pre>
 <p>Il est possible de renommer les niveaux en utilisant la fonction <code>levels()</code>. <strong>Il faut faire attention à l’ordre lorsqu’on utilise la fonction <code>levels()</code>.</strong> L’argument <code>order</code> permet d’ordonner les labels proposés. Le facteur est dès lors une variable ordinale.</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="objets-et-opérateurs.html#cb41-1" tabindex="-1"></a><span class="fu">levels</span>(genre) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Fille&quot;</span>, <span class="st">&quot;Garcon&quot;</span>)</span>
 <span id="cb41-2"><a href="objets-et-opérateurs.html#cb41-2" tabindex="-1"></a>genre</span></code></pre></div>

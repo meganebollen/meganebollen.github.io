@@ -1,22 +1,22 @@
 # Les tests statistiques
 
-En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allons voir les tests suivants: le test de Student pour un échantillon, à venir... 
+En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allons voir les tests suivants: le test de Student pour un échantillon, A VENIR...
 
-## Le test de Student pour un échantillon   
+## Le test de Student pour un échantillon
 
 Le test t de Student pour un échantillon est une méthode d'inférence statistique utilisée pour déterminer si les données d'un échantillon sont significativement différentes d'une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu'on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :
 
-1. Le test bilatéral: tester si la moyenne d'un échantillon est significativement différente d'une valeur donnée
-1. Le test unilatéral à droite: tester si la moyenne de l'échantillon est significativement plus grande qu'une valeur donnée
-1. Le test unilatéral à gauche: tester si la moyenne de l'échantillon est significativement plus petite qu'une valeur donnée
+1.  Le test bilatéral: tester si la moyenne d'un échantillon est significativement différente d'une valeur donnée
+2.  Le test unilatéral à droite: tester si la moyenne de l'échantillon est significativement plus grande qu'une valeur donnée
+3.  Le test unilatéral à gauche: tester si la moyenne de l'échantillon est significativement plus petite qu'une valeur donnée
 
-La fonction `t.test`permet d'effectuer le test de Student. Pour effectuer correctement le test, nous devons remplir trois arguments dans la fonction, à savoir `x`, `alternative`, et `mu` qui correspondent respectivement aux données de l'échantillon, à l'hypothèse alternarive et à la moyenne hypothétique sous l'hypothèse nulle. Précisons que: 
+La fonction `t.test`permet d'effectuer le test de Student. Pour effectuer correctement le test, nous devons remplir trois arguments dans la fonction, à savoir `x`, `alternative`, et `mu` qui correspondent respectivement aux données de l'échantillon, à l'hypothèse alternarive et à la moyenne hypothétique sous l'hypothèse nulle. Précisons que:
 
-1. Le test bilatéral: `alternative="two.sided"`
-1. Le test unilatéral à droite: `alternative="greater`
-1. Le test unilatéral à gauche: `alternative="less"`
+1.  Le test bilatéral: `alternative="two.sided"`
+2.  Le test unilatéral à droite: `alternative="greater`
+3.  Le test unilatéral à gauche: `alternative="less"`
 
-Afin d'effectuer les tests, commençons par simuler des données issues d'un loi normale. 
+Afin d'effectuer les tests, commençons par simuler des données issues d'un loi normale.
 
 ```{r echo=TRUE}
 
@@ -26,7 +26,7 @@ data <- rnorm(n, mean = 55, sd = 10)  # simulation des données
 
 ```
 
-Avant de commencer, nous pouvons calculer la moyenne empirique de l'échantillon 
+Avant de commencer, nous pouvons calculer la moyenne empirique de l'échantillon
 
 ```{r echo=TRUE}
 
@@ -61,8 +61,8 @@ t.test(x = data, mu = mu_0, alternative = "less")
 
 ```
 
-L'interprétation du résultat du test se fait comme suit: 
+L'interprétation du résultat du test se fait comme suit:
 
-1. t: statistique de test 
-1. df: degrés de liberté 
-1. p-value: pvaleur à comparer avec le seuil $\alpha$ prédéterminé pour savoir si l'hypothèse nulle est rejetée (p-value$<0.05$) ou si l'hypothèse nulle n'est pas rejetée (p-value$>0.05$). 
+1.  t: statistique de test
+2.  df: degrés de liberté
+3.  p-value: pvaleur à comparer avec le seuil $\alpha$ prédéterminé pour savoir si l'hypothèse nulle est rejetée (p-value$<0.05$) ou si l'hypothèse nulle n'est pas rejetée (p-value$>0.05$).
