@@ -75,6 +75,32 @@ set.seed(1234)
 rnorm(100, mean = 3, sd = 1.5) 
 ```
 
-## Autres distributions
+## Distribution de Student
 
-...à venir
+La distribution de Student est une distribution de probabilité utilisée en inférence statistique, particulièrement dans le cadre des tests de comparaison de moyennes. Elle est similaire à la distribution normale, mais avec des queues plus larges, ce qui permet de prendre en compte l'incertitude supplémentaire associée à des échantillons réduits. La distribution de Student dépend de ces degrés de liberté. Dans le cadre de ce cours, ces degrés de liberté vous sont donnés.
+
+Les mêmes fonctions existent pour travailler avec la distribution de Student que celles présentées précédemment pour la distribution normale: `dt()` permet d'obtenir la densité de probabilité pour une valeur donnée, `pt()` permet de calculer la probabilité qu'une variable soit inférieure ou égale à une certaine valeur, `qt()` calcule le quantile pour une probabilité donnée, et `rt()` permet de générer des nombres aléatoires suivant une distribution de Student avec un certain nombre de degrés de liberté. Dans chacune de ces fonctions, il est nécessaire de spécifier l'argument `df` qui correspond au degré de liberté.
+
+Les codes suivants peuvent être utilisés pour calculer ces différentes choses. Prenons une distribution de Student avec 10 degrés de liberté. Le code suivant donne la densité de la distribution de Student pour un valeur de 2.
+
+```{r echo=TRUE}
+dt(2, df = 10)
+```
+
+Le code suivant donne la probabilité que la valeur de la distribution soit inférieure ou égale à 2.
+
+```{r echo=TRUE}
+pt(2, df = 10)
+```
+
+Le code suivant donne la probabilité que la valeur de la distribution correspondant au 95e percentile.
+
+```{r echo=TRUE}
+qt(0.95, df = 10)
+```
+
+Le code suivant génère un échantillon de 100 valeurs aléatoires suivant une distribution de Student
+
+```{r echo=TRUE}
+rt(100, df = 10)
+```

@@ -120,7 +120,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2025-02-17}
+\date{2025-02-27}
 
 \begin{document}
 \maketitle
@@ -891,10 +891,7 @@ Tous les objets importés sont chargés dans l'environnement de travail.
 
 \subsection{Bases de données issues de fichiers externes}\label{bases-de-donnuxe9es-issues-de-fichiers-externes}
 
-Les données à analyser sont souvent disponibles dans un fichier externe sous différents formats tels que .csv ou .txt. Pour importer ces données, il existe une fonction par type de fichier (\texttt{read.csv()} et \texttt{read.table()}). Lorsqu'une de ces fonctions est utilisée, le contenu est stocké dans une dataframe. Il est nécessaire de spécifier le chemin d'accès entre votre logiciel et votre fichier à télécharger. Vous pouvez le faire de deux manières:
-1. En utilisant la fonction \texttt{setwd()} et en spécifiant à l'intérieur la direction complète qui va permettre au logiciel de retrouver votre document dans vos fichiers.
-1. En créant un projet dans lequel vous stockez vos documents.
-Ces fonctions acceptent des arguments qui permettent de s'adapter à la nature de fichier à importer. Parmi ces arguments, il y en a trois principaux:
+Les données à analyser sont souvent disponibles dans un fichier externe sous différents formats tels que .csv ou .txt. Pour importer ces données, il existe une fonction par type de fichier (\texttt{read.csv()} et \texttt{read.table()}). Lorsqu'une de ces fonctions est utilisée, le contenu est stocké dans une dataframe. Il est nécessaire de spécifier le chemin d'accès entre votre logiciel et votre fichier à télécharger. Vous pouvez le faire de deux manières: 1. En utilisant la fonction \texttt{setwd()} et en spécifiant à l'intérieur la direction complète qui va permettre au logiciel de retrouver votre document dans vos fichiers. 1. En créant un projet dans lequel vous stockez vos documents. Ces fonctions acceptent des arguments qui permettent de s'adapter à la nature de fichier à importer. Parmi ces arguments, il y en a trois principaux:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1450,9 +1447,78 @@ Comme les autres fonctions concernant la distribution normale, les paramètres d
 ##  [97]  1.2980879  4.3173054  4.4593751  6.1816757
 \end{verbatim}
 
-\section{Autres distributions}\label{autres-distributions}
+\section{Distribution de Student}\label{distribution-de-student}
 
-\ldots à venir
+La distribution de Student est une distribution de probabilité utilisée en inférence statistique, particulièrement dans le cadre des tests de comparaison de moyennes. Elle est similaire à la distribution normale, mais avec des queues plus larges, ce qui permet de prendre en compte l'incertitude supplémentaire associée à des échantillons réduits. La distribution de Student dépend de ces degrés de liberté. Dans le cadre de ce cours, ces degrés de liberté vous sont donnés.
+
+Les mêmes fonctions existent pour travailler avec la distribution de Student que celles présentées précédemment pour la distribution normale: \texttt{dt()} permet d'obtenir la densité de probabilité pour une valeur donnée, \texttt{pt()} permet de calculer la probabilité qu'une variable soit inférieure ou égale à une certaine valeur, \texttt{qt()} calcule le quantile pour une probabilité donnée, et \texttt{rt()} permet de générer des nombres aléatoires suivant une distribution de Student avec un certain nombre de degrés de liberté. Dans chacune de ces fonctions, il est nécessaire de spécifier l'argument \texttt{df} qui correspond au degré de liberté.
+
+Les codes suivants peuvent être utilisés pour calculer ces différentes choses. Prenons une distribution de Student avec 10 degrés de liberté. Le code suivant donne la densité de la distribution de Student pour un valeur de 2.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dt}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{df =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.06114577
+\end{verbatim}
+
+Le code suivant donne la probabilité que la valeur de la distribution soit inférieure ou égale à 2.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pt}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{df =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.963306
+\end{verbatim}
+
+Le code suivant donne la probabilité que la valeur de la distribution correspondant au 95e percentile.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.95}\NormalTok{, }\AttributeTok{df =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.812461
+\end{verbatim}
+
+Le code suivant génère un échantillon de 100 valeurs aléatoires suivant une distribution de Student
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rt}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{df =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  0.491996782  0.692931960  0.223166419  1.399233571  1.948448931
+##   [6] -0.974688314  0.019710794 -1.261342778  0.714001690 -0.653644230
+##  [11] -0.058149265  0.827884272 -0.593585713 -2.831629628 -2.328379914
+##  [16]  1.153533476  0.618555423  0.016367679 -0.439955182  0.688715673
+##  [21]  1.020487054  0.259813715  0.402105464 -0.152659020  0.097154234
+##  [26] -0.328997352 -0.198634383  1.511699796 -0.176060524  0.471798130
+##  [31] -0.078333239 -0.278172052 -0.614644488 -1.548449281  0.421914078
+##  [36]  0.554351370  0.171444394  0.359047798  1.639307324 -0.459919848
+##  [41] -0.239527010 -1.819500992  2.044075667  0.846471336  0.105014841
+##  [46]  0.703689231  0.688088314  0.558887884  1.163575060 -1.069360585
+##  [51] -0.312040559 -1.878048891  0.613982680  0.318194489  0.187605622
+##  [56]  0.004583574  0.617342907  2.653382612 -0.690964524 -0.365613450
+##  [61] -0.977808094 -0.862778073  0.056799455 -0.991031251  0.715344778
+##  [66]  1.306170266  0.262104994  0.368489475  0.412214263 -1.312455869
+##  [71]  0.207992240 -1.586964972 -0.354494401 -1.721263676 -0.744498965
+##  [76]  2.448878814  0.035364310 -0.863451917  2.551897466 -0.707794335
+##  [81] -1.508038971  1.953149173  1.078502213 -1.368140954  0.483839097
+##  [86]  0.109863278  0.330925553  1.915406953  1.161535185  0.426198734
+##  [91] -1.575039463 -0.152772364  0.029402568 -1.611836402  0.597272592
+##  [96]  0.519280797  1.600020826  0.277314039  0.827820451 -0.551902492
+\end{verbatim}
 
 \chapter{Les boucles FOR}\label{les-boucles-for}
 
@@ -1771,6 +1837,142 @@ Jusqu'à présent, nous avons itéré sur un vecteur directement en parcourant l
 \subsection{Parcourir une matrice}\label{parcourir-une-matrice}
 
 A venir\ldots{}
+
+\chapter{Les tests statistiques}\label{les-tests-statistiques}
+
+En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allons voir les tests suivants: le test de Student pour un échantillon, à venir\ldots{}
+
+\section{Le test de Student pour un échantillon}\label{le-test-de-student-pour-un-uxe9chantillon}
+
+Le test t de Student pour un échantillon est une méthode d'inférence statistique utilisée pour déterminer si les données d'un échantillon sont significativement différentes d'une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu'on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Le test bilatéral: tester si la moyenne d'un échantillon est significativement différente d'une valeur donnée
+\item
+  Le test unilatéral à droite: tester si la moyenne de l'échantillon est significativement plus grande qu'une valeur donnée
+\item
+  Le test unilatéral à gauche: tester si la moyenne de l'échantillon est significativement plus petite qu'une valeur donnée
+\end{enumerate}
+
+La fonction \texttt{t.test}permet d'effectuer le test de Student. Pour effectuer correctement le test, nous devons remplir trois arguments dans la fonction, à savoir \texttt{x}, \texttt{alternative}, et \texttt{mu} qui correspondent respectivement aux données de l'échantillon, à l'hypothèse alternarive et à la moyenne hypothétique sous l'hypothèse nulle. Précisons que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Le test bilatéral: \texttt{alternative="two.sided"}
+\item
+  Le test unilatéral à droite: \texttt{alternative="greater}
+\item
+  Le test unilatéral à gauche: \texttt{alternative="less"}
+\end{enumerate}
+
+Afin d'effectuer les tests, commençons par simuler des données issues d'un loi normale.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)  }\CommentTok{\# pour la reproductibilité}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{30}  \CommentTok{\# taille de l\textquotesingle{}échantillon}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{55}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# simulation des données }
+\end{Highlighting}
+\end{Shaded}
+
+Avant de commencer, nous pouvons calculer la moyenne empirique de l'échantillon
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 54.52896
+\end{verbatim}
+
+Fixons comme hypothèse nulle que la moyenne de l'échantillon est égale à 50: \(H_{0}\): \(\mu_{0}=50\). Dans ce cas, le test est bilatéral et s'effectue selon le code suivant
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu\_0 }\OtherTok{\textless{}{-}} \DecValTok{50}  \CommentTok{\# moyenne hypothétique sous l\textquotesingle{}hypothèse nulle }
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ data, }\AttributeTok{mu =}\NormalTok{ mu\_0, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  data
+## t = 2.5286, df = 29, p-value = 0.01715
+## alternative hypothesis: true mean is not equal to 50
+## 95 percent confidence interval:
+##  50.86573 58.19219
+## sample estimates:
+## mean of x 
+##  54.52896
+\end{verbatim}
+
+Fixons comme hypothèse nulle que la moyenne de l'échantillon est plus grande que 50: \(H_{0}\): \(\mu_{0}>50\). Dans ce cas, le test est unilatéral à droite et s'effectue selon le code suivant
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu\_0 }\OtherTok{\textless{}{-}} \DecValTok{50}  \CommentTok{\# moyenne hypothétique sous l\textquotesingle{}hypothèse nulle }
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ data, }\AttributeTok{mu =}\NormalTok{ mu\_0, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  data
+## t = 2.5286, df = 29, p-value = 0.008576
+## alternative hypothesis: true mean is greater than 50
+## 95 percent confidence interval:
+##  51.48564      Inf
+## sample estimates:
+## mean of x 
+##  54.52896
+\end{verbatim}
+
+Fixons comme hypothèse nulle que la moyenne de l'échantillon est égale à 50: \(H_{0}\): \(\mu_{0}<50\). Dans ce cas, le test est unilatéral à gauche et s'effectue selon le code suivant
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu\_0 }\OtherTok{\textless{}{-}} \DecValTok{50}  \CommentTok{\# moyenne hypothétique sous l\textquotesingle{}hypothèse nulle }
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ data, }\AttributeTok{mu =}\NormalTok{ mu\_0, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  data
+## t = 2.5286, df = 29, p-value = 0.9914
+## alternative hypothesis: true mean is less than 50
+## 95 percent confidence interval:
+##      -Inf 57.57228
+## sample estimates:
+## mean of x 
+##  54.52896
+\end{verbatim}
+
+L'interprétation du résultat du test se fait comme suit:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  t: statistique de test
+\item
+  df: degrés de liberté
+\item
+  p-value: pvaleur à comparer avec le seuil \(\alpha\) prédéterminé pour savoir si l'hypothèse nulle est rejetée (p-value\(<0.05\)) ou si l'hypothèse nulle n'est pas rejetée (p-value\(>0.05\)).
+\end{enumerate}
 
   \bibliography{book.bib,packages.bib}
 
