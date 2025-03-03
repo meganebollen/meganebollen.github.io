@@ -4,7 +4,7 @@ En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allon
 
 ## Le test de Student pour un échantillon   
 
-Le test t de Student pour un échantillon est une méthode d'inférence statistique utilisée pour déterminer si les données d'un échantillon sont significativement différentes d'une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu'on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :
+Le test t de Student pour un échantillon (ou test t de Student non apparié) est une méthode d'inférence statistique utilisée pour déterminer si les données d'un échantillon sont significativement différentes d'une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu'on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :
 
 1. Le test bilatéral: tester si la moyenne d'un échantillon est significativement différente d'une valeur donnée
 1. Le test unilatéral à droite: tester si la moyenne de l'échantillon est significativement plus grande qu'une valeur donnée
@@ -66,3 +66,41 @@ L'interprétation du résultat du test se fait comme suit:
 1. t: statistique de test 
 1. df: degrés de liberté 
 1. p-value: pvaleur à comparer avec le seuil $\alpha$ prédéterminé pour savoir si l'hypothèse nulle est rejetée (p-value$<0.05$) ou si l'hypothèse nulle n'est pas rejetée (p-value$>0.05$). 
+
+Il est possible d'extraire les informations du test selon le code suivant en utilisant le `$`
+
+```{r echo=TRUE}
+
+mu_0 <- 50  # moyenne hypothétique sous l'hypothèse nulle 
+test <- t.test(x = data, mu = mu_0, alternative = "less")
+print(test)
+test$statistic
+test$p.value
+test$parameter
+```
+
+## Le test de Student pour échantillons appariés
+
+Le test de Student pour échantillons appariés est une autre version du test de Student permettant de comparer deux mesures effectuées sur les mêmes individus. Alors que le test pour échantillon indépendant permet de comparer deux groupes indépendants, comme les hommes et les femmes, ce test permet de comparer un échantillon dans deux conditions ou dans deux temps de mesure. Il est utilisé lorsqu’on veut déterminer si la différence moyenne entre deux conditions est significativement différente de zéro. Ce test est également très utile dans des cas tels que l’évaluation de l'effet d'un traitement avant/après sur un même groupe de sujets.
+
+Contrairement au test précédent, deux échantillons de données sont présents. Il faut donc remplir les variables `x` et `y`. De plus, comme les échantillons sont appariés, l'argument `paired = TRUE` doit être spécifié. 
+
+```{r}
+
+# simuler et organiser les données 
+set.seed(123)  
+n <- 30
+t1 <- rnorm(n, mean = 50, sd = 10)  
+t2 <- t1 + rnorm(n, mean = 10, sd = 5)  
+
+df <- data.frame(
+  individu = 1:n,
+  avant = t1,
+  apres = t2
+)
+
+#test
+t.test(x = df$avant,  y = df$apres, alternative = "two.sided", paired = TRUE)
+
+
+```

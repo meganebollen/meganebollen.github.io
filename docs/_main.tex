@@ -120,7 +120,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2025-02-27}
+\date{2025-03-03}
 
 \begin{document}
 \maketitle
@@ -1844,7 +1844,7 @@ En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allon
 
 \section{Le test de Student pour un échantillon}\label{le-test-de-student-pour-un-uxe9chantillon}
 
-Le test t de Student pour un échantillon est une méthode d'inférence statistique utilisée pour déterminer si les données d'un échantillon sont significativement différentes d'une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu'on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :
+Le test t de Student pour un échantillon (ou test t de Student non apparié) est une méthode d'inférence statistique utilisée pour déterminer si les données d'un échantillon sont significativement différentes d'une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu'on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1973,6 +1973,101 @@ L'interprétation du résultat du test se fait comme suit:
 \item
   p-value: pvaleur à comparer avec le seuil \(\alpha\) prédéterminé pour savoir si l'hypothèse nulle est rejetée (p-value\(<0.05\)) ou si l'hypothèse nulle n'est pas rejetée (p-value\(>0.05\)).
 \end{enumerate}
+
+Il est possible d'extraire les informations du test selon le code suivant en utilisant le \texttt{\$}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu\_0 }\OtherTok{\textless{}{-}} \DecValTok{50}  \CommentTok{\# moyenne hypothétique sous l\textquotesingle{}hypothèse nulle }
+\NormalTok{test }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ data, }\AttributeTok{mu =}\NormalTok{ mu\_0, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  data
+## t = 2.5286, df = 29, p-value = 0.9914
+## alternative hypothesis: true mean is less than 50
+## 95 percent confidence interval:
+##      -Inf 57.57228
+## sample estimates:
+## mean of x 
+##  54.52896
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{statistic}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       t 
+## 2.52858
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{p.value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9914243
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{parameter}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## df 
+## 29
+\end{verbatim}
+
+\section{Le test de Student pour échantillons appariés}\label{le-test-de-student-pour-uxe9chantillons-appariuxe9s}
+
+Le test de Student pour échantillons appariés est une autre version du test de Student permettant de comparer deux mesures effectuées sur les mêmes individus. Alors que le test pour échantillon indépendant permet de comparer deux groupes indépendants, comme les hommes et les femmes, ce test permet de comparer un échantillon dans deux conditions ou dans deux temps de mesure. Il est utilisé lorsqu'on veut déterminer si la différence moyenne entre deux conditions est significativement différente de zéro. Ce test est également très utile dans des cas tels que l'évaluation de l'effet d'un traitement avant/après sur un même groupe de sujets.
+
+Contrairement au test précédent, deux échantillons de données sont présents. Il faut donc remplir les variables \texttt{x} et \texttt{y}. De plus, comme les échantillons sont appariés, l'argument \texttt{paired\ =\ TRUE} doit être spécifié.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# simuler et organiser les données }
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)  }
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{30}
+\NormalTok{t1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{50}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{)  }
+\NormalTok{t2 }\OtherTok{\textless{}{-}}\NormalTok{ t1 }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{10}\NormalTok{, }\AttributeTok{sd =} \DecValTok{5}\NormalTok{)  }
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{individu =} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n,}
+  \AttributeTok{avant =}\NormalTok{ t1,}
+  \AttributeTok{apres =}\NormalTok{ t2}
+\NormalTok{)}
+
+\CommentTok{\#test}
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{avant,  }\AttributeTok{y =}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{apres, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Paired t-test
+## 
+## data:  df$avant and df$apres
+## t = -14.287, df = 29, p-value = 1.172e-14
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -12.450901  -9.332482
+## sample estimates:
+## mean difference 
+##       -10.89169
+\end{verbatim}
 
   \bibliography{book.bib,packages.bib}
 

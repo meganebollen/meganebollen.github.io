@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2025-02-27" />
+<meta name="date" content="2025-03-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -207,6 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html"><i class="fa fa-check"></i><b>8</b> Les tests statistiques</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#le-test-de-student-pour-un-échantillon"><i class="fa fa-check"></i><b>8.1</b> Le test de Student pour un échantillon</a></li>
+<li class="chapter" data-level="8.2" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#le-test-de-student-pour-échantillons-appariés"><i class="fa fa-check"></i><b>8.2</b> Le test de Student pour échantillons appariés</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -233,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allons voir les tests suivants: le test de Student pour un échantillon, à venir…</p>
 <div id="le-test-de-student-pour-un-échantillon" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Le test de Student pour un échantillon<a href="les-tests-statistiques.html#le-test-de-student-pour-un-échantillon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Le test t de Student pour un échantillon est une méthode d’inférence statistique utilisée pour déterminer si les données d’un échantillon sont significativement différentes d’une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu’on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :</p>
+<p>Le test t de Student pour un échantillon (ou test t de Student non apparié) est une méthode d’inférence statistique utilisée pour déterminer si les données d’un échantillon sont significativement différentes d’une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu’on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :</p>
 <ol style="list-style-type: decimal">
 <li>Le test bilatéral: tester si la moyenne d’un échantillon est significativement différente d’une valeur donnée</li>
 <li>Le test unilatéral à droite: tester si la moyenne de l’échantillon est significativement plus grande qu’une valeur donnée</li>
@@ -300,6 +301,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>df: degrés de liberté</li>
 <li>p-value: pvaleur à comparer avec le seuil <span class="math inline">\(\alpha\)</span> prédéterminé pour savoir si l’hypothèse nulle est rejetée (p-value<span class="math inline">\(&lt;0.05\)</span>) ou si l’hypothèse nulle n’est pas rejetée (p-value<span class="math inline">\(&gt;0.05\)</span>).</li>
 </ol>
+<p>Il est possible d’extraire les informations du test selon le code suivant en utilisant le <code>$</code></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="les-tests-statistiques.html#cb209-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
+<span id="cb209-2"><a href="les-tests-statistiques.html#cb209-2" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb209-3"><a href="les-tests-statistiques.html#cb209-3" tabindex="-1"></a><span class="fu">print</span>(test)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  data
+## t = 2.5286, df = 29, p-value = 0.9914
+## alternative hypothesis: true mean is less than 50
+## 95 percent confidence interval:
+##      -Inf 57.57228
+## sample estimates:
+## mean of x 
+##  54.52896</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="les-tests-statistiques.html#cb211-1" tabindex="-1"></a>test<span class="sc">$</span>statistic</span></code></pre></div>
+<pre><code>##       t 
+## 2.52858</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="les-tests-statistiques.html#cb213-1" tabindex="-1"></a>test<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.9914243</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="les-tests-statistiques.html#cb215-1" tabindex="-1"></a>test<span class="sc">$</span>parameter</span></code></pre></div>
+<pre><code>## df 
+## 29</code></pre>
+</div>
+<div id="le-test-de-student-pour-échantillons-appariés" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Le test de Student pour échantillons appariés<a href="les-tests-statistiques.html#le-test-de-student-pour-échantillons-appariés" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Le test de Student pour échantillons appariés est une autre version du test de Student permettant de comparer deux mesures effectuées sur les mêmes individus. Alors que le test pour échantillon indépendant permet de comparer deux groupes indépendants, comme les hommes et les femmes, ce test permet de comparer un échantillon dans deux conditions ou dans deux temps de mesure. Il est utilisé lorsqu’on veut déterminer si la différence moyenne entre deux conditions est significativement différente de zéro. Ce test est également très utile dans des cas tels que l’évaluation de l’effet d’un traitement avant/après sur un même groupe de sujets.</p>
+<p>Contrairement au test précédent, deux échantillons de données sont présents. Il faut donc remplir les variables <code>x</code> et <code>y</code>. De plus, comme les échantillons sont appariés, l’argument <code>paired = TRUE</code> doit être spécifié.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="les-tests-statistiques.html#cb217-1" tabindex="-1"></a><span class="co"># simuler et organiser les données </span></span>
+<span id="cb217-2"><a href="les-tests-statistiques.html#cb217-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  </span>
+<span id="cb217-3"><a href="les-tests-statistiques.html#cb217-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb217-4"><a href="les-tests-statistiques.html#cb217-4" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)  </span>
+<span id="cb217-5"><a href="les-tests-statistiques.html#cb217-5" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> t1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">5</span>)  </span>
+<span id="cb217-6"><a href="les-tests-statistiques.html#cb217-6" tabindex="-1"></a></span>
+<span id="cb217-7"><a href="les-tests-statistiques.html#cb217-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb217-8"><a href="les-tests-statistiques.html#cb217-8" tabindex="-1"></a>  <span class="at">individu =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb217-9"><a href="les-tests-statistiques.html#cb217-9" tabindex="-1"></a>  <span class="at">avant =</span> t1,</span>
+<span id="cb217-10"><a href="les-tests-statistiques.html#cb217-10" tabindex="-1"></a>  <span class="at">apres =</span> t2</span>
+<span id="cb217-11"><a href="les-tests-statistiques.html#cb217-11" tabindex="-1"></a>)</span>
+<span id="cb217-12"><a href="les-tests-statistiques.html#cb217-12" tabindex="-1"></a></span>
+<span id="cb217-13"><a href="les-tests-statistiques.html#cb217-13" tabindex="-1"></a><span class="co">#test</span></span>
+<span id="cb217-14"><a href="les-tests-statistiques.html#cb217-14" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> df<span class="sc">$</span>avant,  <span class="at">y =</span> df<span class="sc">$</span>apres, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  df$avant and df$apres
+## t = -14.287, df = 29, p-value = 1.172e-14
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -12.450901  -9.332482
+## sample estimates:
+## mean difference 
+##       -10.89169</code></pre>
 
 </div>
 </div>
