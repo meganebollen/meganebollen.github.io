@@ -120,7 +120,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2025-03-03}
+\date{2025-03-12}
 
 \begin{document}
 \maketitle
@@ -133,7 +133,7 @@ Merci de prendre note que ce bookdown est en cours de rédaction.
 
 \chapter{Introduction}\label{introduction}
 
-Ceci est le guide R que nous proposons pour vous accompagner durant les travaux pratiques de méthodologique.
+Ceci est le guide R que nous proposons pour vous accompagner durant le cours de Stat I.
 
 \chapter{Installation et environnement R et Rstudio}\label{installation-et-environnement-r-et-rstudio}
 
@@ -1840,11 +1840,11 @@ A venir\ldots{}
 
 \chapter{Les tests statistiques}\label{les-tests-statistiques}
 
-En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allons voir les tests suivants: le test de Student pour un échantillon, à venir\ldots{}
+En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allons voir les tests suivants: le test de Student pour un échantillon, pour deux échantillons indépendants, pour des échantillons appariés,\ldots{}
 
 \section{Le test de Student pour un échantillon}\label{le-test-de-student-pour-un-uxe9chantillon}
 
-Le test t de Student pour un échantillon (ou test t de Student non apparié) est une méthode d'inférence statistique utilisée pour déterminer si les données d'un échantillon sont significativement différentes d'une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu'on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :
+Le test t de Student pour un échantillon est une méthode d'inférence statistique utilisée pour déterminer si les données d'un échantillon sont significativement différentes d'une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu'on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1865,7 +1865,7 @@ La fonction \texttt{t.test}permet d'effectuer le test de Student. Pour effectuer
 \item
   Le test bilatéral: \texttt{alternative="two.sided"}
 \item
-  Le test unilatéral à droite: \texttt{alternative="greater}
+  Le test unilatéral à droite: \texttt{alternative="greater"}
 \item
   Le test unilatéral à gauche: \texttt{alternative="less"}
 \end{enumerate}
@@ -1972,6 +1972,8 @@ L'interprétation du résultat du test se fait comme suit:
   df: degrés de liberté
 \item
   p-value: pvaleur à comparer avec le seuil \(\alpha\) prédéterminé pour savoir si l'hypothèse nulle est rejetée (p-value\(<0.05\)) ou si l'hypothèse nulle n'est pas rejetée (p-value\(>0.05\)).
+\item
+  95 percent confidence interval: bornes inférieures et supérieures de l'intervalle de confiance
 \end{enumerate}
 
 Il est possible d'extraire les informations du test selon le code suivant en utilisant le \texttt{\$}
@@ -2030,11 +2032,94 @@ Il est possible d'extraire les informations du test selon le code suivant en uti
 ## 29
 \end{verbatim}
 
+\section{Le test de Student pour deux échantillons indépendants}\label{le-test-de-student-pour-deux-uxe9chantillons-induxe9pendants}
+
+Le test de Student pour deux échantillons indépendants (échantillons non appariés) est un test statistique utilisé pour comparer les moyennes de deux groupes indépendants afin de déterminer s'il existe une différence significative entre elles. Il est basé sur l'hypothèse que les données sont issues de distributions normales avec des variances égales ou inégales selon la version du test utilisée. Comme les deux groupes sont indépendants, il est nécessaire de spécifier si la variance entre les deux groupes est similaire ou si elle est différente. Cela se fait grâce à l'argument \texttt{var.equal}. Il est nécessaire de remplir l'argument \texttt{alternative} pour spécifier si le test est bilatéral, unilatéral à gauche ou unilatéral à droite. De plus, comme deux échantillons de données sont présents, il faut donc remplir les variables \texttt{x} et \texttt{y}.
+
+Commençons par simuler un exemple avec des variances égales:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{) }\CommentTok{\# pour la reproductibilité}
+
+\NormalTok{groupe1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \DecValTok{100}\NormalTok{, }\AttributeTok{sd =} \DecValTok{15}\NormalTok{)  }\CommentTok{\# 30 observations, moyenne de 100, écart{-}type de 15}
+\NormalTok{groupe2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \DecValTok{110}\NormalTok{, }\AttributeTok{sd =} \DecValTok{15}\NormalTok{)  }\CommentTok{\# 30 observations, moyenne de 110, écart{-}type de 15}
+
+\NormalTok{t\_test }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ groupe1, }\AttributeTok{y =}\NormalTok{ groupe2, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Test avec variances égales}
+
+\FunctionTok{print}\NormalTok{(t\_test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two Sample t-test
+## 
+## data:  groupe1 and groupe2
+## t = -3.7926, df = 58, p-value = 0.0003577
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -20.444305  -6.318958
+## sample estimates:
+## mean of x mean of y 
+##  99.29344 112.67508
+\end{verbatim}
+
+Nous pouvons également simuler un exemple avec des variances inégales. Nous constatons que le test ci-dessous effectue un test t de Welch qui est l'adaptation du test t de Student lorsque les variances ne sont pas égales.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{) }\CommentTok{\# pour la reproductibilité}
+
+\CommentTok{\# Génération des données pour deux groupes avec variances inégales}
+\NormalTok{groupe1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \DecValTok{100}\NormalTok{, }\AttributeTok{sd =} \DecValTok{15}\NormalTok{)  }\CommentTok{\# 30 observations, moyenne de 100, écart{-}type de 15}
+\NormalTok{groupe2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \DecValTok{110}\NormalTok{, }\AttributeTok{sd =} \DecValTok{25}\NormalTok{)  }\CommentTok{\# 30 observations, moyenne de 100, écart{-}type de 25}
+
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ groupe1, }\AttributeTok{y =}\NormalTok{ groupe2, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\AttributeTok{var.equal =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  groupe1 and groupe2
+## t = -3.2519, df = 52.11, p-value = 0.002013
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -24.522521  -5.807509
+## sample estimates:
+## mean of x mean of y 
+##  99.29344 114.45846
+\end{verbatim}
+
+Par défaut, l'argument \texttt{var.equal}est fixé à \texttt{FALSE}. Il n'est pas donc pas nécessaire de l'écrire à chaque fois, cependant, nous vous encourageons à le faire de façon à être consitant.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ groupe1, }\AttributeTok{y =}\NormalTok{ groupe2, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  groupe1 and groupe2
+## t = -3.2519, df = 52.11, p-value = 0.002013
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -24.522521  -5.807509
+## sample estimates:
+## mean of x mean of y 
+##  99.29344 114.45846
+\end{verbatim}
+
 \section{Le test de Student pour échantillons appariés}\label{le-test-de-student-pour-uxe9chantillons-appariuxe9s}
 
-Le test de Student pour échantillons appariés est une autre version du test de Student permettant de comparer deux mesures effectuées sur les mêmes individus. Alors que le test pour échantillon indépendant permet de comparer deux groupes indépendants, comme les hommes et les femmes, ce test permet de comparer un échantillon dans deux conditions ou dans deux temps de mesure. Il est utilisé lorsqu'on veut déterminer si la différence moyenne entre deux conditions est significativement différente de zéro. Ce test est également très utile dans des cas tels que l'évaluation de l'effet d'un traitement avant/après sur un même groupe de sujets.
+Le test de Student pour échantillons appariés est une autre version du test de Student permettant de comparer deux mesures effectuées sur les mêmes individus. Alors que le test pour deux échantillons indépendants permet de comparer deux groupes différents, comme les hommes et les femmes, ce test permet de comparer un échantillon dans deux conditions ou dans deux temps de mesure. Il est utilisé lorsqu'on veut déterminer si la différence moyenne entre deux conditions est significativement différente de zéro. Ce test est également très utile dans des cas tels que l'évaluation de l'effet d'un traitement avant/après sur un même groupe de sujets.
 
-Contrairement au test précédent, deux échantillons de données sont présents. Il faut donc remplir les variables \texttt{x} et \texttt{y}. De plus, comme les échantillons sont appariés, l'argument \texttt{paired\ =\ TRUE} doit être spécifié.
+Comme deux échantillons de données sont présents, il faut donc remplir les variables \texttt{x} et \texttt{y}. De plus, comme les échantillons sont appariés, l'argument \texttt{paired\ =\ TRUE} doit être spécifié. Il est toujours nécessaire de spécifier l'argument \texttt{alternative}pour l'hypothèse alternative.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2067,6 +2152,97 @@ Contrairement au test précédent, deux échantillons de données sont présents
 ## sample estimates:
 ## mean difference 
 ##       -10.89169
+\end{verbatim}
+
+\section{La puissance d'un test de Student}\label{la-puissance-dun-test-de-student}
+
+La puissance statistique d'un test est la probabilité de détecter un effet réel lorsqu'il existe, c'est-à-dire de rejeter correctement l'hypothèse nulle. Une puissance élevée, généralement fixée à 80 \% ou plus, est essentielle pour minimiser le risque d'erreur de type II, à savoir ne pas détecter un effet réel et garantir que les résultats d'une étude sont fiables et interprétables.
+
+La fonction \texttt{power.t.test}permet de calculer la puissance d'un test ou de déterminer des paramètres pour obtenir une puissance fixée. Les arguments à spécifier sont les suivants:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{n}: le nombre d'observation par groupe
+\item
+  \texttt{delta}: la différence attendue entre les moyennes
+\item
+  \texttt{sd}: l'écart-type des données dans chaque groupe
+\item
+  \texttt{sig.level}: le seuil \(\alpha\), donc le risque d'erreur de type I
+\item
+  \texttt{power}: la puissance souhaitée
+\item
+  \texttt{type}: le type de test donc ``one.sample'' pour un échantillon indépendant, ``two.sample'' pour deux échantillons indépendants, ``paired'' pour des échantillons appariés
+\item
+  \texttt{alternative}: l'hypothèse alternative simplifiée, donc ``two.sided'' pour un test bilatéral, ``one.sided'' pour un test unilatéral.
+\end{enumerate}
+
+Si l'argument \texttt{power} n'est pas spécifié, alors la fonction retourne la puissance du test. Si l'argument \texttt{n} n'est pas spécifié, alors la fonction retourne la taille de l'échantillon nécessaire pour détecter la différence souhaitée avec les paramètres spécifiés. Les exemples suivants permettent de comprendre comment travailler avec les arguments:
+
+On veut déterminer combien de participants sont nécessaires pour détecter une différence moyenne de 5 points avec un écart-type de 10, une puissance de 80\% et un seuil alpha de 0.05.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{power.t.test}\NormalTok{(}\AttributeTok{delta =} \DecValTok{5}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"one.sample"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      One-sample t test power calculation 
+## 
+##               n = 33.3672
+##           delta = 5
+##              sd = 10
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+\end{verbatim}
+
+On veut déterminer la taille d'échantillon nécessaire pour comparer deux groupes avec une différence moyenne attendue de 5, un écart-type de 10 et une puissance de 80\%. Le test compare deux groupes indépendants, donc l'échantillon total sera deux fois la taille renvoyée.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{power.t.test}\NormalTok{(}\AttributeTok{delta =} \DecValTok{5}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"two.sample"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 63.76576
+##           delta = 5
+##              sd = 10
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
+On veut calculer la puissance d'un test apparié avec 30 participants, une différence attendue de 3 et un écart-type de 8.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{power.t.test}\NormalTok{(}\AttributeTok{n =} \DecValTok{30}\NormalTok{, }\AttributeTok{delta =} \DecValTok{3}\NormalTok{, }\AttributeTok{sd =} \DecValTok{8}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{type =} \StringTok{"paired"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Paired t test power calculation 
+## 
+##               n = 30
+##           delta = 3
+##              sd = 8
+##       sig.level = 0.05
+##           power = 0.5102817
+##     alternative = two.sided
+## 
+## NOTE: n is number of *pairs*, sd is std.dev. of *differences* within pairs
 \end{verbatim}
 
   \bibliography{book.bib,packages.bib}
