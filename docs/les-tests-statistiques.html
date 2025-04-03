@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Les tests statistiques | Guide R" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2025-02-27" />
+<meta name="date" content="2025-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -207,6 +207,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html"><i class="fa fa-check"></i><b>8</b> Les tests statistiques</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#le-test-de-student-pour-un-échantillon"><i class="fa fa-check"></i><b>8.1</b> Le test de Student pour un échantillon</a></li>
+<li class="chapter" data-level="8.2" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#le-test-de-student-pour-deux-échantillons-indépendants"><i class="fa fa-check"></i><b>8.2</b> Le test de Student pour deux échantillons indépendants</a></li>
+<li class="chapter" data-level="8.3" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#le-test-de-student-pour-échantillons-appariés"><i class="fa fa-check"></i><b>8.3</b> Le test de Student pour échantillons appariés</a></li>
+<li class="chapter" data-level="8.4" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#la-puissance-dun-test-de-student"><i class="fa fa-check"></i><b>8.4</b> La puissance d’un test de Student</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -230,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="les-tests-statistiques" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Les tests statistiques<a href="les-tests-statistiques.html#les-tests-statistiques" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allons voir les tests suivants: le test de Student pour un échantillon, A VENIR…</p>
+<p>En statistique, il existe plusieurs tests. Dans le cadre de ce cours, nous allons voir les tests suivants: le test de Student pour un échantillon, pour deux échantillons indépendants, pour des échantillons appariés,…</p>
 <div id="le-test-de-student-pour-un-échantillon" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Le test de Student pour un échantillon<a href="les-tests-statistiques.html#le-test-de-student-pour-un-échantillon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Le test t de Student pour un échantillon est une méthode d’inférence statistique utilisée pour déterminer si les données d’un échantillon sont significativement différentes d’une valeur hypothétique donnée. Il est utilisé pour comparer deux moyennes. Ce test est basé sur la distribution t de Student et est couramment utilisé lorsqu’on ne connaît pas la variance de la population. Il existe trois types principaux de tests t :</p>
@@ -242,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>La fonction <code>t.test</code>permet d’effectuer le test de Student. Pour effectuer correctement le test, nous devons remplir trois arguments dans la fonction, à savoir <code>x</code>, <code>alternative</code>, et <code>mu</code> qui correspondent respectivement aux données de l’échantillon, à l’hypothèse alternarive et à la moyenne hypothétique sous l’hypothèse nulle. Précisons que:</p>
 <ol style="list-style-type: decimal">
 <li>Le test bilatéral: <code>alternative="two.sided"</code></li>
-<li>Le test unilatéral à droite: <code>alternative="greater</code></li>
+<li>Le test unilatéral à droite: <code>alternative="greater"</code></li>
 <li>Le test unilatéral à gauche: <code>alternative="less"</code></li>
 </ol>
 <p>Afin d’effectuer les tests, commençons par simuler des données issues d’un loi normale.</p>
@@ -299,7 +302,169 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>t: statistique de test</li>
 <li>df: degrés de liberté</li>
 <li>p-value: pvaleur à comparer avec le seuil <span class="math inline">\(\alpha\)</span> prédéterminé pour savoir si l’hypothèse nulle est rejetée (p-value<span class="math inline">\(&lt;0.05\)</span>) ou si l’hypothèse nulle n’est pas rejetée (p-value<span class="math inline">\(&gt;0.05\)</span>).</li>
+<li>95 percent confidence interval: bornes inférieures et supérieures de l’intervalle de confiance</li>
 </ol>
+<p>Il est possible d’extraire les informations du test selon le code suivant en utilisant le <code>$</code></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="les-tests-statistiques.html#cb209-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
+<span id="cb209-2"><a href="les-tests-statistiques.html#cb209-2" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb209-3"><a href="les-tests-statistiques.html#cb209-3" tabindex="-1"></a><span class="fu">print</span>(test)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  data
+## t = 2.5286, df = 29, p-value = 0.9914
+## alternative hypothesis: true mean is less than 50
+## 95 percent confidence interval:
+##      -Inf 57.57228
+## sample estimates:
+## mean of x 
+##  54.52896</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="les-tests-statistiques.html#cb211-1" tabindex="-1"></a>test<span class="sc">$</span>statistic</span></code></pre></div>
+<pre><code>##       t 
+## 2.52858</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="les-tests-statistiques.html#cb213-1" tabindex="-1"></a>test<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.9914243</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="les-tests-statistiques.html#cb215-1" tabindex="-1"></a>test<span class="sc">$</span>parameter</span></code></pre></div>
+<pre><code>## df 
+## 29</code></pre>
+</div>
+<div id="le-test-de-student-pour-deux-échantillons-indépendants" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Le test de Student pour deux échantillons indépendants<a href="les-tests-statistiques.html#le-test-de-student-pour-deux-échantillons-indépendants" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Le test de Student pour deux échantillons indépendants (échantillons non appariés) est un test statistique utilisé pour comparer les moyennes de deux groupes indépendants afin de déterminer s’il existe une différence significative entre elles. Il est basé sur l’hypothèse que les données sont issues de distributions normales avec des variances égales ou inégales selon la version du test utilisée. Comme les deux groupes sont indépendants, il est nécessaire de spécifier si la variance entre les deux groupes est similaire ou si elle est différente. Cela se fait grâce à l’argument <code>var.equal</code>. Il est nécessaire de remplir l’argument <code>alternative</code> pour spécifier si le test est bilatéral, unilatéral à gauche ou unilatéral à droite. De plus, comme deux échantillons de données sont présents, il faut donc remplir les variables <code>x</code> et <code>y</code>.</p>
+<p>Commençons par simuler un exemple avec des variances égales:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="les-tests-statistiques.html#cb217-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># pour la reproductibilité</span></span>
+<span id="cb217-2"><a href="les-tests-statistiques.html#cb217-2" tabindex="-1"></a></span>
+<span id="cb217-3"><a href="les-tests-statistiques.html#cb217-3" tabindex="-1"></a>groupe1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 15</span></span>
+<span id="cb217-4"><a href="les-tests-statistiques.html#cb217-4" tabindex="-1"></a>groupe2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">110</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 110, écart-type de 15</span></span>
+<span id="cb217-5"><a href="les-tests-statistiques.html#cb217-5" tabindex="-1"></a></span>
+<span id="cb217-6"><a href="les-tests-statistiques.html#cb217-6" tabindex="-1"></a>t_test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)  <span class="co"># Test avec variances égales</span></span>
+<span id="cb217-7"><a href="les-tests-statistiques.html#cb217-7" tabindex="-1"></a></span>
+<span id="cb217-8"><a href="les-tests-statistiques.html#cb217-8" tabindex="-1"></a><span class="fu">print</span>(t_test)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  groupe1 and groupe2
+## t = -3.7926, df = 58, p-value = 0.0003577
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -20.444305  -6.318958
+## sample estimates:
+## mean of x mean of y 
+##  99.29344 112.67508</code></pre>
+<p>Nous pouvons également simuler un exemple avec des variances inégales. Nous constatons que le test ci-dessous effectue un test t de Welch qui est l’adaptation du test t de Student lorsque les variances ne sont pas égales.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="les-tests-statistiques.html#cb219-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># pour la reproductibilité</span></span>
+<span id="cb219-2"><a href="les-tests-statistiques.html#cb219-2" tabindex="-1"></a></span>
+<span id="cb219-3"><a href="les-tests-statistiques.html#cb219-3" tabindex="-1"></a><span class="co"># Génération des données pour deux groupes avec variances inégales</span></span>
+<span id="cb219-4"><a href="les-tests-statistiques.html#cb219-4" tabindex="-1"></a>groupe1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 15</span></span>
+<span id="cb219-5"><a href="les-tests-statistiques.html#cb219-5" tabindex="-1"></a>groupe2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">110</span>, <span class="at">sd =</span> <span class="dv">25</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 25</span></span>
+<span id="cb219-6"><a href="les-tests-statistiques.html#cb219-6" tabindex="-1"></a></span>
+<span id="cb219-7"><a href="les-tests-statistiques.html#cb219-7" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  groupe1 and groupe2
+## t = -3.2519, df = 52.11, p-value = 0.002013
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -24.522521  -5.807509
+## sample estimates:
+## mean of x mean of y 
+##  99.29344 114.45846</code></pre>
+<p>Par défaut, l’argument <code>var.equal</code>est fixé à <code>FALSE</code>. Il n’est pas donc pas nécessaire de l’écrire à chaque fois, cependant, nous vous encourageons à le faire de façon à être consitant.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="les-tests-statistiques.html#cb221-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  groupe1 and groupe2
+## t = -3.2519, df = 52.11, p-value = 0.002013
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -24.522521  -5.807509
+## sample estimates:
+## mean of x mean of y 
+##  99.29344 114.45846</code></pre>
+</div>
+<div id="le-test-de-student-pour-échantillons-appariés" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Le test de Student pour échantillons appariés<a href="les-tests-statistiques.html#le-test-de-student-pour-échantillons-appariés" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Le test de Student pour échantillons appariés est une autre version du test de Student permettant de comparer deux mesures effectuées sur les mêmes individus. Alors que le test pour deux échantillons indépendants permet de comparer deux groupes différents, comme les hommes et les femmes, ce test permet de comparer un échantillon dans deux conditions ou dans deux temps de mesure. Il est utilisé lorsqu’on veut déterminer si la différence moyenne entre deux conditions est significativement différente de zéro. Ce test est également très utile dans des cas tels que l’évaluation de l’effet d’un traitement avant/après sur un même groupe de sujets.</p>
+<p>Comme deux échantillons de données sont présents, il faut donc remplir les variables <code>x</code> et <code>y</code>. De plus, comme les échantillons sont appariés, l’argument <code>paired = TRUE</code> doit être spécifié. Il est toujours nécessaire de spécifier l’argument <code>alternative</code>pour l’hypothèse alternative.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="les-tests-statistiques.html#cb223-1" tabindex="-1"></a><span class="co"># simuler et organiser les données </span></span>
+<span id="cb223-2"><a href="les-tests-statistiques.html#cb223-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  </span>
+<span id="cb223-3"><a href="les-tests-statistiques.html#cb223-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb223-4"><a href="les-tests-statistiques.html#cb223-4" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)  </span>
+<span id="cb223-5"><a href="les-tests-statistiques.html#cb223-5" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> t1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">5</span>)  </span>
+<span id="cb223-6"><a href="les-tests-statistiques.html#cb223-6" tabindex="-1"></a></span>
+<span id="cb223-7"><a href="les-tests-statistiques.html#cb223-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb223-8"><a href="les-tests-statistiques.html#cb223-8" tabindex="-1"></a>  <span class="at">individu =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb223-9"><a href="les-tests-statistiques.html#cb223-9" tabindex="-1"></a>  <span class="at">avant =</span> t1,</span>
+<span id="cb223-10"><a href="les-tests-statistiques.html#cb223-10" tabindex="-1"></a>  <span class="at">apres =</span> t2</span>
+<span id="cb223-11"><a href="les-tests-statistiques.html#cb223-11" tabindex="-1"></a>)</span>
+<span id="cb223-12"><a href="les-tests-statistiques.html#cb223-12" tabindex="-1"></a></span>
+<span id="cb223-13"><a href="les-tests-statistiques.html#cb223-13" tabindex="-1"></a><span class="co">#test</span></span>
+<span id="cb223-14"><a href="les-tests-statistiques.html#cb223-14" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> df<span class="sc">$</span>avant,  <span class="at">y =</span> df<span class="sc">$</span>apres, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  df$avant and df$apres
+## t = -14.287, df = 29, p-value = 1.172e-14
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -12.450901  -9.332482
+## sample estimates:
+## mean difference 
+##       -10.89169</code></pre>
+</div>
+<div id="la-puissance-dun-test-de-student" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> La puissance d’un test de Student<a href="les-tests-statistiques.html#la-puissance-dun-test-de-student" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La puissance statistique d’un test est la probabilité de détecter un effet réel lorsqu’il existe, c’est-à-dire de rejeter correctement l’hypothèse nulle. Une puissance élevée, généralement fixée à 80 % ou plus, est essentielle pour minimiser le risque d’erreur de type II, à savoir ne pas détecter un effet réel et garantir que les résultats d’une étude sont fiables et interprétables.</p>
+<p>La fonction <code>power.t.test</code>permet de calculer la puissance d’un test ou de déterminer des paramètres pour obtenir une puissance fixée. Les arguments à spécifier sont les suivants:</p>
+<ol style="list-style-type: decimal">
+<li><code>n</code>: le nombre d’observation par groupe</li>
+<li><code>delta</code>: la différence attendue entre les moyennes</li>
+<li><code>sd</code>: l’écart-type des données dans chaque groupe</li>
+<li><code>sig.level</code>: le seuil <span class="math inline">\(\alpha\)</span>, donc le risque d’erreur de type I</li>
+<li><code>power</code>: la puissance souhaitée</li>
+<li><code>type</code>: le type de test donc “one.sample” pour un échantillon indépendant, “two.sample” pour deux échantillons indépendants, “paired” pour des échantillons appariés</li>
+<li><code>alternative</code>: l’hypothèse alternative simplifiée, donc “two.sided” pour un test bilatéral, “one.sided” pour un test unilatéral.</li>
+</ol>
+<p>Si l’argument <code>power</code> n’est pas spécifié, alors la fonction retourne la puissance du test. Si l’argument <code>n</code> n’est pas spécifié, alors la fonction retourne la taille de l’échantillon nécessaire pour détecter la différence souhaitée avec les paramètres spécifiés. Les exemples suivants permettent de comprendre comment travailler avec les arguments:</p>
+<p>On veut déterminer combien de participants sont nécessaires pour détecter une différence moyenne de 5 points avec un écart-type de 10, une puissance de 80% et un seuil alpha de 0.05.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="les-tests-statistiques.html#cb225-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##      One-sample t test power calculation 
+## 
+##               n = 33.3672
+##           delta = 5
+##              sd = 10
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided</code></pre>
+<p>On veut déterminer la taille d’échantillon nécessaire pour comparer deux groupes avec une différence moyenne attendue de 5, un écart-type de 10 et une puissance de 80%. Le test compare deux groupes indépendants, donc l’échantillon total sera deux fois la taille renvoyée.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="les-tests-statistiques.html#cb227-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 63.76576
+##           delta = 5
+##              sd = 10
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
+<p>On veut calculer la puissance d’un test apparié avec 30 participants, une différence attendue de 3 et un écart-type de 8.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="les-tests-statistiques.html#cb229-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">delta =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##      Paired t test power calculation 
+## 
+##               n = 30
+##           delta = 3
+##              sd = 8
+##       sig.level = 0.05
+##           power = 0.5102817
+##     alternative = two.sided
+## 
+## NOTE: n is number of *pairs*, sd is std.dev. of *differences* within pairs</code></pre>
 
 </div>
 </div>
