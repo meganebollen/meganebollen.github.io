@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>0.1 Bookdown | README</title>
+  <title>1 Bookdown | README</title>
   <meta name="description" content="" />
   <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="0.1 Bookdown | README" />
+  <meta property="og:title" content="1 Bookdown | README" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="0.1 Bookdown | README" />
+  <meta name="twitter:title" content="1 Bookdown | README" />
   
   
   
@@ -74,10 +74,10 @@
 <li class="toc-logo"><a href="./"><img src="images/logo_unil.png"></a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="0.1" data-path=""><a href="#bookdown"><i class="fa fa-check"></i><b>0.1</b> Bookdown</a></li>
-<li class="chapter" data-level="0.2" data-path=""><a href="#git"><i class="fa fa-check"></i><b>0.2</b> Git</a>
+<li class="chapter" data-level="1" data-path=""><a href="#bookdown"><i class="fa fa-check"></i><b>1</b> Bookdown</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#git"><i class="fa fa-check"></i><b>2</b> Git</a>
 <ul>
-<li class="chapter" data-level="0.2.1" data-path=""><a href="#conseil-pour-un-bon-usage-de-git"><i class="fa fa-check"></i><b>0.2.1</b> Conseil pour un bon usage de Git</a></li>
+<li class="chapter" data-level="2.1" data-path=""><a href="#conseil-pour-un-bon-usage-de-git"><i class="fa fa-check"></i><b>2.1</b> Conseil pour un bon usage de Git</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -102,19 +102,26 @@
 <!--bookdown:title:end-->
 <!--bookdown:title:start-->
 <p>Ce bookdown a pour but d’être un guide R pour les étudiants de statistique I.</p>
-<div id="bookdown" class="section level2 hasAnchor" number="0.1">
-<h2><span class="header-section-number">0.1</span> Bookdown<a href="#bookdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bookdown" class="section level2 hasAnchor" number="1">
+<h2><span class="header-section-number">1</span> Bookdown<a href="#bookdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Il se base sur la structure du book mis par défault sur R Markdown et le package bookdown (<a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>).</p>
 <p>Il est nécessaire d’installer le package bookdown pour utiliser cette extension dans R.
 <code>{r} # stable version on CRAN install.packages("bookdown")</code></p>
 </div>
-<div id="git" class="section level2 hasAnchor" number="0.2">
-<h2><span class="header-section-number">0.2</span> Git<a href="#git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="git" class="section level2 hasAnchor" number="2">
+<h2><span class="header-section-number">2</span> Git<a href="#git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Il faut premièrement configurer Git sur votre ordinateur avant de pouvoir push sur le repo.</p>
 <p>Lors de la première utilisation de Git, il faut ajouter son nom d’utilisateur ainsi que l’adresse mail à votre ordinateur à l’aide de l’invite de commandes avec les lignes de commande suivante:
-<code>{bash} git config --global user.name "John Doe" git config --global user.email johndoe@example.com</code></p>
-<p>Il faut premièrement configurer Git sur votre ordinateur avant de pouvoir cloner le repo.</p>
-<div id="conseil-pour-un-bon-usage-de-git" class="section level3 hasAnchor" number="0.2.1">
-<h3><span class="header-section-number">0.2.1</span> Conseil pour un bon usage de Git<a href="#conseil-pour-un-bon-usage-de-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<code>{bash} git config --global user.name "John Doe" git config --global user.email johndoe@example.com</code>
+Ensuite, il est nécessaire de vérifier si une clé privé et publique sont déjà présentes sur l’ordinateur:
+<code>{bash} cd ~/.ssh ls</code>
+Si une clé est existante, une liste de fichier s’affiche. Le fichier <code>.pub</code> est la clé publique.
+Dans le cas contraire, rien ne s’affiche. Il faudra donc créer une clé avec le code suivant:
+<code>{bash} ssh-keygen -o</code>
+Il sera demandé si vous voulez saver la clé (<code>.ssh/id_rsa</code>) et ensuite il vous sera demandé si vous désirez ajouter un mot de passe afin d’utiliser la clé.</p>
+<p>Pour finir, il faudra envoyer la clé publique (<code>.pub</code>) au propriétaire du repository afin que vous receviez les accès pour push les modifications dans le repository.</p>
+<div id="conseil-pour-un-bon-usage-de-git" class="section level3 hasAnchor" number="2.1">
+<h3><span class="header-section-number">2.1</span> Conseil pour un bon usage de Git<a href="#conseil-pour-un-bon-usage-de-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Pull le repo en ligne avant de commencer à travailler.</li>
 <li>Une fois les modifications réalisées, appuyez sur le bouton “Build Book” dans R</li>
