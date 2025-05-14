@@ -88,15 +88,17 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -104,9 +106,6 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 \usepackage{bookmark}
@@ -120,7 +119,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2025-04-08}
+\date{2025-05-14}
 
 \begin{document}
 \maketitle
@@ -186,11 +185,162 @@ Il est possible de faire une analogie avec une voiture. Le logiciel R est le mot
 
 Après avoir installé ces deux logiciels, vous aurez accès à deux nouvelles applications. Cependant, nous utiliserons uniquement RStudio pour programmer. Lorsque vous exécuterez votre code écrit sur RStudio, ce dernier fera automatiquement appel à R pour exécuter les codes.
 
+\section{Organiser ses fichiers}\label{organiser-ses-fichiers}
+
+Afin de gérer vos scripts et vos bases de données, nous vous proposons d'organiser vos fichiers au sein de dossiers étiquetés.
+
+Vous pourriez par exemple créer un dossier ``Statistique\_I'' et soit y placer tous vos fichiers (jeux de données, scripts) dont vous avez besoin pour le cours, ou faire des sous-dossier pour chaque thème. Vous pourriez, par exemple, suivre la structure suivante :
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/working_directory.png}}
+
+Attention, si vous manquez d'assiduité dans votre organisation, vous allez multiplier les possibilités de mauvaises manipulations.
+
+\section{Répertoire de travail}\label{ruxe9pertoire-de-travail}
+
+Lorsque vous travaillez dans R studio, le logiciel a besoin de savoir quel est votre répertoire de travail (ou working directory en anglais). Si vous ne le spécifiez pas vous-même, R studio va simplement en choisir un par défaut.
+
+Afin de connaître le répertoire de travail actuel, vous pouvez utiliser la fonction \emph{getwd( )}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/Users/sarthers/Documents/assistanat/Statistique_I"
+\end{verbatim}
+
+Nous vous conseillons de définir vous-même le répertoire de travail à chaque fois que vous commencez de travailler dans R, par exemple, en le spécifiant au début de vote script.
+
+Si vous avez créé un dossier pour le cours, alors vous pouvez l'utiliser comme répertoire de travail. Cela a de nombreux avantages et notamment vous permet d'accéder facilement aux bases de données.
+
+Pour définir ce répertoire de travail, deux alternatives sont à votre disposition, l'utilisation de la commande \emph{setwd( )} ou passer par la création d'un projet R.
+
+\subsection{\texorpdfstring{Définir son répertoire de travail avec \emph{setwd( )}}{Définir son répertoire de travail avec setwd( )}}\label{duxe9finir-son-ruxe9pertoire-de-travail-avec-setwd}
+
+La commande \emph{setwd( )} vous permet de définir le répertoire de travail. Une bonne pratique consiste à l'indiquer au début du script si vous travaillez avec un script.
+
+A chaque fois que vous retournez sur R studio, vous devrez spécifier votre répertoire de travail.
+
+Pour ce faire, il suffit de copier le chemin qui mène au répertoire de travail à l'intérieur des parenthèses, comme dans l'exemple ci-dessous
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"\textasciitilde{}/Documents/assistanat/Statistique\_I/"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{RAPPEL, vous pouvez obtenir le chemin d'un dossier de la manière suivante:}
+
+\begin{itemize}
+\item
+  \emph{Pour windows : \href{https://www.supportyourtech.com/articles/how-to-get-file-path-windows-10-easy-steps-to-find-your-file-locations/}{Obtain file path in windows 10}}
+\item
+  \emph{Pour MAC : \href{https://macpaw.com/how-to/get-file-path-mac}{Obtain file path on a Mac}}
+\item
+  \emph{Pour linux : \href{https://linuxhandbook.com/get-file-path/}{Obtain file path in Linux command line}}
+\end{itemize}
+
+Une fois que vous avez indiqué votre répertoire de travail par la fonction \emph{setwd( )}, si vous avez une base de données dans le répertoire de travail, vous pourrez l'accéder directement.
+
+Exemple 1 :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Par exemple, importer le fichier "data\_ex1.csv", }
+\CommentTok{\# enregistré dans le répertoire de travail.}
+\FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file=}\StringTok{"data\_ex1.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Exemple 2 :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Par exemple, importer le fichier "data\_ex1.csv", }
+\CommentTok{\# enregistré dans le dossier Data qui se trouve dans le répertoire de travail.}
+\FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file=}\StringTok{"Data/data\_ex1.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Pour rappel, lorsque vous allez indiquer le chemin menant à un fichier, vous pouvez utiliser la touche `tab' afin que Rstudio vous propose les différentes alternatives à votre disposition. Choisissez votre étape en cliquant dessus. La touche `tab' peut être réutilisée jusqu'à ce que vous arriviez au fichier de votre choix. Cela vous permet d'éviter toute forme de fausse manipulation telle qu'une faute de frappe par exemple.}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/tab_path.png}}
+
+\subsection{Projet R}\label{projet-r}
+
+A la place de préciser votre répertoire de travail par la fonction \emph{setwd( )}, Rstudio vous propose une autre alternative: la creation d'un \href{https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects}{projet}. La création d'un projet vous permet de générer un raccourci qui va lancer Rstudio directement depuis votre répertoire de travail choisi (p.ex, votre dossier Statistique\_I). L'avantage d'ouvrir Rstudio depuis votre répertoire de travail est que cela change directement le point d'ancrage de vos chemins sans que vous ayez besoin de le spécifier par la fonction \emph{setwd( )}.
+
+Pour créer un projet, suivez les 5 étapes suivantes :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Générez un nouveau projet en suivant le chemin suivant dans votre interface RStudio: File \textgreater{} New project\ldots{} (Fichier \textgreater{} Nouveau projet\ldots)
+
+  \pandocbounded{\includegraphics[keepaspectratio]{images/project_new.png}}
+\item
+  Vous avez ensuite deux possibilités:
+
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
+  \item
+    Créer un \textbf{nouveau} dossier\\
+    \emph{Par exemple, créer un nouveau dossier appelé ``Statistique\_I'' sur votre bureau ou ailleurs.}
+  \item
+    Générer le projet au sein d'un dossier \textbf{préexistant}\\
+    \emph{Par exemple, instaurer le projet dans votre dossier ``Statistique\_I'', rangé dans vos cours de première année.}
+  \end{enumerate}
+\item
+  L'étape suivante est de structurer votre répertoire de travail (nouveau ou existant) de la manière suivante:
+
+  \begin{itemize}
+  \item
+    \textbf{Statistique\_I,} le nom de votre répertoire de travail choisi
+
+    \begin{itemize}
+    \item
+      \textbf{Statistique\_I.Rproj}, votre fichier .Rproj que vous avez généré à l'étape précédente
+    \item
+      \textbf{Data}, le dossier pour vos bases de données
+    \item
+      \textbf{Scripts}, le dossier pour vos scripts
+    \item
+      \textbf{Slides}, le dossier pour les slides du cours ou autres documents
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/project_path.png}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Vous pouvez maintenant ouvrir Rstudio en double-cliquant sur votre fichier Statistique\_I.Rproj.
+\item
+  Une fois Rstudio ouvert par ce biais, les chemins menant à vos diverses bases de données seront directs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Par exemple, importer le fichier "data\_ex1.csv", enregistré dans le dossier Data de mon répertoire de travail.}
+\FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file=}\StringTok{"Data/data\_ex1.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+  \emph{Pour rappel, lorsque vous allez indiquer le chemin menant à un fichier, vous pouvez utiliser la touche `tab' afin que Rstudio vous propose les différentes alternatives à votre disposition. Choisissez votre étape en cliquant dessus. La touche `tab' peut être réutilisée jusqu'à ce que vous arriviez au fichier de votre choix. Cela vous permet d'éviter toute forme de fausse manipulation telle qu'une faute de frappe par exemple.}
+\end{enumerate}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/tab_path.png}}
+
 \section{Environnement de travail}\label{environnement-de-travail}
 
 Une fois que RStudio est lancé, une interface découpée en plusieurs zones se présente. Ces parties parties peuvent être redimensionnées, masquées ou maximisées selon vos préférences.
 
-\includegraphics{images/environnement.png}
+\pandocbounded{\includegraphics[keepaspectratio]{images/environnement.png}}
+
 Chacune des quatre zones a sa propre utilité:
 
 \begin{enumerate}
@@ -871,7 +1021,7 @@ Le code suivant permet d'importer le jeu de données ``iris'' disponible de base
 
 Un objet \texttt{iris} apparait dans l'environnement du projet comme le montre la figure suivante.
 
-\includegraphics{images/environment_forDataDownload.png}
+\pandocbounded{\includegraphics[keepaspectratio]{images/environment_forDataDownload.png}}
 
 Si les données sont dans un package, le package doit être importé au préalable.
 
@@ -887,7 +1037,7 @@ Les fichiers \texttt{.RData} sont spécifique au language R et peuvent contenir 
 
 Tous les objets importés sont chargés dans l'environnement de travail.
 
-\includegraphics{images/environment_forRDataDownload.png}
+\pandocbounded{\includegraphics[keepaspectratio]{images/environment_forRDataDownload.png}}
 
 \subsection{Bases de données issues de fichiers externes}\label{bases-de-donnuxe9es-issues-de-fichiers-externes}
 
@@ -1169,7 +1319,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-59-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1178,7 +1328,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-2.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-59-2.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1187,7 +1337,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-3.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-59-3.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1195,7 +1345,7 @@ Les variables qualitatives peuvent être représentées grâce à des graphiques
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-4.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-59-4.pdf}}
 
 \subsection{Variables quantitatives}\label{variables-quantitatives-1}
 
@@ -1207,7 +1357,7 @@ Les variables quantitatives peuvent être représentées grâce à des histogram
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-54-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-60-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1215,7 +1365,7 @@ Les variables quantitatives peuvent être représentées grâce à des histogram
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-54-2.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-60-2.pdf}}
 
 \chapter{Distribution de probabilités}\label{distribution-de-probabilituxe9s}
 
