@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2025-05-14" />
+<meta name="date" content="2025-05-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,7 +37,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="les-boucles-for.html"/>
-
+<link rel="next" href="régression-linéaire-simple.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -217,6 +217,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="08-test.html"><a href="#le-test-de-student-pour-%C3%A9chantillons-appari%C3%A9s"><i class="fa fa-check"></i><b>8.3</b> Le test de Student pour échantillons appariés</a></li>
 <li class="chapter" data-level="8.4" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#la-puissance-dun-test-de-student"><i class="fa fa-check"></i><b>8.4</b> La puissance d’un test de Student</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="08-test.html"><a href="#r%C3%A9gression-lin%C3%A9aire-simple"><i class="fa fa-check"></i><b>9</b> Régression linéaire simple</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="08-test.html"><a href="#visualisation-du-lien-lin%C3%A9aire-entre-deux-variables"><i class="fa fa-check"></i><b>9.1</b> Visualisation du lien linéaire entre deux variables</a></li>
+<li class="chapter" data-level="9.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>9.2</b> Conditions d’application</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="08-test.html"><a href="#relation-lin%C3%A9aire"><i class="fa fa-check"></i><b>9.2.1</b> Relation linéaire</a></li>
+<li class="chapter" data-level="9.2.2" data-path="08-test.html"><a href="#donn%C3%A9es-ind%C3%A9pendantes"><i class="fa fa-check"></i><b>9.2.2</b> Données indépendantes</a></li>
+<li class="chapter" data-level="9.2.3" data-path="08-test.html"><a href="#r%C3%A9sidus-distribu%C3%A9s-normalement"><i class="fa fa-check"></i><b>9.2.3</b> Résidus distribués normalement</a></li>
+<li class="chapter" data-level="9.2.4" data-path="08-test.html"><a href="#homoscedasticit%C3%A9"><i class="fa fa-check"></i><b>9.2.4</b> Homoscedasticité</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="08-test.html"><a href="#param%C3%A8tres-et-tests-dhypoth%C3%A8ses"><i class="fa fa-check"></i><b>9.3</b> Paramètres et tests d’hypothèses</a></li>
+<li class="chapter" data-level="9.4" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#standardiser-une-variable"><i class="fa fa-check"></i><b>9.4</b> Standardiser une variable</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -255,15 +268,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Le test unilatéral à gauche: <code>alternative="less"</code></li>
 </ol>
 <p>Afin d’effectuer les tests, commençons par simuler des données issues d’un loi normale.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="les-tests-statistiques.html#cb206-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># pour la reproductibilité</span></span>
-<span id="cb206-2"><a href="les-tests-statistiques.html#cb206-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># taille de l&#39;échantillon</span></span>
-<span id="cb206-3"><a href="les-tests-statistiques.html#cb206-3" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">55</span>, <span class="at">sd =</span> <span class="dv">10</span>)  <span class="co"># simulation des données </span></span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="les-tests-statistiques.html#cb205-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># pour la reproductibilité</span></span>
+<span id="cb205-2"><a href="les-tests-statistiques.html#cb205-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># taille de l&#39;échantillon</span></span>
+<span id="cb205-3"><a href="les-tests-statistiques.html#cb205-3" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">55</span>, <span class="at">sd =</span> <span class="dv">10</span>)  <span class="co"># simulation des données </span></span></code></pre></div>
 <p>Avant de commencer, nous pouvons calculer la moyenne empirique de l’échantillon</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="les-tests-statistiques.html#cb207-1" tabindex="-1"></a><span class="fu">mean</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="les-tests-statistiques.html#cb206-1" tabindex="-1"></a><span class="fu">mean</span>(data)</span></code></pre></div>
 <pre><code>## [1] 54.52896</code></pre>
 <p>Fixons comme hypothèse nulle que la moyenne de l’échantillon est égale à 50: <span class="math inline">\(H_{0}\)</span>: <span class="math inline">\(\mu_{0}=50\)</span>. Dans ce cas, le test est bilatéral et s’effectue selon le code suivant</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="les-tests-statistiques.html#cb209-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
-<span id="cb209-2"><a href="les-tests-statistiques.html#cb209-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="les-tests-statistiques.html#cb208-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
+<span id="cb208-2"><a href="les-tests-statistiques.html#cb208-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -276,8 +289,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of x 
 ##  54.52896</code></pre>
 <p>Fixons comme hypothèse nulle que la moyenne de l’échantillon est plus grande que 50: <span class="math inline">\(H_{0}\)</span>: <span class="math inline">\(\mu_{0}&gt;50\)</span>. Dans ce cas, le test est unilatéral à droite et s’effectue selon le code suivant</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="les-tests-statistiques.html#cb211-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
-<span id="cb211-2"><a href="les-tests-statistiques.html#cb211-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="les-tests-statistiques.html#cb210-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
+<span id="cb210-2"><a href="les-tests-statistiques.html#cb210-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -290,8 +303,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of x 
 ##  54.52896</code></pre>
 <p>Fixons comme hypothèse nulle que la moyenne de l’échantillon est égale à 50: <span class="math inline">\(H_{0}\)</span>: <span class="math inline">\(\mu_{0}&lt;50\)</span>. Dans ce cas, le test est unilatéral à gauche et s’effectue selon le code suivant</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="les-tests-statistiques.html#cb213-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
-<span id="cb213-2"><a href="les-tests-statistiques.html#cb213-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="les-tests-statistiques.html#cb212-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
+<span id="cb212-2"><a href="les-tests-statistiques.html#cb212-2" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -311,9 +324,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>95 percent confidence interval: bornes inférieures et supérieures de l’intervalle de confiance</li>
 </ol>
 <p>Il est possible d’extraire les informations du test selon le code suivant en utilisant le <code>$</code></p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="les-tests-statistiques.html#cb215-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
-<span id="cb215-2"><a href="les-tests-statistiques.html#cb215-2" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
-<span id="cb215-3"><a href="les-tests-statistiques.html#cb215-3" tabindex="-1"></a><span class="fu">print</span>(test)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="les-tests-statistiques.html#cb214-1" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">50</span>  <span class="co"># moyenne hypothétique sous l&#39;hypothèse nulle </span></span>
+<span id="cb214-2"><a href="les-tests-statistiques.html#cb214-2" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> data, <span class="at">mu =</span> mu_0, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb214-3"><a href="les-tests-statistiques.html#cb214-3" tabindex="-1"></a><span class="fu">print</span>(test)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -325,12 +338,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of x 
 ##  54.52896</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="les-tests-statistiques.html#cb217-1" tabindex="-1"></a>test<span class="sc">$</span>statistic</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="les-tests-statistiques.html#cb216-1" tabindex="-1"></a>test<span class="sc">$</span>statistic</span></code></pre></div>
 <pre><code>##       t 
 ## 2.52858</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="les-tests-statistiques.html#cb219-1" tabindex="-1"></a>test<span class="sc">$</span>p.value</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="les-tests-statistiques.html#cb218-1" tabindex="-1"></a>test<span class="sc">$</span>p.value</span></code></pre></div>
 <pre><code>## [1] 0.9914243</code></pre>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="les-tests-statistiques.html#cb221-1" tabindex="-1"></a>test<span class="sc">$</span>parameter</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="les-tests-statistiques.html#cb220-1" tabindex="-1"></a>test<span class="sc">$</span>parameter</span></code></pre></div>
 <pre><code>## df 
 ## 29</code></pre>
 </div>
@@ -338,14 +351,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.2</span> Le test de Student pour deux échantillons indépendants<a href="#le-test-de-student-pour-deux-%C3%A9chantillons-ind%C3%A9pendants" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Le test de Student pour deux échantillons indépendants (échantillons non appariés) est un test statistique utilisé pour comparer les moyennes de deux groupes indépendants afin de déterminer s’il existe une différence significative entre elles. Il est basé sur l’hypothèse que les données sont issues de distributions normales avec des variances égales ou inégales selon la version du test utilisée. Comme les deux groupes sont indépendants, il est nécessaire de spécifier si la variance entre les deux groupes est similaire ou si elle est différente. Cela se fait grâce à l’argument <code>var.equal</code>. Il est nécessaire de remplir l’argument <code>alternative</code> pour spécifier si le test est bilatéral, unilatéral à gauche ou unilatéral à droite. De plus, comme deux échantillons de données sont présents, il faut donc remplir les variables <code>x</code> et <code>y</code>.</p>
 <p>Commençons par simuler un exemple avec des variances égales:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="les-tests-statistiques.html#cb223-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># pour la reproductibilité</span></span>
-<span id="cb223-2"><a href="les-tests-statistiques.html#cb223-2" tabindex="-1"></a></span>
-<span id="cb223-3"><a href="les-tests-statistiques.html#cb223-3" tabindex="-1"></a>groupe1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 15</span></span>
-<span id="cb223-4"><a href="les-tests-statistiques.html#cb223-4" tabindex="-1"></a>groupe2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">110</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 110, écart-type de 15</span></span>
-<span id="cb223-5"><a href="les-tests-statistiques.html#cb223-5" tabindex="-1"></a></span>
-<span id="cb223-6"><a href="les-tests-statistiques.html#cb223-6" tabindex="-1"></a>t_test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)  <span class="co"># Test avec variances égales</span></span>
-<span id="cb223-7"><a href="les-tests-statistiques.html#cb223-7" tabindex="-1"></a></span>
-<span id="cb223-8"><a href="les-tests-statistiques.html#cb223-8" tabindex="-1"></a><span class="fu">print</span>(t_test)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="les-tests-statistiques.html#cb222-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># pour la reproductibilité</span></span>
+<span id="cb222-2"><a href="les-tests-statistiques.html#cb222-2" tabindex="-1"></a></span>
+<span id="cb222-3"><a href="les-tests-statistiques.html#cb222-3" tabindex="-1"></a>groupe1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 15</span></span>
+<span id="cb222-4"><a href="les-tests-statistiques.html#cb222-4" tabindex="-1"></a>groupe2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">110</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 110, écart-type de 15</span></span>
+<span id="cb222-5"><a href="les-tests-statistiques.html#cb222-5" tabindex="-1"></a></span>
+<span id="cb222-6"><a href="les-tests-statistiques.html#cb222-6" tabindex="-1"></a>t_test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)  <span class="co"># Test avec variances égales</span></span>
+<span id="cb222-7"><a href="les-tests-statistiques.html#cb222-7" tabindex="-1"></a></span>
+<span id="cb222-8"><a href="les-tests-statistiques.html#cb222-8" tabindex="-1"></a><span class="fu">print</span>(t_test)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -358,13 +371,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of x mean of y 
 ##  99.29344 112.67508</code></pre>
 <p>Nous pouvons également simuler un exemple avec des variances inégales. Nous constatons que le test ci-dessous effectue un test t de Welch qui est l’adaptation du test t de Student lorsque les variances ne sont pas égales.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="les-tests-statistiques.html#cb225-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># pour la reproductibilité</span></span>
-<span id="cb225-2"><a href="les-tests-statistiques.html#cb225-2" tabindex="-1"></a></span>
-<span id="cb225-3"><a href="les-tests-statistiques.html#cb225-3" tabindex="-1"></a><span class="co"># Génération des données pour deux groupes avec variances inégales</span></span>
-<span id="cb225-4"><a href="les-tests-statistiques.html#cb225-4" tabindex="-1"></a>groupe1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 15</span></span>
-<span id="cb225-5"><a href="les-tests-statistiques.html#cb225-5" tabindex="-1"></a>groupe2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">110</span>, <span class="at">sd =</span> <span class="dv">25</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 25</span></span>
-<span id="cb225-6"><a href="les-tests-statistiques.html#cb225-6" tabindex="-1"></a></span>
-<span id="cb225-7"><a href="les-tests-statistiques.html#cb225-7" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="les-tests-statistiques.html#cb224-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># pour la reproductibilité</span></span>
+<span id="cb224-2"><a href="les-tests-statistiques.html#cb224-2" tabindex="-1"></a></span>
+<span id="cb224-3"><a href="les-tests-statistiques.html#cb224-3" tabindex="-1"></a><span class="co"># Génération des données pour deux groupes avec variances inégales</span></span>
+<span id="cb224-4"><a href="les-tests-statistiques.html#cb224-4" tabindex="-1"></a>groupe1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 15</span></span>
+<span id="cb224-5"><a href="les-tests-statistiques.html#cb224-5" tabindex="-1"></a>groupe2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">110</span>, <span class="at">sd =</span> <span class="dv">25</span>)  <span class="co"># 30 observations, moyenne de 100, écart-type de 25</span></span>
+<span id="cb224-6"><a href="les-tests-statistiques.html#cb224-6" tabindex="-1"></a></span>
+<span id="cb224-7"><a href="les-tests-statistiques.html#cb224-7" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -377,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of x mean of y 
 ##  99.29344 114.45846</code></pre>
 <p>Par défaut, l’argument <code>var.equal</code>est fixé à <code>FALSE</code>. Il n’est pas donc pas nécessaire de l’écrire à chaque fois, cependant, nous vous encourageons à le faire de façon à être consitant.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="les-tests-statistiques.html#cb227-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="les-tests-statistiques.html#cb226-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> groupe1, <span class="at">y =</span> groupe2, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -394,20 +407,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.3</span> Le test de Student pour échantillons appariés<a href="#le-test-de-student-pour-%C3%A9chantillons-appari%C3%A9s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Le test de Student pour échantillons appariés est une autre version du test de Student permettant de comparer deux mesures effectuées sur les mêmes individus. Alors que le test pour deux échantillons indépendants permet de comparer deux groupes différents, comme les hommes et les femmes, ce test permet de comparer un échantillon dans deux conditions ou dans deux temps de mesure. Il est utilisé lorsqu’on veut déterminer si la différence moyenne entre deux conditions est significativement différente de zéro. Ce test est également très utile dans des cas tels que l’évaluation de l’effet d’un traitement avant/après sur un même groupe de sujets.</p>
 <p>Comme deux échantillons de données sont présents, il faut donc remplir les variables <code>x</code> et <code>y</code>. De plus, comme les échantillons sont appariés, l’argument <code>paired = TRUE</code> doit être spécifié. Il est toujours nécessaire de spécifier l’argument <code>alternative</code>pour l’hypothèse alternative.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="les-tests-statistiques.html#cb229-1" tabindex="-1"></a><span class="co"># simuler et organiser les données </span></span>
-<span id="cb229-2"><a href="les-tests-statistiques.html#cb229-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  </span>
-<span id="cb229-3"><a href="les-tests-statistiques.html#cb229-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb229-4"><a href="les-tests-statistiques.html#cb229-4" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)  </span>
-<span id="cb229-5"><a href="les-tests-statistiques.html#cb229-5" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> t1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">5</span>)  </span>
-<span id="cb229-6"><a href="les-tests-statistiques.html#cb229-6" tabindex="-1"></a></span>
-<span id="cb229-7"><a href="les-tests-statistiques.html#cb229-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb229-8"><a href="les-tests-statistiques.html#cb229-8" tabindex="-1"></a>  <span class="at">individu =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
-<span id="cb229-9"><a href="les-tests-statistiques.html#cb229-9" tabindex="-1"></a>  <span class="at">avant =</span> t1,</span>
-<span id="cb229-10"><a href="les-tests-statistiques.html#cb229-10" tabindex="-1"></a>  <span class="at">apres =</span> t2</span>
-<span id="cb229-11"><a href="les-tests-statistiques.html#cb229-11" tabindex="-1"></a>)</span>
-<span id="cb229-12"><a href="les-tests-statistiques.html#cb229-12" tabindex="-1"></a></span>
-<span id="cb229-13"><a href="les-tests-statistiques.html#cb229-13" tabindex="-1"></a><span class="co">#test</span></span>
-<span id="cb229-14"><a href="les-tests-statistiques.html#cb229-14" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> df<span class="sc">$</span>avant,  <span class="at">y =</span> df<span class="sc">$</span>apres, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="les-tests-statistiques.html#cb228-1" tabindex="-1"></a><span class="co"># simuler et organiser les données </span></span>
+<span id="cb228-2"><a href="les-tests-statistiques.html#cb228-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  </span>
+<span id="cb228-3"><a href="les-tests-statistiques.html#cb228-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb228-4"><a href="les-tests-statistiques.html#cb228-4" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)  </span>
+<span id="cb228-5"><a href="les-tests-statistiques.html#cb228-5" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> t1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">5</span>)  </span>
+<span id="cb228-6"><a href="les-tests-statistiques.html#cb228-6" tabindex="-1"></a></span>
+<span id="cb228-7"><a href="les-tests-statistiques.html#cb228-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb228-8"><a href="les-tests-statistiques.html#cb228-8" tabindex="-1"></a>  <span class="at">individu =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb228-9"><a href="les-tests-statistiques.html#cb228-9" tabindex="-1"></a>  <span class="at">avant =</span> t1,</span>
+<span id="cb228-10"><a href="les-tests-statistiques.html#cb228-10" tabindex="-1"></a>  <span class="at">apres =</span> t2</span>
+<span id="cb228-11"><a href="les-tests-statistiques.html#cb228-11" tabindex="-1"></a>)</span>
+<span id="cb228-12"><a href="les-tests-statistiques.html#cb228-12" tabindex="-1"></a></span>
+<span id="cb228-13"><a href="les-tests-statistiques.html#cb228-13" tabindex="-1"></a><span class="co">#test</span></span>
+<span id="cb228-14"><a href="les-tests-statistiques.html#cb228-14" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> df<span class="sc">$</span>avant,  <span class="at">y =</span> df<span class="sc">$</span>apres, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -435,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Si l’argument <code>power</code> n’est pas spécifié, alors la fonction retourne la puissance du test. Si l’argument <code>n</code> n’est pas spécifié, alors la fonction retourne la taille de l’échantillon nécessaire pour détecter la différence souhaitée avec les paramètres spécifiés. Les exemples suivants permettent de comprendre comment travailler avec les arguments:</p>
 <p>On veut déterminer combien de participants sont nécessaires pour détecter une différence moyenne de 5 points avec un écart-type de 10, une puissance de 80% et un seuil alpha de 0.05.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="les-tests-statistiques.html#cb231-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="les-tests-statistiques.html#cb230-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      One-sample t test power calculation 
 ## 
@@ -446,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##           power = 0.8
 ##     alternative = two.sided</code></pre>
 <p>On veut déterminer la taille d’échantillon nécessaire pour comparer deux groupes avec une différence moyenne attendue de 5, un écart-type de 10 et une puissance de 80%. Le test compare deux groupes indépendants, donc l’échantillon total sera deux fois la taille renvoyée.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="les-tests-statistiques.html#cb233-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="les-tests-statistiques.html#cb232-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Two-sample t test power calculation 
 ## 
@@ -459,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## NOTE: n is number in *each* group</code></pre>
 <p>On veut calculer la puissance d’un test apparié avec 30 participants, une différence attendue de 3 et un écart-type de 8.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="les-tests-statistiques.html#cb235-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">delta =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="les-tests-statistiques.html#cb234-1" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n =</span> <span class="dv">30</span>, <span class="at">delta =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Paired t test power calculation 
 ## 
@@ -479,8 +492,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="les-boucles-for.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="les-boucles-for.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="régression-linéaire-simple.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

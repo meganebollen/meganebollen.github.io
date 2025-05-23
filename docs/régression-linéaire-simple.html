@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Régression linéaire simple | Guide R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Régression linéaire simple | Guide R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="https://github.com/meganebollen/meganebollen.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Régression linéaire simple | Guide R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
+
+
+<meta name="date" content="2025-05-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="les-tests-statistiques.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="images/logo_unil.png"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html"><i class="fa fa-check"></i><b>2</b> Installation et environnement R et Rstudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="09-regression.html"><a href="#pr%C3%A9sentation-des-logiciels"><i class="fa fa-check"></i><b>2.1</b> Présentation des logiciels</a></li>
+<li class="chapter" data-level="2.2" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#installation"><i class="fa fa-check"></i><b>2.2</b> Installation</a></li>
+<li class="chapter" data-level="2.3" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#organiser-ses-fichiers"><i class="fa fa-check"></i><b>2.3</b> Organiser ses fichiers</a></li>
+<li class="chapter" data-level="2.4" data-path="09-regression.html"><a href="#r%C3%A9pertoire-de-travail"><i class="fa fa-check"></i><b>2.4</b> Répertoire de travail</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="09-regression.html"><a href="#d%C3%A9finir-son-r%C3%A9pertoire-de-travail-avec-setwd"><i class="fa fa-check"></i><b>2.4.1</b> Définir son répertoire de travail avec <em>setwd( )</em></a></li>
+<li class="chapter" data-level="2.4.2" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#projet-r"><i class="fa fa-check"></i><b>2.4.2</b> Projet R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="installation-et-environnement-r-et-rstudio.html"><a href="installation-et-environnement-r-et-rstudio.html#environnement-de-travail"><i class="fa fa-check"></i><b>2.5</b> Environnement de travail</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="09-regression.html"><a href="#objets-et-op%C3%A9rateurs"><i class="fa fa-check"></i><b>3</b> Objets et opérateurs</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html"><i class="fa fa-check"></i><b>3.1</b> Objets dans R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#scalaire"><i class="fa fa-check"></i><b>3.1.1</b> Scalaire</a></li>
+<li class="chapter" data-level="3.1.2" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#vecteur"><i class="fa fa-check"></i><b>3.1.2</b> Vecteur</a></li>
+<li class="chapter" data-level="3.1.3" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#facteur"><i class="fa fa-check"></i><b>3.1.3</b> Facteur</a></li>
+<li class="chapter" data-level="3.1.4" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#matrice"><i class="fa fa-check"></i><b>3.1.4</b> Matrice</a></li>
+<li class="chapter" data-level="3.1.5" data-path="objets-et-opérateurs.html"><a href="objets-et-opérateurs.html#dataframe"><i class="fa fa-check"></i><b>3.1.5</b> Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="09-regression.html"><a href="#op%C3%A9rateurs-logiques"><i class="fa fa-check"></i><b>3.2</b> Opérateurs logiques</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="09-regression.html"><a href="#packages-et-donn%C3%A9es"><i class="fa fa-check"></i><b>4</b> Packages et données</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="packages-et-données.html"><a href="packages-et-données.html"><i class="fa fa-check"></i><b>4.1</b> Installation et gestion des packages</a></li>
+<li class="chapter" data-level="4.2" data-path="09-regression.html"><a href="#t%C3%A9l%C3%A9chargement-des-donn%C3%A9es"><i class="fa fa-check"></i><b>4.2</b> Téléchargement des données</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="09-regression.html"><a href="#bases-de-donn%C3%A9es-issues-de-la-base-de-r-ou-des-packages"><i class="fa fa-check"></i><b>4.2.1</b> Bases de données issues de la base de R ou des packages</a></li>
+<li class="chapter" data-level="4.2.2" data-path="09-regression.html"><a href="#bases-de-donn%C3%A9es-issues-dans-un-fichier-.rdata"><i class="fa fa-check"></i><b>4.2.2</b> Bases de données issues dans un fichier .RData</a></li>
+<li class="chapter" data-level="4.2.3" data-path="09-regression.html"><a href="#bases-de-donn%C3%A9es-issues-de-fichiers-externes"><i class="fa fa-check"></i><b>4.2.3</b> Bases de données issues de fichiers externes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="09-regression.html"><a href="#description-des-donn%C3%A9es-quantitatives-et-qualitatives"><i class="fa fa-check"></i><b>5</b> Description des données quantitatives et qualitatives</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="09-regression.html"><a href="#description-num%C3%A9rique"><i class="fa fa-check"></i><b>5.1</b> Description numérique</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html"><i class="fa fa-check"></i><b>5.1.1</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#variables-quantitatives"><i class="fa fa-check"></i><b>5.1.2</b> Variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#description-graphique"><i class="fa fa-check"></i><b>5.2</b> Description graphique</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#variables-qualitatives-1"><i class="fa fa-check"></i><b>5.2.1</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="5.2.2" data-path="description-des-données-quantitatives-et-qualitatives.html"><a href="description-des-données-quantitatives-et-qualitatives.html#variables-quantitatives-1"><i class="fa fa-check"></i><b>5.2.2</b> Variables quantitatives</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="09-regression.html"><a href="#distribution-de-probabilit%C3%A9s"><i class="fa fa-check"></i><b>6</b> Distribution de probabilités</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="distribution-de-probabilités.html"><a href="distribution-de-probabilités.html"><i class="fa fa-check"></i><b>6.1</b> Distribution normale</a></li>
+<li class="chapter" data-level="6.2" data-path="distribution-de-probabilités.html"><a href="distribution-de-probabilités.html#distribution-de-student"><i class="fa fa-check"></i><b>6.2</b> Distribution de Student</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="les-boucles-for.html"><a href="les-boucles-for.html"><i class="fa fa-check"></i><b>7</b> Les boucles FOR</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="les-boucles-for.html"><a href="les-boucles-for.html#structure"><i class="fa fa-check"></i><b>7.1</b> Structure</a></li>
+<li class="chapter" data-level="7.2" data-path="les-boucles-for.html"><a href="les-boucles-for.html#utilisation"><i class="fa fa-check"></i><b>7.2</b> Utilisation</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="les-boucles-for.html"><a href="les-boucles-for.html#afficher"><i class="fa fa-check"></i><b>7.2.1</b> Afficher</a></li>
+<li class="chapter" data-level="7.2.2" data-path="09-regression.html"><a href="#it%C3%A9rer"><i class="fa fa-check"></i><b>7.2.2</b> Itérer</a></li>
+<li class="chapter" data-level="7.2.3" data-path="09-regression.html"><a href="#cr%C3%A9er-un-vecteur"><i class="fa fa-check"></i><b>7.2.3</b> Créer un vecteur</a></li>
+<li class="chapter" data-level="7.2.4" data-path="les-boucles-for.html"><a href="les-boucles-for.html#parcourir-une-matrice"><i class="fa fa-check"></i><b>7.2.4</b> Parcourir une matrice</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html"><i class="fa fa-check"></i><b>8</b> Les tests statistiques</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="09-regression.html"><a href="#le-test-de-student-pour-un-%C3%A9chantillon"><i class="fa fa-check"></i><b>8.1</b> Le test de Student pour un échantillon</a></li>
+<li class="chapter" data-level="8.2" data-path="09-regression.html"><a href="#le-test-de-student-pour-deux-%C3%A9chantillons-ind%C3%A9pendants"><i class="fa fa-check"></i><b>8.2</b> Le test de Student pour deux échantillons indépendants</a></li>
+<li class="chapter" data-level="8.3" data-path="09-regression.html"><a href="#le-test-de-student-pour-%C3%A9chantillons-appari%C3%A9s"><i class="fa fa-check"></i><b>8.3</b> Le test de Student pour échantillons appariés</a></li>
+<li class="chapter" data-level="8.4" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#la-puissance-dun-test-de-student"><i class="fa fa-check"></i><b>8.4</b> La puissance d’un test de Student</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="09-regression.html"><a href="#r%C3%A9gression-lin%C3%A9aire-simple"><i class="fa fa-check"></i><b>9</b> Régression linéaire simple</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="09-regression.html"><a href="#visualisation-du-lien-lin%C3%A9aire-entre-deux-variables"><i class="fa fa-check"></i><b>9.1</b> Visualisation du lien linéaire entre deux variables</a></li>
+<li class="chapter" data-level="9.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>9.2</b> Conditions d’application</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="09-regression.html"><a href="#relation-lin%C3%A9aire"><i class="fa fa-check"></i><b>9.2.1</b> Relation linéaire</a></li>
+<li class="chapter" data-level="9.2.2" data-path="09-regression.html"><a href="#donn%C3%A9es-ind%C3%A9pendantes"><i class="fa fa-check"></i><b>9.2.2</b> Données indépendantes</a></li>
+<li class="chapter" data-level="9.2.3" data-path="09-regression.html"><a href="#r%C3%A9sidus-distribu%C3%A9s-normalement"><i class="fa fa-check"></i><b>9.2.3</b> Résidus distribués normalement</a></li>
+<li class="chapter" data-level="9.2.4" data-path="09-regression.html"><a href="#homoscedasticit%C3%A9"><i class="fa fa-check"></i><b>9.2.4</b> Homoscedasticité</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="09-regression.html"><a href="#param%C3%A8tres-et-tests-dhypoth%C3%A8ses"><i class="fa fa-check"></i><b>9.3</b> Paramètres et tests d’hypothèses</a></li>
+<li class="chapter" data-level="9.4" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#standardiser-une-variable"><i class="fa fa-check"></i><b>9.4</b> Standardiser une variable</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Guide R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="régression-linéaire-simple" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Régression linéaire simple<a href="#r%C3%A9gression-lin%C3%A9aire-simple" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Le modèle de régression linéaire simple cherche à déterminer la relation entre <strong>une</strong> variable indépendante (x) et une variable dépendante (y). Plus précisément, ce modèle cherche à déterminer si la variable indépendante (qui peut être qualitative ou quantitative) prédit la variabilité de la variable dépendante (toujours quantitative continue).</p>
+<p>Par exemple:</p>
+<ul>
+<li><p>Est-ce que le nombre d’heures supp. prédit le stress au travail?</p>
+<pre><code>stress ~ heures supp</code></pre></li>
+<li><p>Est-ce que la taille prédit le poids?</p>
+<pre><code>poids ~ taille</code></pre></li>
+</ul>
+<div id="visualisation-du-lien-linéaire-entre-deux-variables" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Visualisation du lien linéaire entre deux variables<a href="#visualisation-du-lien-lin%C3%A9aire-entre-deux-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Afin de visualiser la nature du lien entre deux variables continues et vérifier si ce lien est linéaire, nous vous proposons de construire un diagramme de dispersion. Cette représentation graphique a deux axes: la variable indépendante sur l’axe des x et la variable dépendante sur l’axe des y.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="régression-linéaire-simple.html#cb238-1" tabindex="-1"></a><span class="co"># Par exemple, le diagramme de dispersion entre la vitesse d&#39;une voiture (x = speed) et sa distance de freinage (y = dist)</span></span>
+<span id="cb238-2"><a href="régression-linéaire-simple.html#cb238-2" tabindex="-1"></a><span class="fu">plot</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p>Les modèles de régression linéaire vont calculer et estimer la meilleure droite qui passe au milieu des données de telle sorte que cette droite représente la relation entre les deux variables. La fonction <em>lm( )</em> dans R calcule la pente et l’intercept de cette droite.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="régression-linéaire-simple.html#cb239-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span></code></pre></div>
+<p>Le code suivant permet, une fois le modèle de régression calculé et stocké dans un objet (par exemple m1), de dessiner la droite de régression sur le diagrame de dispersion. Attention, il faut pour cela lancer les deux lignes de code en même temps.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="régression-linéaire-simple.html#cb240-1" tabindex="-1"></a><span class="co"># pour notre exemple :</span></span>
+<span id="cb240-2"><a href="régression-linéaire-simple.html#cb240-2" tabindex="-1"></a><span class="fu">plot</span>(dist<span class="sc">~</span>speed,<span class="at">data=</span>cars)</span>
+<span id="cb240-3"><a href="régression-linéaire-simple.html#cb240-3" tabindex="-1"></a><span class="fu">abline</span>(m1)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+</div>
+<div id="conditions-dapplication" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Conditions d’application<a href="régression-linéaire-simple.html#conditions-dapplication" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Avant de pouvoir modéliser nos données par une régression linéaire, quatre conditions d’applications doivent être respectées. Il s’agit de prérequis théoriques et mathématiques:</p>
+<ol style="list-style-type: decimal">
+<li><p>La relation entre les variables doit être linéaire.</p></li>
+<li><p>Les données doivent être indépendantes les unes des autres.</p></li>
+<li><p>Les résidus doivent être distribués normalement, avec une moyenne de 0.</p></li>
+<li><p>La variance doit être homogène (homoscedasticité). En d’autres mots, l’erreur doit être homogène pour toutes les valeurs de X.</p></li>
+</ol>
+<div id="relation-linéaire" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Relation linéaire<a href="#relation-lin%C3%A9aire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Afin de vérifier le lien linéaire entre deux variables, nous allons utiliser une méthode graphique: la visualisation des données. Comme vu au point 9.1, nous allons utiliser la fonction <em>plot( ).</em> Le but ensuite est de juger si le lien entre les données pourrait être correctement estimé par une droite.</p>
+<p><strong>Exemple 1 : Relation linéaire</strong></p>
+<p><img src="images/linear.png" /><!-- --></p>
+<p><strong>Exemple 2 : Relation non-linéaire (quadratique)</strong></p>
+<p><img src="images/quadratic.png" /><!-- --></p>
+</div>
+<div id="données-indépendantes" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Données indépendantes<a href="#donn%C3%A9es-ind%C3%A9pendantes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Afin de pouvoir modéliser nos données par une régression linéaire, il est important que ces dernières soient indépendantes les unes des autres. Pour vérifier l’application de cette condition, il est important de connaître les conditions de récolte des données, autrement dit, le protocol expérimental.</p>
+<p>Par exemple, s’il s’agit de données pairées, vous n’allez pas pouvoir modéliser vos données par une régression linéaire simple.</p>
+<p>Dans le cas des exercices que nous vous donnons à faire, vous pouvez, sauf indication contraire, estimer que les données pertinentes sont bel et bien indépendantes.</p>
+</div>
+<div id="résidus-distribués-normalement" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Résidus distribués normalement<a href="#r%C3%A9sidus-distribu%C3%A9s-normalement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les deux dernières conditions d’application concernent les résidus/erreurs de votre modèle de régression linéaire. Ces résidus sont les écarts entre les valeurs observées et les valeurs prédites par votre modèle. En d’autres mots, les résidus représentent l’écart entre les données récoltées et la droite de régression définie par le modèle. Vous pouvez aussi comprendre les résidus comme une représentation du ‘bruit’ que votre régression n’arrive pas à modéliser.</p>
+<p><strong>Par exemple, la représentation, en rouge, du résidu (ou residual) d’une des observation d’un modèle de régression linéaire.</strong></p>
+<p><img src="images/residuals.png" /><!-- --></p>
+<p>Ensuite, afin de pouvoir mesurer et observer les résidus, il faut d’abord définir votre modèle de régression à l’aide de la fonction <em>lm( )</em>. Ensuite, afin de connaître les valeurs des résidus, nous vous proposons d’utiliser la fonction <em>resid( ).</em></p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="régression-linéaire-simple.html#cb241-1" tabindex="-1"></a>modele_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars) <span class="co"># définition du modèle de régression linéaire</span></span>
+<span id="cb241-2"><a href="régression-linéaire-simple.html#cb241-2" tabindex="-1"></a>residus <span class="ot">&lt;-</span> <span class="fu">resid</span>(modele_1) <span class="co"># calcul des résidus</span></span></code></pre></div>
+<p>Afin de vérifier la normalité de la distribution des erreurs/résidus, trois options s’offrent à vous.</p>
+<ol style="list-style-type: decimal">
+<li>Vous pouvez visualiser la distribution des résidus par un graphique de densité. <strong>Critère de décision</strong>: est-ce que cette distribution ressemble à une distribution normale centrée en 0?</li>
+</ol>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="régression-linéaire-simple.html#cb242-1" tabindex="-1"></a><span class="co"># exemple de résidus distribués normalement</span></span>
+<span id="cb242-2"><a href="régression-linéaire-simple.html#cb242-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(residus))</span></code></pre></div>
+<p><img src="images/normality_residuals.png" /><!-- --></p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="régression-linéaire-simple.html#cb243-1" tabindex="-1"></a><span class="co"># exemple de résidus qui ne sont pas tout à fait distribués normalement</span></span>
+<span id="cb243-2"><a href="régression-linéaire-simple.html#cb243-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(residus2))</span></code></pre></div>
+<p><img src="images/abnormality_residuals.png" /><!-- --></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Vous pouvez également visualiser la normalité de la distribution des résidus par un QQplot. Un QQplot représente les résidus (sur l’axe des y) en fonction des valeurs théoriques des résidus si la distribution était parfaitement normale. <strong>Critère de décision</strong>: Est-ce que les points sont sur la diagonale.</li>
+</ol>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="régression-linéaire-simple.html#cb244-1" tabindex="-1"></a><span class="co"># mêmes exemples que ci-dessus, résidus distribués normalement</span></span>
+<span id="cb244-2"><a href="régression-linéaire-simple.html#cb244-2" tabindex="-1"></a><span class="fu">qqnorm</span>(residus)</span></code></pre></div>
+<p><img src="images/QQplot.png" /><!-- --></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Finalement, de manière intuitive, le diagramme de dispersion avec la droite de régression vous permet également d’avoir une idée de le distribution des résidus. La condition de normalité est respectée si il y a autant de résidus en haut et en bas de la droite, et que les résidus ne sont pas plus éloignés de la droite en haut qu’en bas (ou vice-versa)</li>
+</ol>
+</div>
+<div id="homoscedasticité" class="section level3 hasAnchor" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Homoscedasticité<a href="#homoscedasticit%C3%A9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Finalement, il est essentiel que les résidus se distribuent de manière homogène pour toutes les valeurs de x. En d’autres termes, que la précision de la droite de régression reste la même pour toutes les valeurs de x. Afin de vérifier cette condition, vous allez visualer les données autour de la droite de régression et faire un graphique des résidus en fonction de votre variable indépendante (x). <strong>Critère de décision:</strong> est-ce que les résidus pourraient être contenus dans un rectangle (homoscédasticité) ou non (hétéroscédasticité).</p>
+<p><strong>Exemple 1 : Relation linéaire avec hétéroscedasticité (variance hétérogène)</strong></p>
+<p><img src="images/hetero_dis.png" /><!-- --></p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="régression-linéaire-simple.html#cb245-1" tabindex="-1"></a><span class="fu">plot</span>(Stress, residuals) <span class="co"># graphique des résidus en fonction de x</span></span>
+<span id="cb245-2"><a href="régression-linéaire-simple.html#cb245-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="images/hetero.png" /><!-- --></p>
+<p><strong>Exemple 2 : Comparaison entre homoscédasticité et hétéroscédasticité</strong></p>
+<p><img src="images/homo_hetero.png" /><!-- --></p>
+<p>A nouveau, simplement regarder le diagramme de dispersion et la droite de régression vous permet également d’avoir une idée de si cette conditoin est respectée. Si elle l’est, les résidus sont similaires tout au long de la droite de régression.</p>
+</div>
+</div>
+<div id="paramètres-et-tests-dhypothèses" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Paramètres et tests d’hypothèses<a href="#param%C3%A8tres-et-tests-dhypoth%C3%A8ses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si toutes les conditions d’application sont respectées, vous allez pouvoir interprêter les résultats de votre modèle de régression linéaire simple.</p>
+<p>En guise de rappel, pour spécifier votre modèle de régression vous allez utiliser la fonction <em>lm( )</em>. Ensuite, pour en observer les paramètres/résultats, vous allez utiliser la fonction <em>summary( )</em>.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="régression-linéaire-simple.html#cb246-1" tabindex="-1"></a>modele_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars)</span>
+<span id="cb246-2"><a href="régression-linéaire-simple.html#cb246-2" tabindex="-1"></a><span class="fu">summary</span>(modele_1)</span></code></pre></div>
+<p><img src="images/parametres.png" /><!-- --></p>
+<p>En quelques mots, voici ce que représentent les différents indices et paramètres de votre sortie. Vous avez deux blocs principaux, un premier qui vous informe sur les paramètres du modèle (2:5), un second qui vous informe sur la validité du modèle (6:8).</p>
+<p><strong>Bloc 1 - Les paramètres de votre modèle</strong></p>
+<ol style="list-style-type: decimal">
+<li>Le rappel de votre équation de régression linéaire</li>
+<li>Les valeurs de paramètres de votre modèle. Vous avez une valeur pour l’ordonnée à l’origine (intercept) ainsi que pour la variable indépendante (ou prédicteur)</li>
+<li>L’erreur standard de chacun des paramètres</li>
+<li>Un score t est calculé pour chaque paramètre afin d’en tester la significativité</li>
+<li>La p-valeur de chaque paramètre. Cette p-valeur vous permet de juger de la significativité de vos différents paramètres</li>
+</ol>
+<p><img src="images/2.png" /><!-- --></p>
+<p><strong>Bloc 2 - La validité de votre modèle</strong></p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>L’erreur standard des résidus du modèle</p></li>
+<li><p>Les coefficients de détermination de votre modèle (R-carré et R-carré ajusté). Ces derniers vous indiquent la part de variance de votre variable dépendante qui est expliquée par votre modèle.</p></li>
+<li><p>Cette F-statistic et sa probabilité critique vous permettent de conclure sur la significativité de votre modèle. Est-ce que ce dernier ‘prédit’ significativement votre variable dépendante? Plus concrètement, ces valeurs permettent de rejeter ou non l’hypothèse nulle suivante: le modèle avec la variable indépendante et un modèle avec uniquement un intercept ne diffèrent pas quant à leur capacité à expliquer la variabilité de la variable dépendante.</p></li>
+</ol>
+<p><img src="images/6.png" /><!-- --></p>
+</div>
+<div id="standardiser-une-variable" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Standardiser une variable<a href="régression-linéaire-simple.html#standardiser-une-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Souvent, afin de faciliter l’interprétation et la comparaison des paramètres, nous allons standardiser nos variables avant de les insérer dans notre modèle de régression linéaire.</p>
+<p>Le processus de standardiser une variable équivaut à:</p>
+<ul>
+<li><p>centrer la variable - soustraire la moyenne de la variable à chaque score individuel</p></li>
+<li><p>réduire la variable - diviser chaque score par l’écart-type de la variable</p></li>
+</ul>
+<p>En d’autre mot, standardiser une variable est le même procédé qu’en calculer le score z.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="régression-linéaire-simple.html#cb247-1" tabindex="-1"></a>speed_z <span class="ot">&lt;-</span> (speed <span class="sc">-</span> <span class="fu">mean</span>(speed)) <span class="sc">/</span> <span class="fu">sd</span>(speed) <span class="co">#vitesse standardisée</span></span>
+<span id="cb247-2"><a href="régression-linéaire-simple.html#cb247-2" tabindex="-1"></a>dist_z <span class="ot">&lt;-</span> (dist <span class="sc">-</span> <span class="fu">mean</span>(dist)) <span class="sc">/</span> <span class="fu">sd</span>(dist) <span class="co">#distance de freinage standardisée</span></span>
+<span id="cb247-3"><a href="régression-linéaire-simple.html#cb247-3" tabindex="-1"></a>modele_z <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist_z <span class="sc">~</span> speed_z) <span class="co">#modèle sur variable standardisées</span></span>
+<span id="cb247-4"><a href="régression-linéaire-simple.html#cb247-4" tabindex="-1"></a><span class="fu">summary</span>(modele_z)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dist_z ~ speed_z)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.12805 -0.36964 -0.08816  0.35758  1.67646 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 4.052e-17  8.440e-02   0.000        1    
+## speed_z     8.069e-01  8.526e-02   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5968 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="les-tests-statistiques.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

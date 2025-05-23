@@ -119,7 +119,7 @@
 
 \title{Guide R}
 \author{Prof.~Audrey Bürki, Samuel Arthers, Mégane Bollenrücher}
-\date{2025-05-14}
+\date{2025-05-23}
 
 \begin{document}
 \maketitle
@@ -206,10 +206,6 @@ Afin de connaître le répertoire de travail actuel, vous pouvez utiliser la fon
 \FunctionTok{getwd}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [1] "/Users/sarthers/Documents/assistanat/Statistique_I"
-\end{verbatim}
 
 Nous vous conseillons de définir vous-même le répertoire de travail à chaque fois que vous commencez de travailler dans R, par exemple, en le spécifiant au début de vote script.
 
@@ -2393,6 +2389,284 @@ On veut calculer la puissance d'un test apparié avec 30 participants, une diff�
 ##     alternative = two.sided
 ## 
 ## NOTE: n is number of *pairs*, sd is std.dev. of *differences* within pairs
+\end{verbatim}
+
+\chapter{Régression linéaire simple}\label{ruxe9gression-linuxe9aire-simple}
+
+Le modèle de régression linéaire simple cherche à déterminer la relation entre \textbf{une} variable indépendante (x) et une variable dépendante (y). Plus précisément, ce modèle cherche à déterminer si la variable indépendante (qui peut être qualitative ou quantitative) prédit la variabilité de la variable dépendante (toujours quantitative continue).
+
+Par exemple:
+
+\begin{itemize}
+\item
+  Est-ce que le nombre d'heures supp. prédit le stress au travail?
+
+\begin{verbatim}
+stress ~ heures supp
+\end{verbatim}
+\item
+  Est-ce que la taille prédit le poids?
+
+\begin{verbatim}
+poids ~ taille
+\end{verbatim}
+\end{itemize}
+
+\section{Visualisation du lien linéaire entre deux variables}\label{visualisation-du-lien-linuxe9aire-entre-deux-variables}
+
+Afin de visualiser la nature du lien entre deux variables continues et vérifier si ce lien est linéaire, nous vous proposons de construire un diagramme de dispersion. Cette représentation graphique a deux axes: la variable indépendante sur l'axe des x et la variable dépendante sur l'axe des y.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Par exemple, le diagramme de dispersion entre la vitesse d\textquotesingle{}une voiture (x = speed) et sa distance de freinage (y = dist)}
+\FunctionTok{plot}\NormalTok{(dist }\SpecialCharTok{\textasciitilde{}}\NormalTok{ speed, }\AttributeTok{data =}\NormalTok{ cars)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-93-1.pdf}}
+
+Les modèles de régression linéaire vont calculer et estimer la meilleure droite qui passe au milieu des données de telle sorte que cette droite représente la relation entre les deux variables. La fonction \emph{lm( )} dans R calcule la pente et l'intercept de cette droite.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(dist }\SpecialCharTok{\textasciitilde{}}\NormalTok{ speed, }\AttributeTok{data =}\NormalTok{ cars)}
+\end{Highlighting}
+\end{Shaded}
+
+Le code suivant permet, une fois le modèle de régression calculé et stocké dans un objet (par exemple m1), de dessiner la droite de régression sur le diagrame de dispersion. Attention, il faut pour cela lancer les deux lignes de code en même temps.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# pour notre exemple :}
+\FunctionTok{plot}\NormalTok{(dist}\SpecialCharTok{\textasciitilde{}}\NormalTok{speed,}\AttributeTok{data=}\NormalTok{cars)}
+\FunctionTok{abline}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-95-1.pdf}}
+
+\section{Conditions d'application}\label{conditions-dapplication}
+
+Avant de pouvoir modéliser nos données par une régression linéaire, quatre conditions d'applications doivent être respectées. Il s'agit de prérequis théoriques et mathématiques:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  La relation entre les variables doit être linéaire.
+\item
+  Les données doivent être indépendantes les unes des autres.
+\item
+  Les résidus doivent être distribués normalement, avec une moyenne de 0.
+\item
+  La variance doit être homogène (homoscedasticité). En d'autres mots, l'erreur doit être homogène pour toutes les valeurs de X.
+\end{enumerate}
+
+\subsection{Relation linéaire}\label{relation-linuxe9aire}
+
+Afin de vérifier le lien linéaire entre deux variables, nous allons utiliser une méthode graphique: la visualisation des données. Comme vu au point 9.1, nous allons utiliser la fonction \emph{plot( ).} Le but ensuite est de juger si le lien entre les données pourrait être correctement estimé par une droite.
+
+\textbf{Exemple 1 : Relation linéaire}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/linear.png}}
+
+\textbf{Exemple 2 : Relation non-linéaire (quadratique)}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/quadratic.png}}
+
+\subsection{Données indépendantes}\label{donnuxe9es-induxe9pendantes}
+
+Afin de pouvoir modéliser nos données par une régression linéaire, il est important que ces dernières soient indépendantes les unes des autres. Pour vérifier l'application de cette condition, il est important de connaître les conditions de récolte des données, autrement dit, le protocol expérimental.
+
+Par exemple, s'il s'agit de données pairées, vous n'allez pas pouvoir modéliser vos données par une régression linéaire simple.
+
+Dans le cas des exercices que nous vous donnons à faire, vous pouvez, sauf indication contraire, estimer que les données pertinentes sont bel et bien indépendantes.
+
+\subsection{Résidus distribués normalement}\label{ruxe9sidus-distribuuxe9s-normalement}
+
+Les deux dernières conditions d'application concernent les résidus/erreurs de votre modèle de régression linéaire. Ces résidus sont les écarts entre les valeurs observées et les valeurs prédites par votre modèle. En d'autres mots, les résidus représentent l'écart entre les données récoltées et la droite de régression définie par le modèle. Vous pouvez aussi comprendre les résidus comme une représentation du `bruit' que votre régression n'arrive pas à modéliser.
+
+\textbf{Par exemple, la représentation, en rouge, du résidu (ou residual) d'une des observation d'un modèle de régression linéaire.}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/residuals.png}}
+
+Ensuite, afin de pouvoir mesurer et observer les résidus, il faut d'abord définir votre modèle de régression à l'aide de la fonction \emph{lm( )}. Ensuite, afin de connaître les valeurs des résidus, nous vous proposons d'utiliser la fonction \emph{resid( ).}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modele\_1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(dist }\SpecialCharTok{\textasciitilde{}}\NormalTok{ speed, }\AttributeTok{data =}\NormalTok{ cars) }\CommentTok{\# définition du modèle de régression linéaire}
+\NormalTok{residus }\OtherTok{\textless{}{-}} \FunctionTok{resid}\NormalTok{(modele\_1) }\CommentTok{\# calcul des résidus}
+\end{Highlighting}
+\end{Shaded}
+
+Afin de vérifier la normalité de la distribution des erreurs/résidus, trois options s'offrent à vous.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Vous pouvez visualiser la distribution des résidus par un graphique de densité. \textbf{Critère de décision}: est-ce que cette distribution ressemble à une distribution normale centrée en 0?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# exemple de résidus distribués normalement}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{density}\NormalTok{(residus))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/normality_residuals.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# exemple de résidus qui ne sont pas tout à fait distribués normalement}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{density}\NormalTok{(residus2))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/abnormality_residuals.png}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Vous pouvez également visualiser la normalité de la distribution des résidus par un QQplot. Un QQplot représente les résidus (sur l'axe des y) en fonction des valeurs théoriques des résidus si la distribution était parfaitement normale. \textbf{Critère de décision}: Est-ce que les points sont sur la diagonale.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# mêmes exemples que ci{-}dessus, résidus distribués normalement}
+\FunctionTok{qqnorm}\NormalTok{(residus)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/QQplot.png}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Finalement, de manière intuitive, le diagramme de dispersion avec la droite de régression vous permet également d'avoir une idée de le distribution des résidus. La condition de normalité est respectée si il y a autant de résidus en haut et en bas de la droite, et que les résidus ne sont pas plus éloignés de la droite en haut qu'en bas (ou vice-versa)
+\end{enumerate}
+
+\subsection{Homoscedasticité}\label{homoscedasticituxe9}
+
+Finalement, il est essentiel que les résidus se distribuent de manière homogène pour toutes les valeurs de x. En d'autres termes, que la précision de la droite de régression reste la même pour toutes les valeurs de x. Afin de vérifier cette condition, vous allez visualer les données autour de la droite de régression et faire un graphique des résidus en fonction de votre variable indépendante (x). \textbf{Critère de décision:} est-ce que les résidus pourraient être contenus dans un rectangle (homoscédasticité) ou non (hétéroscédasticité).
+
+\textbf{Exemple 1 : Relation linéaire avec hétéroscedasticité (variance hétérogène)}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/hetero_dis.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(Stress, residuals) }\CommentTok{\# graphique des résidus en fonction de x}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/hetero.png}}
+
+\textbf{Exemple 2 : Comparaison entre homoscédasticité et hétéroscédasticité}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/homo_hetero.png}}
+
+A nouveau, simplement regarder le diagramme de dispersion et la droite de régression vous permet également d'avoir une idée de si cette conditoin est respectée. Si elle l'est, les résidus sont similaires tout au long de la droite de régression.
+
+\section{Paramètres et tests d'hypothèses}\label{paramuxe8tres-et-tests-dhypothuxe8ses}
+
+Si toutes les conditions d'application sont respectées, vous allez pouvoir interprêter les résultats de votre modèle de régression linéaire simple.
+
+En guise de rappel, pour spécifier votre modèle de régression vous allez utiliser la fonction \emph{lm( )}. Ensuite, pour en observer les paramètres/résultats, vous allez utiliser la fonction \emph{summary( )}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modele\_1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(dist }\SpecialCharTok{\textasciitilde{}}\NormalTok{ speed, }\AttributeTok{data =}\NormalTok{ cars)}
+\FunctionTok{summary}\NormalTok{(modele\_1)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/parametres.png}}
+
+En quelques mots, voici ce que représentent les différents indices et paramètres de votre sortie. Vous avez deux blocs principaux, un premier qui vous informe sur les paramètres du modèle (2:5), un second qui vous informe sur la validité du modèle (6:8).
+
+\textbf{Bloc 1 - Les paramètres de votre modèle}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Le rappel de votre équation de régression linéaire
+\item
+  Les valeurs de paramètres de votre modèle. Vous avez une valeur pour l'ordonnée à l'origine (intercept) ainsi que pour la variable indépendante (ou prédicteur)
+\item
+  L'erreur standard de chacun des paramètres
+\item
+  Un score t est calculé pour chaque paramètre afin d'en tester la significativité
+\item
+  La p-valeur de chaque paramètre. Cette p-valeur vous permet de juger de la significativité de vos différents paramètres
+\end{enumerate}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/2.png}}
+
+\textbf{Bloc 2 - La validité de votre modèle}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+  L'erreur standard des résidus du modèle
+\item
+  Les coefficients de détermination de votre modèle (R-carré et R-carré ajusté). Ces derniers vous indiquent la part de variance de votre variable dépendante qui est expliquée par votre modèle.
+\item
+  Cette F-statistic et sa probabilité critique vous permettent de conclure sur la significativité de votre modèle. Est-ce que ce dernier `prédit' significativement votre variable dépendante? Plus concrètement, ces valeurs permettent de rejeter ou non l'hypothèse nulle suivante: le modèle avec la variable indépendante et un modèle avec uniquement un intercept ne diffèrent pas quant à leur capacité à expliquer la variabilité de la variable dépendante.
+\end{enumerate}
+
+\pandocbounded{\includegraphics[keepaspectratio]{images/6.png}}
+
+\section{Standardiser une variable}\label{standardiser-une-variable}
+
+Souvent, afin de faciliter l'interprétation et la comparaison des paramètres, nous allons standardiser nos variables avant de les insérer dans notre modèle de régression linéaire.
+
+Le processus de standardiser une variable équivaut à:
+
+\begin{itemize}
+\item
+  centrer la variable - soustraire la moyenne de la variable à chaque score individuel
+\item
+  réduire la variable - diviser chaque score par l'écart-type de la variable
+\end{itemize}
+
+En d'autre mot, standardiser une variable est le même procédé qu'en calculer le score z.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{speed\_z }\OtherTok{\textless{}{-}}\NormalTok{ (speed }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(speed)) }\SpecialCharTok{/} \FunctionTok{sd}\NormalTok{(speed) }\CommentTok{\#vitesse standardisée}
+\NormalTok{dist\_z }\OtherTok{\textless{}{-}}\NormalTok{ (dist }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(dist)) }\SpecialCharTok{/} \FunctionTok{sd}\NormalTok{(dist) }\CommentTok{\#distance de freinage standardisée}
+\NormalTok{modele\_z }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(dist\_z }\SpecialCharTok{\textasciitilde{}}\NormalTok{ speed\_z) }\CommentTok{\#modèle sur variable standardisées}
+\FunctionTok{summary}\NormalTok{(modele\_z)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dist_z ~ speed_z)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.12805 -0.36964 -0.08816  0.35758  1.67646 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 4.052e-17  8.440e-02   0.000        1    
+## speed_z     8.069e-01  8.526e-02   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.5968 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
 \end{verbatim}
 
   \bibliography{book.bib,packages.bib}

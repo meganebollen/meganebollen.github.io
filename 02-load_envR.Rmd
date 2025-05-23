@@ -50,8 +50,8 @@ getwd()
 ```
 
 ```{r echo=FALSE}
-setwd("~/Documents/assistanat/Statistique_I/")
-getwd()
+#setwd("~/Documents/assistanat/Statistique_I/")
+#getwd()
 ```
 
 Nous vous conseillons de définir vous-même le répertoire de travail à chaque fois que vous commencez de travailler dans R, par exemple, en le spécifiant au début de vote script.

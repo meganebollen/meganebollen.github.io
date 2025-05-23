@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2025-05-14" />
+<meta name="date" content="2025-05-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -217,6 +217,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="02-load_envR.html"><a href="#le-test-de-student-pour-%C3%A9chantillons-appari%C3%A9s"><i class="fa fa-check"></i><b>8.3</b> Le test de Student pour échantillons appariés</a></li>
 <li class="chapter" data-level="8.4" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#la-puissance-dun-test-de-student"><i class="fa fa-check"></i><b>8.4</b> La puissance d’un test de Student</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="02-load_envR.html"><a href="#r%C3%A9gression-lin%C3%A9aire-simple"><i class="fa fa-check"></i><b>9</b> Régression linéaire simple</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="02-load_envR.html"><a href="#visualisation-du-lien-lin%C3%A9aire-entre-deux-variables"><i class="fa fa-check"></i><b>9.1</b> Visualisation du lien linéaire entre deux variables</a></li>
+<li class="chapter" data-level="9.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>9.2</b> Conditions d’application</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="02-load_envR.html"><a href="#relation-lin%C3%A9aire"><i class="fa fa-check"></i><b>9.2.1</b> Relation linéaire</a></li>
+<li class="chapter" data-level="9.2.2" data-path="02-load_envR.html"><a href="#donn%C3%A9es-ind%C3%A9pendantes"><i class="fa fa-check"></i><b>9.2.2</b> Données indépendantes</a></li>
+<li class="chapter" data-level="9.2.3" data-path="02-load_envR.html"><a href="#r%C3%A9sidus-distribu%C3%A9s-normalement"><i class="fa fa-check"></i><b>9.2.3</b> Résidus distribués normalement</a></li>
+<li class="chapter" data-level="9.2.4" data-path="02-load_envR.html"><a href="#homoscedasticit%C3%A9"><i class="fa fa-check"></i><b>9.2.4</b> Homoscedasticité</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="02-load_envR.html"><a href="#param%C3%A8tres-et-tests-dhypoth%C3%A8ses"><i class="fa fa-check"></i><b>9.3</b> Paramètres et tests d’hypothèses</a></li>
+<li class="chapter" data-level="9.4" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#standardiser-une-variable"><i class="fa fa-check"></i><b>9.4</b> Standardiser une variable</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -280,7 +293,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Lorsque vous travaillez dans R studio, le logiciel a besoin de savoir quel est votre répertoire de travail (ou working directory en anglais). Si vous ne le spécifiez pas vous-même, R studio va simplement en choisir un par défaut.</p>
 <p>Afin de connaître le répertoire de travail actuel, vous pouvez utiliser la fonction <em>getwd( )</em></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="installation-et-environnement-r-et-rstudio.html#cb1-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;/Users/sarthers/Documents/assistanat/Statistique_I&quot;</code></pre>
 <p>Nous vous conseillons de définir vous-même le répertoire de travail à chaque fois que vous commencez de travailler dans R, par exemple, en le spécifiant au début de vote script.</p>
 <p>Si vous avez créé un dossier pour le cours, alors vous pouvez l’utiliser comme répertoire de travail. Cela a de nombreux avantages et notamment vous permet d’accéder facilement aux bases de données.</p>
 <p>Pour définir ce répertoire de travail, deux alternatives sont à votre disposition, l’utilisation de la commande <em>setwd( )</em> ou passer par la création d’un projet R.</p>
@@ -289,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>La commande <em>setwd( )</em> vous permet de définir le répertoire de travail. Une bonne pratique consiste à l’indiquer au début du script si vous travaillez avec un script.</p>
 <p>A chaque fois que vous retournez sur R studio, vous devrez spécifier votre répertoire de travail.</p>
 <p>Pour ce faire, il suffit de copier le chemin qui mène au répertoire de travail à l’intérieur des parenthèses, comme dans l’exemple ci-dessous</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="installation-et-environnement-r-et-rstudio.html#cb3-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/Documents/assistanat/Statistique_I/&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="installation-et-environnement-r-et-rstudio.html#cb2-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~/Documents/assistanat/Statistique_I/&quot;</span>)</span></code></pre></div>
 <p><em>RAPPEL, vous pouvez obtenir le chemin d’un dossier de la manière suivante:</em></p>
 <ul>
 <li><p><em>Pour windows : <a href="https://www.supportyourtech.com/articles/how-to-get-file-path-windows-10-easy-steps-to-find-your-file-locations/">Obtain file path in windows 10</a></em></p></li>
@@ -298,14 +310,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Une fois que vous avez indiqué votre répertoire de travail par la fonction <em>setwd( )</em>, si vous avez une base de données dans le répertoire de travail, vous pourrez l’accéder directement.</p>
 <p>Exemple 1 :</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="installation-et-environnement-r-et-rstudio.html#cb4-1" tabindex="-1"></a><span class="co"># Par exemple, importer le fichier &quot;data_ex1.csv&quot;, </span></span>
-<span id="cb4-2"><a href="installation-et-environnement-r-et-rstudio.html#cb4-2" tabindex="-1"></a><span class="co"># enregistré dans le répertoire de travail.</span></span>
-<span id="cb4-3"><a href="installation-et-environnement-r-et-rstudio.html#cb4-3" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&quot;data_ex1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="installation-et-environnement-r-et-rstudio.html#cb3-1" tabindex="-1"></a><span class="co"># Par exemple, importer le fichier &quot;data_ex1.csv&quot;, </span></span>
+<span id="cb3-2"><a href="installation-et-environnement-r-et-rstudio.html#cb3-2" tabindex="-1"></a><span class="co"># enregistré dans le répertoire de travail.</span></span>
+<span id="cb3-3"><a href="installation-et-environnement-r-et-rstudio.html#cb3-3" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&quot;data_ex1.csv&quot;</span>)</span></code></pre></div>
 <p>Exemple 2 :</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="installation-et-environnement-r-et-rstudio.html#cb5-1" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="installation-et-environnement-r-et-rstudio.html#cb5-2" tabindex="-1"></a><span class="co"># Par exemple, importer le fichier &quot;data_ex1.csv&quot;, </span></span>
-<span id="cb5-3"><a href="installation-et-environnement-r-et-rstudio.html#cb5-3" tabindex="-1"></a><span class="co"># enregistré dans le dossier Data qui se trouve dans le répertoire de travail.</span></span>
-<span id="cb5-4"><a href="installation-et-environnement-r-et-rstudio.html#cb5-4" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&quot;Data/data_ex1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="installation-et-environnement-r-et-rstudio.html#cb4-1" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="installation-et-environnement-r-et-rstudio.html#cb4-2" tabindex="-1"></a><span class="co"># Par exemple, importer le fichier &quot;data_ex1.csv&quot;, </span></span>
+<span id="cb4-3"><a href="installation-et-environnement-r-et-rstudio.html#cb4-3" tabindex="-1"></a><span class="co"># enregistré dans le dossier Data qui se trouve dans le répertoire de travail.</span></span>
+<span id="cb4-4"><a href="installation-et-environnement-r-et-rstudio.html#cb4-4" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&quot;Data/data_ex1.csv&quot;</span>)</span></code></pre></div>
 <p><em>Pour rappel, lorsque vous allez indiquer le chemin menant à un fichier, vous pouvez utiliser la touche ‘tab’ afin que Rstudio vous propose les différentes alternatives à votre disposition. Choisissez votre étape en cliquant dessus. La touche ‘tab’ peut être réutilisée jusqu’à ce que vous arriviez au fichier de votre choix. Cela vous permet d’éviter toute forme de fausse manipulation telle qu’une faute de frappe par exemple.</em></p>
 <center>
 <p><img src="images/tab_path.png" /><!-- --></p>
@@ -342,8 +354,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="4" style="list-style-type: decimal">
 <li><p>Vous pouvez maintenant ouvrir Rstudio en double-cliquant sur votre fichier Statistique_I.Rproj.</p></li>
 <li><p>Une fois Rstudio ouvert par ce biais, les chemins menant à vos diverses bases de données seront directs.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="installation-et-environnement-r-et-rstudio.html#cb6-1" tabindex="-1"></a><span class="co"># Par exemple, importer le fichier &quot;data_ex1.csv&quot;, enregistré dans le dossier Data de mon répertoire de travail.</span></span>
-<span id="cb6-2"><a href="installation-et-environnement-r-et-rstudio.html#cb6-2" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&quot;Data/data_ex1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="installation-et-environnement-r-et-rstudio.html#cb5-1" tabindex="-1"></a><span class="co"># Par exemple, importer le fichier &quot;data_ex1.csv&quot;, enregistré dans le dossier Data de mon répertoire de travail.</span></span>
+<span id="cb5-2"><a href="installation-et-environnement-r-et-rstudio.html#cb5-2" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&quot;Data/data_ex1.csv&quot;</span>)</span></code></pre></div>
 <p><em>Pour rappel, lorsque vous allez indiquer le chemin menant à un fichier, vous pouvez utiliser la touche ‘tab’ afin que Rstudio vous propose les différentes alternatives à votre disposition. Choisissez votre étape en cliquant dessus. La touche ‘tab’ peut être réutilisée jusqu’à ce que vous arriviez au fichier de votre choix. Cela vous permet d’éviter toute forme de fausse manipulation telle qu’une faute de frappe par exemple.</em></p></li>
 </ol>
 <center>

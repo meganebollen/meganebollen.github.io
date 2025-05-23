@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Prof. Audrey Bürki, Samuel Arthers, Mégane Bollenrücher" />
 
 
-<meta name="date" content="2025-05-14" />
+<meta name="date" content="2025-05-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -217,6 +217,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="04-packages_data.html"><a href="#le-test-de-student-pour-%C3%A9chantillons-appari%C3%A9s"><i class="fa fa-check"></i><b>8.3</b> Le test de Student pour échantillons appariés</a></li>
 <li class="chapter" data-level="8.4" data-path="les-tests-statistiques.html"><a href="les-tests-statistiques.html#la-puissance-dun-test-de-student"><i class="fa fa-check"></i><b>8.4</b> La puissance d’un test de Student</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="04-packages_data.html"><a href="#r%C3%A9gression-lin%C3%A9aire-simple"><i class="fa fa-check"></i><b>9</b> Régression linéaire simple</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="04-packages_data.html"><a href="#visualisation-du-lien-lin%C3%A9aire-entre-deux-variables"><i class="fa fa-check"></i><b>9.1</b> Visualisation du lien linéaire entre deux variables</a></li>
+<li class="chapter" data-level="9.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>9.2</b> Conditions d’application</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="04-packages_data.html"><a href="#relation-lin%C3%A9aire"><i class="fa fa-check"></i><b>9.2.1</b> Relation linéaire</a></li>
+<li class="chapter" data-level="9.2.2" data-path="04-packages_data.html"><a href="#donn%C3%A9es-ind%C3%A9pendantes"><i class="fa fa-check"></i><b>9.2.2</b> Données indépendantes</a></li>
+<li class="chapter" data-level="9.2.3" data-path="04-packages_data.html"><a href="#r%C3%A9sidus-distribu%C3%A9s-normalement"><i class="fa fa-check"></i><b>9.2.3</b> Résidus distribués normalement</a></li>
+<li class="chapter" data-level="9.2.4" data-path="04-packages_data.html"><a href="#homoscedasticit%C3%A9"><i class="fa fa-check"></i><b>9.2.4</b> Homoscedasticité</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="04-packages_data.html"><a href="#param%C3%A8tres-et-tests-dhypoth%C3%A8ses"><i class="fa fa-check"></i><b>9.3</b> Paramètres et tests d’hypothèses</a></li>
+<li class="chapter" data-level="9.4" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#standardiser-une-variable"><i class="fa fa-check"></i><b>9.4</b> Standardiser une variable</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -243,9 +256,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="installation-et-gestion-des-packages" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Installation et gestion des packages<a href="packages-et-données.html#installation-et-gestion-des-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Les packages sont des regroupements de fonctions et de jeux de données développés dans R et qui doivent se télécharger une seule fois, mais ils devront être importés à chaque utilisation. Le code ci-dessous permet d’installer le package ggplot2:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="packages-et-données.html#cb84-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="packages-et-données.html#cb83-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Avant chaque utilisation des packages, il est nécessaire d’importer le package grâce au code suivant:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="packages-et-données.html#cb85-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="packages-et-données.html#cb84-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 </div>
 <div id="téléchargement-des-données" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Téléchargement des données<a href="#t%C3%A9l%C3%A9chargement-des-donn%C3%A9es" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -258,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bases-de-données-issues-de-la-base-de-r-ou-des-packages" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Bases de données issues de la base de R ou des packages<a href="#bases-de-donn%C3%A9es-issues-de-la-base-de-r-ou-des-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Le code suivant permet d’importer le jeu de données “iris” disponible de base dans R.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="packages-et-données.html#cb86-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="packages-et-données.html#cb85-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span></code></pre></div>
 <p>Un objet <code>iris</code> apparait dans l’environnement du projet comme le montre la figure suivante.</p>
 <p><img src="images/environment_forDataDownload.png" /><!-- --></p>
 <p>Si les données sont dans un package, le package doit être importé au préalable.</p>
@@ -266,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bases-de-données-issues-dans-un-fichier-.rdata" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Bases de données issues dans un fichier .RData<a href="#bases-de-donn%C3%A9es-issues-dans-un-fichier-.rdata" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Les fichiers <code>.RData</code> sont spécifique au language R et peuvent contenir plusieurs objets en un seul fichier. Pour importer des données, il faut utiliser la fonction <code>load()</code></p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="packages-et-données.html#cb87-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;04-data.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="packages-et-données.html#cb86-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;04-data.RData&quot;</span>)</span></code></pre></div>
 <p>Tous les objets importés sont chargés dans l’environnement de travail.</p>
 <p><img src="images/environment_forRDataDownload.png" /><!-- --></p>
 </div>
@@ -279,8 +292,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>dec</code> qui est le séparateur décimal. Cet argument est mis par défaut à <code>.</code>.</li>
 </ol>
 <p>Le seul argument obligatoire est le chemin d’accès au fichier à lire. Il n’est pas nécessaire de spécifier le chemin complet si le fichier à lire se trouve dans le dossier du projet. Si ce n’est pas le cas, vous devez spécifier le chemin d’accès complet à partir de ce qui a été fait avec la fonction <code>setwd()</code>. Pour charger une base de donnée nommé <code>04-data.csv</code> dont les valeurs sont séparées par des virgules, il suffit d’écrire la ligne suivante:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="packages-et-données.html#cb88-1" tabindex="-1"></a>csv_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;04-data.csv&quot;</span>)</span>
-<span id="cb88-2"><a href="packages-et-données.html#cb88-2" tabindex="-1"></a>csv_data</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="packages-et-données.html#cb87-1" tabindex="-1"></a>csv_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;04-data.csv&quot;</span>)</span>
+<span id="cb87-2"><a href="packages-et-données.html#cb87-2" tabindex="-1"></a>csv_data</span></code></pre></div>
 <pre><code>##      Nom Age Note.1 Note.2
 ## 1   Marc  18    5.0   5.50
 ## 2   Anne  20    6.0   4.00
@@ -288,8 +301,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4   Jean  17    3.5   5.00
 ## 5 Sophie  18    5.0   4.75</code></pre>
 <p>Pour charger une base de donnée nommé <code>04-data.txt</code> dont les valeurs sont séparées par des points-virgules, il suffit d’écrire comme dans la ligne suivante en n’oubliant pas de sécifier le caractère de séparation avec l’argument <code>sep=";"</code>.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="packages-et-données.html#cb90-1" tabindex="-1"></a>txt_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;04-data.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb90-2"><a href="packages-et-données.html#cb90-2" tabindex="-1"></a>txt_data</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="packages-et-données.html#cb89-1" tabindex="-1"></a>txt_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;04-data.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb89-2"><a href="packages-et-données.html#cb89-2" tabindex="-1"></a>txt_data</span></code></pre></div>
 <pre><code>##      Nom Age Note.1 Note.2
 ## 1   Marc  18    5.0   5.50
 ## 2   Anne  20    6.0   4.00

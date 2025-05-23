@@ -1,18 +1,10 @@
 # Régression linéaire simple
 
-Les modèles de régression linéaire sont des modèles qui cherchent à déterminer la relation **linéaire** entre des variables indépendantes et une variable dépendante. Par exemple, le lien entre: le poids, la taille et la puissance du moteur d'une voiture (variable indépendante) et sa vitesse de pointe (variable dépendante).
-
-```         
-vitesse de pointe ~ poids + taille + puissance
-```
-
-Dans le cas de la régression linéaire **simple**, le modèle cherche à déterminer la relation entre **une** variable indépendante (x) et une variable dépendante (y).
-
-En d'autre termes, le modèle de régression linéaire simple permet de déterminer si notre variable indépendante (qui peut être quantitative ou qualitative) prédit la variabilité de notre variable dépendante (toujours quantitative continue).
+Le modèle de régression linéaire simple cherche à déterminer la relation entre **une** variable indépendante (x) et une variable dépendante (y). Plus précisément, ce modèle cherche à déterminer si la variable indépendante (qui peut être qualitative ou quantitative) prédit la variabilité de la variable dépendante (toujours quantitative continue).
 
 Par exemple:
 
--   Est-ce que le nombre d'heures supp prédit le stress au travail?
+-   Est-ce que le nombre d'heures supp. prédit le stress au travail?
 
     ```         
     stress ~ heures supp
@@ -26,18 +18,23 @@ Par exemple:
 
 ## Visualisation du lien linéaire entre deux variables
 
-Afin de visualiser le lien linéaire entre deux variables continues, nous vous proposons de construire un graphique avec deux axes: nous représentons la variable indépendante sur l'axe des x et la variable dépendante sur l'axe des y.
+Afin de visualiser la nature du lien entre deux variables continues et vérifier si ce lien est linéaire, nous vous proposons de construire un diagramme de dispersion. Cette représentation graphique a deux axes: la variable indépendante sur l'axe des x et la variable dépendante sur l'axe des y.
 
 ```{r, echo=TRUE}
-# Par exemple, le lien entre la vitesse d'une voiture (x = speed) et sa distance de freinage (y = dist)
+# Par exemple, le diagramme de dispersion entre la vitesse d'une voiture (x = speed) et sa distance de freinage (y = dist)
 plot(dist ~ speed, data = cars)
 ```
 
-Les modèles de régression linéaire vont calculer et estimer la meilleure droite qui passe au milieu des données de telle sorte que cette droite représente la relation entre les deux variables.
+Les modèles de régression linéaire vont calculer et estimer la meilleure droite qui passe au milieu des données de telle sorte que cette droite représente la relation entre les deux variables. La fonction *lm( )* dans R calcule la pente et l'intercept de cette droite.
 
-```{r echo=FALSE}
-# Dans notre cas :
+```{r echo=TRUE}
 m1 <- lm(dist ~ speed, data = cars)
+```
+
+Le code suivant permet, une fois le modèle de régression calculé et stocké dans un objet (par exemple m1), de dessiner la droite de régression sur le diagrame de dispersion. Attention, il faut pour cela lancer les deux lignes de code en même temps.
+
+```{r echo=TRUE}
+# pour notre exemple :
 plot(dist~speed,data=cars)
 abline(m1)
 ```
@@ -46,13 +43,13 @@ abline(m1)
 
 Avant de pouvoir modéliser nos données par une régression linéaire, quatre conditions d'applications doivent être respectées. Il s'agit de prérequis théoriques et mathématiques:
 
-1.  La relation entre les variables est linéaire.
+1.  La relation entre les variables doit être linéaire.
 
-2.  Les données sont indépendantes les unes des autres.
+2.  Les données doivent être indépendantes les unes des autres.
 
-3.  Les résidus sont distribués normalement, avec une moyenne de 0.
+3.  Les résidus doivent être distribués normalement, avec une moyenne de 0.
 
-4.  La variance doit être homogène (homoscedasticité). En d'autres mots, l'erreur est la même pour toutes les valeurs de X.
+4.  La variance doit être homogène (homoscedasticité). En d'autres mots, l'erreur doit être homogène pour toutes les valeurs de X.
 
 ### Relation linéaire
 
@@ -78,7 +75,7 @@ Par exemple, s'il s'agit de données pairées, vous n'allez pas pouvoir modélis
 
 Dans le cas des exercices que nous vous donnons à faire, vous pouvez, sauf indication contraire, estimer que les données pertinentes sont bel et bien indépendantes.
 
-### Résidus distribuées normalement
+### Résidus distribués normalement
 
 Les deux dernières conditions d'application concernent les résidus/erreurs de votre modèle de régression linéaire. Ces résidus sont les écarts entre les valeurs observées et les valeurs prédites par votre modèle. En d'autres mots, les résidus représentent l'écart entre les données récoltées et la droite de régression définie par le modèle. Vous pouvez aussi comprendre les résidus comme une représentation du 'bruit' que votre régression n'arrive pas à modéliser.
 
@@ -88,14 +85,14 @@ Les deux dernières conditions d'application concernent les résidus/erreurs de 
 knitr::include_graphics("images/residuals.png")
 ```
 
-Ensuite, afin de pouvoir mesurer et observer les résidus, la première étape est de définir votre modèle de régression à l'aide de la fonction *lm( )*. Ensuite, afin de mesurer ces résidus, nous vous proposons d'utiliser la fonction *resid( ).*
+Ensuite, afin de pouvoir mesurer et observer les résidus, il faut d'abord définir votre modèle de régression à l'aide de la fonction *lm( )*. Ensuite, afin de connaître les valeurs des résidus, nous vous proposons d'utiliser la fonction *resid( ).*
 
 ``` r
 modele_1 <- lm(dist ~ speed, data = cars) # définition du modèle de régression linéaire
 residus <- resid(modele_1) # calcul des résidus
 ```
 
-Afin de vérifier la normalité de la distribution des erreurs/résidus, deux options s'offrent à vous.
+Afin de vérifier la normalité de la distribution des erreurs/résidus, trois options s'offrent à vous.
 
 1.  Vous pouvez visualiser la distribution des résidus par un graphique de densité. **Critère de décision**: est-ce que cette distribution ressemble à une distribution normale centrée en 0?
 
@@ -128,6 +125,8 @@ qqnorm(residus)
 knitr::include_graphics("images/QQplot.png")
 ```
 
+3.  Finalement, de manière intuitive, le diagramme de dispersion avec la droite de régression vous permet également d'avoir une idée de le distribution des résidus. La condition de normalité est respectée si il y a autant de résidus en haut et en bas de la droite, et que les résidus ne sont pas plus éloignés de la droite en haut qu'en bas (ou vice-versa)
+
 ### Homoscedasticité
 
 Finalement, il est essentiel que les résidus se distribuent de manière homogène pour toutes les valeurs de x. En d'autres termes, que la précision de la droite de régression reste la même pour toutes les valeurs de x. Afin de vérifier cette condition, vous allez visualer les données autour de la droite de régression et faire un graphique des résidus en fonction de votre variable indépendante (x). **Critère de décision:** est-ce que les résidus pourraient être contenus dans un rectangle (homoscédasticité) ou non (hétéroscédasticité).
@@ -153,9 +152,11 @@ knitr::include_graphics("images/hetero.png")
 knitr::include_graphics("images/homo_hetero.png")
 ```
 
+A nouveau, simplement regarder le diagramme de dispersion et la droite de régression vous permet également d'avoir une idée de si cette conditoin est respectée. Si elle l'est, les résidus sont similaires tout au long de la droite de régression.
+
 ## Paramètres et tests d'hypothèses
 
-Si toutes les conditions d'applications sont respectées, vous allez pouvoir interprêter les résultats de votre modèle de régression linéaire simple.
+Si toutes les conditions d'application sont respectées, vous allez pouvoir interprêter les résultats de votre modèle de régression linéaire simple.
 
 En guise de rappel, pour spécifier votre modèle de régression vous allez utiliser la fonction *lm( )*. Ensuite, pour en observer les paramètres/résultats, vous allez utiliser la fonction *summary( )*.
 
@@ -173,16 +174,10 @@ En quelques mots, voici ce que représentent les différents indices et paramèt
 **Bloc 1 - Les paramètres de votre modèle**
 
 1.  Le rappel de votre équation de régression linéaire
-
-<!-- -->
-
-2.  Les valeurs de paramètres de votre modèle. Vous avez une valeur pour l'ordonnée à l'origine (intercept) ainsi que pour chacune de vos variable indépendantes (ou prédictrices)
-
+2.  Les valeurs de paramètres de votre modèle. Vous avez une valeur pour l'ordonnée à l'origine (intercept) ainsi que pour la variable indépendante (ou prédicteur)
 3.  L'erreur standard de chacun des paramètres
-
 4.  Un score t est calculé pour chaque paramètre afin d'en tester la significativité
-
-5.  La probabilité critique de chaque paramètre. Cette p-valeur vous permet de juger de la significativité de vos différents paramètres
+5.  La p-valeur de chaque paramètre. Cette p-valeur vous permet de juger de la significativité de vos différents paramètres
 
 ```{r echo=FALSE}
 knitr::include_graphics("images/2.png")
@@ -194,7 +189,7 @@ knitr::include_graphics("images/2.png")
 
 7.  Les coefficients de détermination de votre modèle (R-carré et R-carré ajusté). Ces derniers vous indiquent la part de variance de votre variable dépendante qui est expliquée par votre modèle.
 
-8.  Cette F-statistic et sa probabilité critique vous permettent de conclure sur la significativité de votre modèle. Est-ce que ce dernier 'prédit' significativement votre variable dépendante?
+8.  Cette F-statistic et sa probabilité critique vous permettent de conclure sur la significativité de votre modèle. Est-ce que ce dernier 'prédit' significativement votre variable dépendante? Plus concrètement, ces valeurs permettent de rejeter ou non l'hypothèse nulle suivante: le modèle avec la variable indépendante et un modèle avec uniquement un intercept ne diffèrent pas quant à leur capacité à expliquer la variabilité de la variable dépendante.
 
 ```{r echo=FALSE}
 knitr::include_graphics("images/6.png")
